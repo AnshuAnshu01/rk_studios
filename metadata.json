@@ -1,0 +1,8 @@
+{
+  "name": "RK Studios — Sacred Rituals & Wedding Monograph",
+  "description": "Haute cinema, fine art heirloom monographs, traditional Indian wedding rituals guide, and intimate family RSVP portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

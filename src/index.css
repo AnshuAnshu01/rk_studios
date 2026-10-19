@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #fcf9f4;
+    color: #1c1c19;
+    font-family: 'EB Garamond', Georgia, serif;
+  }
+}
+
+.font-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive, 'Playfair Display', serif;
+}
+
+.font-numeral {
+  font-family: 'Playfair Display', serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
