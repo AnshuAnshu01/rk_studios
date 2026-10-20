@@ -19,7 +19,8 @@ import {
   Clock, 
   ArrowUp,
   Volume2,
-  VolumeX
+  VolumeX,
+  Phone
 } from 'lucide-react';
 
 export default function App() {
@@ -163,10 +164,26 @@ export default function App() {
           )}
         </button>
 
+        {/* Floating Phone Call CTA */}
+        <a
+          href="tel:+919212812625"
+          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#45123E] hover:bg-[#320B2C] text-[#FAF5EB] shadow-xl hover:shadow-2xl transition-all duration-300 font-sans text-xs tracking-wider uppercase font-semibold border border-[#C5A059]/60 hover:scale-[1.02] active:scale-[0.98]"
+          title="Direct Phone Call: +91 92128 12625"
+        >
+          <div className="relative">
+            <Phone className="w-4 h-4 text-[#EE9B42] fill-current" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#25D366] rounded-full ring-2 ring-[#45123E]" />
+          </div>
+          <span className="hidden sm:inline">Call Studio</span>
+          <span className="text-[10px] bg-white/15 text-[#FFDEA5] px-2 py-0.5 rounded-full font-mono font-normal">
+            +91 92128 12625
+          </span>
+        </a>
+
         {/* Floating WhatsApp Concierge CTA */}
         <button
           onClick={() => setIsWhatsAppOpen(true)}
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20b858] text-white shadow-xl hover:shadow-2xl transition-all duration-300 font-sans text-xs tracking-wider uppercase font-semibold"
+          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20b858] text-white shadow-xl hover:shadow-2xl transition-all duration-300 font-sans text-xs tracking-wider uppercase font-semibold hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="relative">
             <MessageCircle className="w-5 h-5 fill-current" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   PLATES_DATA, 
   PlateItem, 
@@ -23,8 +23,20 @@ import {
   CheckCircle, 
   ExternalLink,
   ImageIcon,
-  BookOpen
+  BookOpen,
+  Upload,
+  Plus,
+  Trash2,
+  ImagePlus
 } from 'lucide-react';
+
+export interface UserUploadedGalleryItem {
+  id: string;
+  url: string;
+  caption?: string;
+  ceremonyTag?: string;
+  uploadedAt: string;
+}
 
 interface VisualAnthologyProps {
   onSelectPlate?: (plate: PlateItem) => void;
@@ -45,6 +57,99 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
   const [selectedGalleryPhoto, setSelectedGalleryPhoto] = useState<string | null>(null);
   const [selectedPost, setSelectedPost] = useState<StudioPost | null>(null);
   const [galleryDisplayCount, setGalleryDisplayCount] = useState<number>(12);
+
+  // User uploaded ceremony photos for Our Studio Gallery & Real Ceremonies section
+  const [userUploadedPhotos, setUserUploadedPhotos] = useState<UserUploadedGalleryItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('rk_studio_custom_gallery_photos');
+      return saved ? JSON.parse(saved) : [];
+    } catch (err) {
+      return [];
+    }
+  });
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
+  const [selectedUploadFiles, setSelectedUploadFiles] = useState<Array<{ file: File; preview: string }>>([]);
+  const [uploadCeremonyTag, setUploadCeremonyTag] = useState('Weddings & Pheras');
+  const [uploadCaption, setUploadCaption] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFilesSelected = (files: FileList) => {
+    const fileArray = Array.from(files).filter(file => file.type.startsWith('image/'));
+    if (fileArray.length === 0) return;
+
+    fileArray.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setSelectedUploadFiles(prev => [...prev, { file, preview: reader.result as string }]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleConfirmUpload = () => {
+    if (selectedUploadFiles.length === 0) return;
+
+    const newItems: UserUploadedGalleryItem[] = selectedUploadFiles.map((item, idx) => ({
+      id: `user-photo-${Date.now()}-${idx}-${Math.random().toString(36).substring(2, 7)}`,
+      url: item.preview,
+      caption: uploadCaption.trim() || undefined,
+      ceremonyTag: uploadCeremonyTag,
+      uploadedAt: new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })
+    }));
+
+    const updated = [...newItems, ...userUploadedPhotos];
+    setUserUploadedPhotos(updated);
+    try {
+      localStorage.setItem('rk_studio_custom_gallery_photos', JSON.stringify(updated));
+    } catch (err) {
+      console.warn('Local storage quota reached, saved in active session memory', err);
+    }
+
+    setUploadSuccessMessage(
+      newItems.length === 1
+        ? 'Photograph successfully added to Our Studio Gallery!'
+        : `${newItems.length} photographs successfully added to Our Studio Gallery!`
+    );
+    setSelectedUploadFiles([]);
+    setUploadCaption('');
+    setIsUploadModalOpen(false);
+
+    setTimeout(() => {
+      setUploadSuccessMessage(null);
+    }, 4500);
+  };
+
+  const handleDeleteUploadedPhoto = (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    const updated = userUploadedPhotos.filter(p => p.id !== id);
+    setUserUploadedPhotos(updated);
+    try {
+      localStorage.setItem('rk_studio_custom_gallery_photos', JSON.stringify(updated));
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const allGalleryPhotos = [
+    ...userUploadedPhotos.map(p => ({
+      id: p.id,
+      url: p.url,
+      caption: p.caption,
+      tag: p.ceremonyTag,
+      isUserUpload: true
+    })),
+    ...STUDIO_GALLERY_PHOTOS.map((url, idx) => ({
+      id: `studio-${idx}`,
+      url,
+      caption: undefined,
+      tag: undefined,
+      isUserUpload: false
+    }))
+  ];
 
   const handleOpenReserve = () => {
     if (onNavigateToReserve) {
@@ -417,6 +522,26 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
       {/* Authentic Studio Photo Gallery (From RK Photo Studio Rohini) */}
       <section className="w-full px-4 sm:px-6 lg:px-8 py-16 bg-[#F4EFE6] border-t border-[#E0D7CB]">
         <div className="max-w-7xl mx-auto">
+          {/* Notification banner when photo uploaded */}
+          {uploadSuccessMessage && (
+            <div className="mb-6 p-4 bg-[#FAF4EB] border border-[#C5A059] text-[#45123E] rounded-lg text-xs font-sans flex items-center justify-between shadow-sm animate-fade-in">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-full bg-[#45123E] text-[#FFDEA5] flex items-center justify-center">
+                  <CheckCircle className="w-4 h-4" />
+                </div>
+                <span className="font-serif font-medium text-sm text-[#1C1C19]">
+                  {uploadSuccessMessage}
+                </span>
+              </div>
+              <button
+                onClick={() => setUploadSuccessMessage(null)}
+                className="text-[#7A6A58] hover:text-[#1C1C19] p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <div className="inline-flex items-center gap-2 mb-2 text-[#775a19]">
@@ -429,50 +554,103 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
                 Our Studio Gallery &amp; Real Ceremonies
               </h2>
               <p className="font-serif text-base text-[#5D5042] max-w-xl mt-1">
-                A glimpse into real Indian weddings, bridal sittings, ancestral restorations, and family milestones captured by RK Photo Studio across Delhi NCR.
+                A glimpse into real Indian weddings, bridal sittings, ancestral restorations, and family milestones captured by RK Photo Studio across Delhi NCR. You can also upload your own genuine ceremony captures into this gallery below.
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setIsUploadModalOpen(true)}
+                className="px-4 py-2 bg-[#45123E] hover:bg-[#320B2C] text-[#FFDEA5] text-xs font-sans rounded font-semibold transition-all shadow-sm flex items-center gap-1.5 border border-[#C5A059]/40 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <ImagePlus className="w-4 h-4 text-[#EE9B42]" />
+                <span>Upload Photos</span>
+              </button>
+
               <span className="font-sans text-xs text-[#7A6A58] font-medium">
-                Showing {Math.min(galleryDisplayCount, STUDIO_GALLERY_PHOTOS.length)} of {STUDIO_GALLERY_PHOTOS.length} Photos
+                Showing {Math.min(galleryDisplayCount, allGalleryPhotos.length)} of {allGalleryPhotos.length} Photos
+                {userUploadedPhotos.length > 0 && (
+                  <span className="text-[#775a19] font-bold ml-1">
+                    ({userUploadedPhotos.length} custom)
+                  </span>
+                )}
               </span>
-              {galleryDisplayCount < STUDIO_GALLERY_PHOTOS.length ? (
+
+              {galleryDisplayCount < allGalleryPhotos.length ? (
                 <button
-                  onClick={() => setGalleryDisplayCount(prev => Math.min(prev + 12, STUDIO_GALLERY_PHOTOS.length))}
+                  onClick={() => setGalleryDisplayCount(prev => Math.min(prev + 12, allGalleryPhotos.length))}
                   className="px-4 py-2 bg-[#45123E] hover:bg-[#320B2C] text-white text-xs font-sans rounded font-semibold transition-colors shadow-xs"
                 >
                   Load More Photos
                 </button>
-              ) : (
+              ) : allGalleryPhotos.length > 12 ? (
                 <button
                   onClick={() => setGalleryDisplayCount(12)}
                   className="px-4 py-2 bg-white text-[#45123E] border border-[#45123E] text-xs font-sans rounded font-semibold transition-colors"
                 >
                   Show Less
                 </button>
-              )}
+              ) : null}
             </div>
           </div>
 
           {/* Photo Gallery Masonry / Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {STUDIO_GALLERY_PHOTOS.slice(0, galleryDisplayCount).map((imgUrl, idx) => (
+            {/* Interactive Upload Card as First Tile */}
+            <div
+              onClick={() => setIsUploadModalOpen(true)}
+              className="group relative aspect-square bg-[#FDFBF7] hover:bg-[#F6EFE3] rounded-lg overflow-hidden border-2 border-dashed border-[#C5A059]/80 hover:border-[#45123E] shadow-xs cursor-pointer transition-all flex flex-col items-center justify-center p-3 text-center"
+            >
+              <div className="w-10 h-10 rounded-full bg-[#45123E]/10 group-hover:bg-[#45123E] text-[#45123E] group-hover:text-[#FFDEA5] flex items-center justify-center transition-all mb-2 group-hover:scale-105 shadow-xs">
+                <Plus className="w-5 h-5 transition-transform" />
+              </div>
+              <span className="font-headline text-xs font-bold text-[#1C1C19] uppercase tracking-wider block">
+                Add Photo
+              </span>
+              <span className="font-sans text-[10px] text-[#7A6A58] mt-0.5 leading-tight">
+                Upload Ceremony Image
+              </span>
+            </div>
+
+            {/* Gallery Photos */}
+            {allGalleryPhotos.slice(0, galleryDisplayCount).map((item) => (
               <div
-                key={idx}
-                onClick={() => setSelectedGalleryPhoto(imgUrl)}
+                key={item.id}
+                onClick={() => setSelectedGalleryPhoto(item.url)}
                 className="group relative aspect-square bg-[#E8DFD3] rounded-lg overflow-hidden border border-[#D5C9B7] shadow-xs cursor-pointer hover:shadow-lg transition-all"
               >
                 <img
-                  src={imgUrl}
-                  alt={`RK Photo Studio business capture ${idx + 1}`}
+                  src={item.url}
+                  alt={item.caption || "RK Photo Studio business capture"}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="w-9 h-9 rounded-full bg-white/90 text-[#1C1C19] flex items-center justify-center shadow-md">
+
+                {/* Custom User Upload Ribbon & Delete Button */}
+                {item.isUserUpload && (
+                  <>
+                    <span className="absolute top-2 left-2 z-10 bg-[#45123E]/95 text-[#FFDEA5] text-[9px] uppercase tracking-wider font-headline px-1.5 py-0.5 rounded shadow border border-[#C5A059]/60">
+                      ✦ {item.tag || 'Upload'}
+                    </span>
+                    <button
+                      onClick={(e) => handleDeleteUploadedPhoto(e, item.id)}
+                      title="Remove uploaded photo"
+                      className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 p-1.5 rounded-full bg-red-600/90 hover:bg-red-700 text-white transition-opacity shadow-sm"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </>
+                )}
+
+                <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2 text-center text-white">
+                  <div className="w-9 h-9 rounded-full bg-white/90 text-[#1C1C19] flex items-center justify-center shadow-md mb-1">
                     <Eye className="w-4 h-4 text-[#45123E]" />
                   </div>
+                  {item.caption && (
+                    <span className="font-serif text-[11px] text-[#FFDEA5] line-clamp-1 italic px-1">
+                      {item.caption}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
@@ -480,7 +658,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
 
           <div className="mt-8 text-center">
             <p className="font-serif italic text-xs text-[#7A6A58]">
-              All gallery images captured and processed at RK Photo Studio Rohini Sector 23, Delhi.
+              All gallery images captured and processed at RK Photo Studio Rohini Sector 23, Delhi. Client ceremony contributions are stored locally for instant viewing.
             </p>
           </div>
         </div>
@@ -829,40 +1007,229 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
         </div>
       )}
       {/* Full-size Gallery Lightbox Modal */}
-      {selectedGalleryPhoto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md">
-          <div className="relative max-w-4xl max-h-[90vh] bg-[#111110] rounded-xl overflow-hidden border border-[#C5A059]/40 shadow-2xl flex flex-col">
-            <div className="flex items-center justify-between p-3 bg-[#1C1C19] text-white border-b border-white/10">
-              <span className="font-headline text-xs uppercase tracking-widest text-[#EE9B42]">
-                RK Photo Studio Rohini Gallery Archive
-              </span>
+      {selectedGalleryPhoto && (() => {
+        const activeUserPhoto = userUploadedPhotos.find(p => p.url === selectedGalleryPhoto);
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md">
+            <div className="relative max-w-4xl max-h-[90vh] bg-[#111110] rounded-xl overflow-hidden border border-[#C5A059]/40 shadow-2xl flex flex-col">
+              <div className="flex items-center justify-between p-3.5 bg-[#1C1C19] text-white border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="font-headline text-xs uppercase tracking-widest text-[#EE9B42]">
+                    {activeUserPhoto ? 'Ceremony Archive • Client Upload' : 'RK Photo Studio Rohini Gallery Archive'}
+                  </span>
+                  {activeUserPhoto?.ceremonyTag && (
+                    <span className="bg-[#45123E] text-[#FFDEA5] text-[10px] uppercase tracking-wider font-headline px-2 py-0.5 rounded border border-[#C5A059]/40">
+                      ✦ {activeUserPhoto.ceremonyTag}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => setSelectedGalleryPhoto(null)}
+                  className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-2 sm:p-4 flex items-center justify-center overflow-hidden">
+                <img
+                  src={selectedGalleryPhoto}
+                  alt={activeUserPhoto?.caption || "RK Photo Studio full view"}
+                  className="max-h-[75vh] w-auto max-w-full object-contain"
+                />
+              </div>
+              <div className="p-4 bg-[#1C1C19] border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-col">
+                  {activeUserPhoto?.caption && (
+                    <span className="font-serif text-sm text-[#FFDEA5] italic mb-0.5">
+                      “{activeUserPhoto.caption}”
+                    </span>
+                  )}
+                  <span className="font-serif text-xs text-[#C5A059]">
+                    Opposite SBI Bank, Sector 20 / 23 Rohini, Delhi • Call: +91 92128 12625
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    const msg = activeUserPhoto?.caption
+                      ? `Hi RK Photo Studio, I saw this ceremony capture ("${activeUserPhoto.caption}") and would like to inquire about similar wedding coverage!`
+                      : "Hi RK Photo Studio, I saw this capture from your gallery and would like to inquire about similar wedding / portrait coverage!";
+                    setSelectedGalleryPhoto(null);
+                    onOpenWhatsApp(msg);
+                  }}
+                  className="px-4 py-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-sans rounded font-bold uppercase tracking-wider flex items-center gap-1.5"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  <span>Inquire About This Style</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* User Ceremony Photo Upload Modal */}
+      {isUploadModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md">
+          <div className="relative w-full max-w-lg bg-[#FCF9F4] rounded-xl overflow-hidden border border-[#C5A059]/60 shadow-2xl flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 bg-[#1C1C19] text-white border-b border-[#C5A059]/30">
+              <div className="flex items-center gap-2">
+                <ImageIcon className="w-4 h-4 text-[#EE9B42]" />
+                <h3 className="font-headline text-sm uppercase tracking-widest text-[#F5EFE6]">
+                  Add Ceremony Photos
+                </h3>
+              </div>
               <button
-                onClick={() => setSelectedGalleryPhoto(null)}
+                onClick={() => {
+                  setIsUploadModalOpen(false);
+                  setSelectedUploadFiles([]);
+                  setUploadCaption('');
+                }}
                 className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-2 sm:p-4 flex items-center justify-center overflow-hidden">
-              <img
-                src={selectedGalleryPhoto}
-                alt="RK Photo Studio full view"
-                className="max-h-[75vh] w-auto max-w-full object-contain"
-              />
-            </div>
-            <div className="p-4 bg-[#1C1C19] border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-              <span className="font-serif text-xs text-[#C5A059]">
-                Opposite SBI Bank, Sector 20 / 23 Rohini, Delhi • Call: +91 92128 12625
-              </span>
-              <button
-                onClick={() => {
-                  setSelectedGalleryPhoto(null);
-                  onOpenWhatsApp("Hi RK Photo Studio, I saw this capture from your gallery and would like to inquire about similar wedding / portrait coverage!");
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+              <p className="font-serif text-xs text-[#5D5042] leading-relaxed">
+                Add genuine moments from your wedding rituals, bridal portraits, or family ceremonies to feature in the <strong className="text-[#1C1C19]">Our Studio Gallery &amp; Real Ceremonies</strong> archive.
+              </p>
+
+              {/* Drag and Drop Box */}
+              <div
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
                 }}
-                className="px-4 py-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-sans rounded font-bold uppercase tracking-wider flex items-center gap-1.5"
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setIsDragging(false);
+                  if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    handleFilesSelected(e.dataTransfer.files);
+                  }
+                }}
+                onClick={() => fileInputRef.current?.click()}
+                className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all ${
+                  isDragging 
+                    ? 'border-[#45123E] bg-[#45123E]/10' 
+                    : 'border-[#C5A059]/70 hover:border-[#45123E] bg-[#FAF4EB]/60 hover:bg-[#FAF4EB]'
+                }`}
               >
-                <MessageCircle className="w-3.5 h-3.5 fill-current" />
-                <span>Inquire About This Style</span>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files.length > 0) {
+                      handleFilesSelected(e.target.files);
+                    }
+                  }}
+                />
+                <div className="w-12 h-12 rounded-full bg-[#45123E]/10 text-[#45123E] flex items-center justify-center mx-auto mb-3">
+                  <Upload className="w-6 h-6" />
+                </div>
+                <p className="font-headline text-xs uppercase tracking-wider text-[#1C1C19] font-bold">
+                  Choose Photos or Drag &amp; Drop
+                </p>
+                <p className="font-serif text-[11px] text-[#7A6A58] mt-1">
+                  Supports multiple JPG, PNG, WEBP files
+                </p>
+              </div>
+
+              {/* Previews if any */}
+              {selectedUploadFiles.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-sans text-[#7A6A58]">
+                    <span className="font-semibold text-[#1C1C19]">Selected ({selectedUploadFiles.length} photos)</span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedUploadFiles([])}
+                      className="text-red-600 hover:underline text-[11px]"
+                    >
+                      Clear all
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2 max-h-36 overflow-y-auto p-1.5 bg-white rounded border border-[#E0D7CB]">
+                    {selectedUploadFiles.map((item, i) => (
+                      <div key={i} className="relative aspect-square rounded overflow-hidden group border border-[#D5C9B7]">
+                        <img src={item.preview} alt="preview" className="w-full h-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedUploadFiles(prev => prev.filter((_, idx) => idx !== i));
+                          }}
+                          className="absolute top-1 right-1 bg-black/75 hover:bg-red-600 text-white rounded-full p-0.5 transition-colors"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Ceremony Tag Selector */}
+              <div>
+                <label className="block font-headline text-[11px] uppercase tracking-wider text-[#775a19] font-semibold mb-1">
+                  Ceremony / Category Tag
+                </label>
+                <select
+                  value={uploadCeremonyTag}
+                  onChange={(e) => setUploadCeremonyTag(e.target.value)}
+                  className="w-full px-3 py-2 text-xs font-serif bg-white border border-[#D5C9B7] rounded focus:outline-none focus:border-[#45123E]"
+                >
+                  <option value="Weddings & Pheras">Weddings &amp; Pheras</option>
+                  <option value="Haldi & Mehendi">Haldi &amp; Mehendi</option>
+                  <option value="Sangeet & Baaraat">Sangeet &amp; Baaraat</option>
+                  <option value="Pre-Wedding Romance">Pre-Wedding Romance</option>
+                  <option value="Family Traditions">Family Traditions</option>
+                  <option value="Studio Portraiture">Studio Portraiture</option>
+                  <option value="Client Celebration">Client Celebration</option>
+                </select>
+              </div>
+
+              {/* Caption */}
+              <div>
+                <label className="block font-headline text-[11px] uppercase tracking-wider text-[#775a19] font-semibold mb-1">
+                  Caption / Ceremony Note (Optional)
+                </label>
+                <input
+                  type="text"
+                  value={uploadCaption}
+                  onChange={(e) => setUploadCaption(e.target.value)}
+                  placeholder="e.g., Saptapadi vows at Lake Pichola or Haldi ritual"
+                  className="w-full px-3 py-2 text-xs font-serif bg-white border border-[#D5C9B7] rounded focus:outline-none focus:border-[#45123E]"
+                />
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 bg-[#F5EFE3] border-t border-[#E0D5C3] flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsUploadModalOpen(false);
+                  setSelectedUploadFiles([]);
+                  setUploadCaption('');
+                }}
+                className="px-4 py-2 border border-[#D5C9B7] text-[#5D5042] text-xs font-sans rounded hover:bg-white transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={selectedUploadFiles.length === 0}
+                onClick={handleConfirmUpload}
+                className="px-5 py-2 bg-[#45123E] hover:bg-[#320B2C] disabled:opacity-50 disabled:cursor-not-allowed text-[#FFDEA5] text-xs font-sans font-semibold rounded uppercase tracking-wider transition-all flex items-center gap-1.5 shadow-sm border border-[#C5A059]/40"
+              >
+                <Upload className="w-3.5 h-3.5 text-[#EE9B42]" />
+                <span>Upload {selectedUploadFiles.length > 0 ? `(${selectedUploadFiles.length})` : ''} to Gallery</span>
               </button>
             </div>
           </div>
