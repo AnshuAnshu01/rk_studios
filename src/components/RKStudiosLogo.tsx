@@ -9,27 +9,22 @@ interface RKStudiosLogoProps {
 }
 
 /**
- * Official RK Studios Logo:
- * - Stylized 'RK' monogram (plum & purple R with curved peach accent; purple stem & peach/orange angled strokes for K)
- * - Modern thin divider '|'
- * - Clean geometric widely-spaced 'STUDIOS' wordmark
+ * Official RK Photo & Movies Production Logo
  */
 export const RKStudiosLogo: React.FC<RKStudiosLogoProps> = ({
   className = '',
-  height = 42,
-  showMonogramOnly = false,
-  alt = 'RK Studios'
+  height = 48,
+  alt = 'RK Photo & Movies Production'
 }) => {
-  const src = showMonogramOnly ? '/rk_emblem.png' : '/rk_logo.png';
   const styleHeight = typeof height === 'number' ? `${height}px` : height;
 
   return (
     <div className={`inline-flex items-center select-none ${className}`}>
       <img
-        src={src}
+        src="/rk_logo.png"
         alt={alt}
         style={{ height: styleHeight, width: 'auto' }}
-        className="max-h-full object-contain filter drop-shadow-xs transition-transform duration-200"
+        className="max-h-full object-contain transition-transform duration-300 hover:scale-[1.02]"
         loading="eager"
       />
     </div>

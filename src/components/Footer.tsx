@@ -1,109 +1,144 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RKStudiosLogo } from './RKStudiosLogo';
-import { BookOpen, Compass, Film, MapPin, Sparkles, Heart } from 'lucide-react';
+import { 
+  BookOpen, 
+  Compass, 
+  Film, 
+  MapPin, 
+  Sparkles, 
+  ArrowRight, 
+  Instagram, 
+  Phone, 
+  CheckCircle2,
+  ExternalLink
+} from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (screen: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  return (
-    <footer className="w-full bg-[#F6F1E8] text-[#1C1C19] pt-14 pb-10 border-t border-[#E2DAD0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Brand Crest Header in Footer */}
-        <div className="flex flex-col items-center justify-center pb-12 mb-10 border-b border-[#E0D7CB] text-center">
-          <div className="mb-4">
-            <RKStudiosLogo height={52} className="drop-shadow-xs" />
-          </div>
-          <p className="font-serif italic text-base sm:text-lg text-[#5D4E3E] max-w-xl">
-            “A sacred witness to unbroken vows, heartfelt tears at the Vidai, and generations united in timeless joy.”
-          </p>
-          <div className="flex items-center gap-3 mt-3 text-xs font-serif uppercase tracking-widest text-[#8F7E6D]">
-            <span>Rohini Sector 23, Delhi</span>
-            <span>•</span>
-            <span>Opposite SBI Bank</span>
-            <span>•</span>
-            <span>All-India Royal Nuptials</span>
-          </div>
-        </div>
+  const [digestEmail, setDigestEmail] = useState('');
+  const [digestSubscribed, setDigestSubscribed] = useState(false);
 
-        {/* 4 Responsive Columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
-          {/* Column 1: Historical Monograph */}
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-[#45123E]">
-              <BookOpen className="w-4 h-4 text-[#EE9B42]" />
-              <span className="font-sans text-[11px] uppercase tracking-widest font-semibold text-[#45123E]">
-                Sacred Monograph
-              </span>
+  const handleDigestSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!digestEmail.trim()) return;
+    setDigestSubscribed(true);
+    setTimeout(() => {
+      setDigestEmail('');
+      setDigestSubscribed(false);
+    }, 4000);
+  };
+
+  return (
+    <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-20 pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
+      {/* Background warm radial ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#a78b71]/10 blur-[130px] pointer-events-none rounded-full" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        
+        {/* 5-Column Desktop Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-[#ded3c2]">
+          
+          {/* Column 1: Updated Brand Logo & Social Icons */}
+          <div className="flex flex-col gap-4 lg:col-span-1">
+            <div>
+              <RKStudiosLogo height={62} />
             </div>
-            <h4 className="font-serif text-lg font-bold tracking-tight text-[#1C1C19]">
-              Atelier Heritage
-            </h4>
-            <p className="font-serif text-sm text-[#54483C] leading-relaxed">
-              Founded in pursuit of uncompromised classical grandeur, RK Studios curates bespoke visual heirlooms, sacred bridal rituals, and timeless wedding monographs inspired by royal Indian salon aesthetics and poetic human connection.
+
+            <p className="font-serif italic text-sm text-[#5d4f40] leading-relaxed mt-1">
+              “A sacred witness to unbroken vows, heartfelt tears at the Vidai, and generations united in timeless joy.”
             </p>
-            <div className="font-sans text-[10px] text-[#827160] tracking-widest uppercase mt-1">
-              ANNO MMXXIV — ARCHIVE VOL. XII
+
+            {/* Social Icons in circular bordered containers */}
+            <div className="flex items-center gap-2.5 mt-2">
+              <a
+                href="https://share.google/XGXzmI1VT65XaGW7H"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Google Verified Studio"
+              >
+                <MapPin className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
+              </a>
+              <a
+                href="https://rk-photo-401657.grexa.site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Official Studio Website"
+              >
+                <Sparkles className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
+              </a>
+              <a
+                href="tel:+919212812625"
+                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Direct Phone Line"
+              >
+                <Phone className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Atelier Instagram Archive"
+              >
+                <Instagram className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
+              </a>
             </div>
           </div>
 
           {/* Column 2: Navigation Portals */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-[#45123E]">
-              <Compass className="w-4 h-4 text-[#EE9B42]" />
-              <span className="font-sans text-[11px] uppercase tracking-widest font-semibold text-[#45123E]">
-                Portals &amp; Hubs
-              </span>
-            </div>
-            <h4 className="font-serif text-lg font-bold tracking-tight text-[#1C1C19]">
-              Family &amp; Guest Navigation
-            </h4>
-            <ul className="flex flex-col gap-2.5 font-serif text-sm text-[#4E4135]">
+            <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
+              Portals
+            </span>
+            <ul className="flex flex-col gap-2.5 font-sans text-xs tracking-wide text-[#594d3f]">
               <li>
                 <button
                   onClick={() => onNavigate('anthology')}
-                  className="flex items-center gap-2 hover:text-[#45123E] transition-colors text-left"
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="text-[#EE9B42] text-[10px]">◆</span>
-                  <span>Curated Haute Folios &amp; Anthology</span>
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Visual Anthology</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="flex items-center gap-2 hover:text-[#45123E] transition-colors text-left"
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="text-[#EE9B42] text-[10px]">◆</span>
-                  <span>Cinema, Services &amp; Studio Products</span>
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Services &amp; Pricing</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('rituals')}
-                  className="flex items-center gap-2 hover:text-[#45123E] transition-colors text-left font-medium text-[#45123E]"
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="text-[#EE9B42] text-[10px]">◆</span>
-                  <span>Sacred Indian Wedding Rituals Guide</span>
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Sacred Rituals Guide</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('rsvp')}
-                  className="flex items-center gap-2 hover:text-[#45123E] transition-colors text-left font-medium text-[#45123E]"
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="text-[#EE9B42] text-[10px]">◆</span>
-                  <span>Family RSVP &amp; Sacred Aashirwad Wall</span>
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Family RSVP Portal</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('reserve')}
-                  className="flex items-center gap-2 hover:text-[#45123E] transition-colors text-left"
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span className="text-[#EE9B42] text-[10px]">◆</span>
-                  <span>Patron Dossier &amp; Date Reservation</span>
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Reserve Auspicious Dates</span>
                 </button>
               </li>
             </ul>
@@ -111,89 +146,114 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Column 3: Archival Mediums */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-[#45123E]">
-              <Film className="w-4 h-4 text-[#EE9B42]" />
-              <span className="font-sans text-[11px] uppercase tracking-widest font-semibold text-[#45123E]">
-                Mediums
-              </span>
-            </div>
-            <h4 className="font-serif text-lg font-bold tracking-tight text-[#1C1C19]">
-              Archival Standards
-            </h4>
-            <ul className="flex flex-col gap-2 font-serif text-sm text-[#54483C]">
-              <li className="flex items-center gap-2">
-                <span className="text-[#EE9B42] text-[10px]">◆</span>
-                <span>Medium Format 6×7 Gelatin Film</span>
+            <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
+              Archival Craft
+            </span>
+            <ul className="flex flex-col gap-2 font-sans text-xs text-[#594d3f]">
+              <li className="flex items-center gap-1.5">
+                <span className="text-[#a78b71]">◆</span>
+                <span>Hasselblad 100MP Stills</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#EE9B42] text-[10px]">◆</span>
-                <span>Arri Alexa 35 Haute Ciné Glass</span>
+              <li className="flex items-center gap-1.5">
+                <span className="text-[#a78b71]">◆</span>
+                <span>Arri Alexa 35 Cinema</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#EE9B42] text-[10px]">◆</span>
-                <span>Hahnemühle 308gsm Deckled Rag</span>
+              <li className="flex items-center gap-1.5">
+                <span className="text-[#a78b71]">◆</span>
+                <span>Hahnemühle 308gsm Rag</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#EE9B42] text-[10px]">◆</span>
-                <span>Pure Silk Habotai &amp; Tuscan Vellum</span>
+              <li className="flex items-center gap-1.5">
+                <span className="text-[#a78b71]">◆</span>
+                <span>Pure Silk Habotai Vellum</span>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#EE9B42] text-[10px]">◆</span>
-                <span>Museum Archival Carbon Pigment Inks</span>
+              <li className="flex items-center gap-1.5">
+                <span className="text-[#a78b71]">◆</span>
+                <span>24K Gold Leaf Foil Binding</span>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Salon Protocol */}
+          {/* Column 4: Flagship Atelier & Location */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-[#45123E]">
-              <MapPin className="w-4 h-4 text-[#EE9B42]" />
-              <span className="font-sans text-[11px] uppercase tracking-widest font-semibold text-[#45123E]">
-                Flagship Studio
-              </span>
-            </div>
-            <h4 className="font-serif text-lg font-bold tracking-tight text-[#1C1C19]">
-              RK Photo Studio — Delhi
-            </h4>
-            <p className="font-serif text-sm text-[#54483C] leading-snug">
-              Opposite State Bank of India (SBI), Pooth Kalan, Sector 23, Rohini, Delhi – 110085.
-            </p>
-            <a
-              href="https://share.google/XGXzmI1VT65XaGW7H"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#45123E] hover:underline font-semibold font-sans mt-0.5"
-            >
-              <MapPin className="w-3.5 h-3.5 text-[#EE9B42]" />
-              <span>Google Maps Pin (Get Directions)</span>
-            </a>
-            <div className="bg-[#ECE4D8] p-3 rounded border border-[#DDD3C5] text-xs">
-              <span className="font-sans text-[10px] uppercase tracking-wider text-[#45123E] block mb-1 font-bold">
-                [ STUDIO PROTOCOL ]
-              </span>
-              <p className="font-serif text-[#605244] leading-relaxed">
-                Direct Line &amp; WhatsApp: +91 92128 12625. Studio consultations for wedding albums and bridal shoots available 7 days a week (10 AM – 8:30 PM).
+            <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
+              Flagship Studio
+            </span>
+            <div className="font-sans text-xs text-[#594d3f] space-y-1.5">
+              <p className="text-[#1c1c19] font-bold">RK Photo &amp; Movies Production</p>
+              <p className="leading-relaxed">
+                Opposite State Bank of India (SBI), Pooth Kalan, Sector 23, Rohini, Delhi – 110085.
               </p>
+              <a
+                href="https://share.google/XGXzmI1VT65XaGW7H"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[#45123E] font-semibold hover:underline transition-colors pt-1"
+              >
+                <span>Google Maps Directions</span>
+                <ExternalLink className="w-3 h-3 text-[#a78b71]" />
+              </a>
+              <div className="pt-2 text-[11px] text-[#775a19] font-medium">
+                Call / WhatsApp: +91 92128 12625
+              </div>
             </div>
+          </div>
+
+          {/* Column 5: Join Digest */}
+          <div className="flex flex-col gap-3">
+            <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
+              Join Digest
+            </span>
+            <p className="font-sans text-xs text-[#594d3f] leading-relaxed">
+              Receive private invitations to seasonal monograph exhibitions, auspicious muhurat calendars, and bridal folios.
+            </p>
+
+            <form onSubmit={handleDigestSubmit} className="relative mt-2">
+              <div className="relative flex items-center">
+                <input
+                  type="email"
+                  value={digestEmail}
+                  onChange={(e) => setDigestEmail(e.target.value)}
+                  placeholder="Enter family email..."
+                  required
+                  className="w-full bg-white border border-[#ded3c2] focus:border-[#45123E] rounded-full pl-4 pr-12 py-3 text-xs text-[#1c1c19] placeholder-gray-400 focus:outline-none transition-all font-sans shadow-2xs"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-1.5 w-9 h-9 rounded-full bg-[#45123E] text-white hover:bg-[#340C2E] flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer"
+                  title="Subscribe to Digest"
+                >
+                  <ArrowRight className="w-4 h-4 text-[#e8d5b7]" />
+                </button>
+              </div>
+
+              {digestSubscribed && (
+                <div className="mt-2 text-[11px] text-[#45123E] flex items-center gap-1 font-sans font-medium animate-fadeIn">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Honored. Your invitation dispatch has been logged.</span>
+                </div>
+              )}
+            </form>
+          </div>
+
+        </div>
+
+        {/* Bottom Copyright Bar */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-[#7a6b5c]">
+          <div className="flex items-center gap-2">
+            <span className="text-[#a78b71] select-none text-base">¶</span>
+            <p className="tracking-widest uppercase text-[10px] font-medium">
+              © MMXXIV RK PHOTO &amp; MOVIES PRODUCTION. ALL SACRED ARCHIVAL RIGHTS RESERVED.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-4 text-[10px] tracking-widest uppercase text-[#7a6b5c]">
+            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Atelier Covenant</span>
+            <span className="text-gray-300">•</span>
+            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Archival Preservation</span>
+            <span className="text-gray-300">•</span>
+            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Family RSVP Protocol</span>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-6 border-t border-[#E0D7CB] flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-serif text-[#78695A]">
-          <div className="flex items-center gap-2 text-center md:text-left">
-            <span className="text-[#EE9B42] select-none text-base">¶</span>
-            <p className="font-sans tracking-wide">
-              © MMXXIV RK STUDIOS. ALL SACRED ARCHIVAL RIGHTS RESERVED.
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-4 font-sans text-[11px] tracking-wider text-[#645749]">
-            <span className="hover:text-[#45123E] cursor-pointer">Atelier Covenant</span>
-            <span className="text-[#CCC0B0]">•</span>
-            <span className="hover:text-[#45123E] cursor-pointer">Archival Preservation Policy</span>
-            <span className="text-[#CCC0B0]">•</span>
-            <span className="hover:text-[#45123E] cursor-pointer">Family RSVP Privacy Protocol</span>
-          </div>
-        </div>
       </div>
     </footer>
   );

@@ -112,7 +112,7 @@ export const PLATES_DATA: PlateItem[] = [
     couple: 'Aditya & Simran',
     location: 'Heritage Palace Grounds, Delhi NCR',
     category: 'pre-wedding',
-    imageUrl: 'https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=1030,fit=crop/IIBJwTeQ7akFo6I9/0a-2-gVDDaiJencgl14iq.jpg',
+    imageUrl: '/images/7.jpg',
     gear: 'Sony A1 • FE 50mm f/1.2 GM Prime',
     filmStock: 'Golden Hour Natural Sunbeam',
     caption: 'Capturing love before the big day — pure candid warmth and laughter between the soon-to-be bride and groom.',

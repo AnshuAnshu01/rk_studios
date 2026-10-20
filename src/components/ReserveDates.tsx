@@ -38,53 +38,53 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19]">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
       {/* Top Banner Section */}
-      <section className="relative w-full px-4 sm:px-6 lg:px-8 pt-8 pb-10 bg-[#fcf9f4]">
+      <section className="relative w-full px-6 sm:px-8 lg:px-12 pt-6 pb-10 border-b border-[#ded5c7]">
         <div className="max-w-7xl mx-auto">
           {/* Header Metadata */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-6 border-b border-[#e5e2dd] text-xs font-headline uppercase tracking-widest gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-6 border-b border-[#ded5c7] text-xs font-sans uppercase tracking-widest gap-2">
             <div className="flex items-center gap-2 text-[#775a19]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Haute Folio Concierge • Archival Bureau</span>
             </div>
-            <span className="text-[#765a25]">
+            <span className="text-[#a78b71]">
               Registry Dossier • Season MMXXIV–MMXXV
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8 flex flex-col gap-2">
-              <span className="font-headline text-xs uppercase tracking-[0.25em] text-[#7f7667]">
+              <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#775a19] font-bold">
                 Sanctuary of Grandeur &amp; Cinéma
               </span>
-              <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] leading-tight tracking-tight">
+              <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] leading-tight tracking-tight">
                 Reserve Your Dates —{' '}
-                <span className="font-script text-[#c5a059] font-normal text-[1.25em] inline-block hover:scale-105 transition-transform duration-300">
+                <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
                   A Bespoke Commission
                 </span>
               </h1>
-              <p className="font-serif text-lg text-[#4e4639] max-w-2xl mt-2 leading-relaxed">
+              <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-2 leading-relaxed">
                 We accept a curated cadence of precisely twenty-four monumental nuptial commissions per astronomical year. Each folio is treated as an irreplaceable heirloom monograph.
               </p>
             </div>
 
             {/* Salon Availability Progress Card */}
             <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-end">
-              <div className="bg-[#f6f3ee] p-5 border border-[#d1c5b4]/60 shadow-xs flex flex-col gap-2 max-w-xs w-full text-left">
-                <div className="flex items-center justify-between text-[#775a19]">
-                  <span className="font-headline text-xs uppercase tracking-widest font-bold">
+              <div className="bg-white p-5 rounded-2xl border border-[#ded5c7] shadow-sm flex flex-col gap-2 max-w-xs w-full text-left">
+                <div className="flex items-center justify-between text-[#45123E]">
+                  <span className="font-sans text-xs uppercase tracking-widest font-bold">
                     Salon Availability
                   </span>
-                  <span className="font-numeral text-xs font-bold text-[#765a25]">
+                  <span className="font-sans text-xs font-bold text-[#775a19]">
                     LV / XXIV
                   </span>
                 </div>
-                <p className="font-serif text-xs text-[#4e4639] leading-relaxed">
+                <p className="font-sans text-xs text-[#594d3f] leading-relaxed">
                   Winter &amp; Spring Salon dates are allocated through competitive artistic consultation and patron alignment.
                 </p>
-                <div className="h-1.5 w-full bg-[#e5e2dd] mt-1 overflow-hidden">
-                  <div className="h-full bg-[#c5a059] w-[78%] transition-all duration-1000"></div>
+                <div className="h-1.5 w-full bg-[#f0eae0] mt-1 overflow-hidden rounded-full">
+                  <div className="h-full bg-[#45123E] w-[78%] transition-all duration-1000"></div>
                 </div>
               </div>
             </div>
@@ -93,11 +93,11 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
       </section>
 
       {/* Main Reservation Section */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 py-8">
+      <section className="w-full px-6 sm:px-8 lg:px-12 py-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Form & Protocols (Span 7) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
-            <div className="bg-white p-6 sm:p-8 border border-[#d1c5b4]/70 shadow-lg relative">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#ded5c7] shadow-lg relative text-[#1c1c19]">
               {/* Stepper Header Strip */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 mb-6 bg-[#f6f3ee] p-3 border border-[#e5e2dd]">
                 <div className="flex items-center gap-2">

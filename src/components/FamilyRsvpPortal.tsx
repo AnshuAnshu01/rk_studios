@@ -144,50 +144,49 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
   });
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19]">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
       {/* Header Banner */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 pt-10 pb-10 text-center border-b border-[#e5e2dd]">
+      <section className="w-full px-6 sm:px-8 lg:px-12 pt-6 pb-12 text-center border-b border-[#ded5c7]">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-3 text-[#775a19]">
-            <Sparkles className="w-4 h-4 text-[#775a19]" />
-            <span className="font-headline text-xs tracking-[0.3em] uppercase text-[#775a19] font-medium">
+          <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
+            <Sparkles className="w-4 h-4 text-[#a78b71]" />
+            <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
               Family Communion &amp; Hospitality Bureau
             </span>
-            <Sparkles className="w-4 h-4 text-[#775a19]" />
           </div>
 
-          <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight">
+          <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight">
             Family Portal &amp;{' '}
-            <span className="font-script text-[#c5a059] font-normal text-[1.25em] inline-block">
+            <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
               Sacred RSVP
             </span>
           </h1>
 
-          <p className="font-serif text-lg sm:text-xl text-[#4e4639] max-w-2xl mt-4 leading-relaxed">
+          <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
             In our traditions, a guest is revered as the divine itself (<em>Atithi Devo Bhava</em>). Confirm your presence across auspicious ceremonies, share stay preferences, and leave lifelong blessings for the couple.
           </p>
 
           {/* Master View Mode Switcher */}
-          <div className="mt-8 flex items-center justify-center p-1 bg-[#f0ede9] border border-[#d1c5b4]/60">
+          <div className="mt-8 flex items-center justify-center p-1 rounded-full bg-[#f0eae0] border border-[#ded5c7]">
             <button
               onClick={() => setActiveTab('rsvp-wall')}
-              className={`px-6 py-2 font-headline text-xs uppercase tracking-wider transition-all ${
+              className={`px-6 py-2.5 rounded-full font-sans text-xs uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === 'rsvp-wall'
-                  ? 'bg-white text-[#775a19] font-bold shadow-xs'
-                  : 'text-[#615e5c] hover:text-[#1c1c19]'
+                  ? 'bg-[#45123E] text-white font-bold shadow-md'
+                  : 'text-[#594d3f] hover:text-[#1c1c19]'
               }`}
             >
               Guest RSVP &amp; Aashirwad Wall
             </button>
             <button
               onClick={() => setActiveTab('host-dashboard')}
-              className={`px-6 py-2 font-headline text-xs uppercase tracking-wider transition-all ${
+              className={`px-6 py-2.5 rounded-full font-sans text-xs uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === 'host-dashboard'
-                  ? 'bg-white text-[#775a19] font-bold shadow-xs'
-                  : 'text-[#615e5c] hover:text-[#1c1c19]'
+                  ? 'bg-[#45123E] text-white font-bold shadow-md'
+                  : 'text-[#594d3f] hover:text-[#1c1c19]'
               }`}
             >
-              Host &amp; Clan Manager Dashboard
+              Host &amp; Clan Dashboard
             </button>
           </div>
         </div>
@@ -195,7 +194,7 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
 
       {/* View 1: Guest RSVP & Aashirwad Wall */}
       {activeTab === 'rsvp-wall' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-12">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: RSVP Form (Span 7) */}
             <div className="lg:col-span-7 bg-white p-6 sm:p-10 border border-[#d1c5b4]/70 shadow-lg relative">

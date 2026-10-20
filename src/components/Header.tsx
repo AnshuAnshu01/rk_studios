@@ -5,13 +5,9 @@ import {
   Calendar, 
   Menu, 
   X, 
-  Heart, 
   Sparkles, 
-  BookOpen, 
-  ShieldCheck, 
-  PhoneCall, 
-  Users,
-  Star 
+  Star,
+  ArrowRight
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -19,22 +15,24 @@ interface HeaderProps {
   setActiveScreen: (screen: string) => void;
   currency?: 'INR' | 'USD';
   setCurrency?: (c: 'INR' | 'USD') => void;
-  onOpenWhatsApp: () => void;
+  onOpenWhatsApp?: () => void;
+  onOpenAppointmentModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeScreen,
   setActiveScreen,
-  onOpenWhatsApp
+  onOpenWhatsApp,
+  onOpenAppointmentModal
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: 'anthology', label: 'Visual Anthology', subtitle: 'Curated Plates & Gallery' },
-    { id: 'services', label: 'Services & Products', subtitle: '74 Disciplines, Framing & Gifts' },
-    { id: 'rituals', label: 'Sacred Rituals', subtitle: 'Emotional Family Lore & Pheras' },
-    { id: 'rsvp', label: 'Family RSVP & Blessings', subtitle: 'Guest Manager & Aashirwad Wall' },
-    { id: 'reserve', label: 'Reserve Dates', subtitle: 'Patron Booking & Consultations' },
+    { id: 'services', label: 'Services & Products', subtitle: '74 Disciplines & Pricing' },
+    { id: 'rituals', label: 'Sacred Rituals', subtitle: 'Family Lore & Pheras' },
+    { id: 'rsvp', label: 'Family RSVP', subtitle: 'Guest Portal & Aashirwad' },
+    { id: 'reserve', label: 'Reserve Dates', subtitle: 'Patron Booking & Consult' },
   ];
 
   const handleNavClick = (id: string) => {
@@ -44,96 +42,81 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 w-full z-50 bg-[#FCF9F4]/98 backdrop-blur-md border-b border-[#E5E0D5] shadow-xs transition-all">
-        {/* Main Bar */}
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-22 flex items-center justify-between gap-2 sm:gap-4">
+      {/* Fixed Top Navbar in Light Studio Luxury Theme */}
+      <header className="fixed top-0 left-0 right-0 w-full z-50 bg-[#fcf9f4]/92 backdrop-blur-[14px] border-b border-[#e8e2d8] shadow-xs transition-all">
+        <div className="w-full px-6 sm:px-8 lg:px-12 h-20 sm:h-22 flex items-center justify-between gap-4">
           
-          {/* Brand Logo Zone */}
-          <div className="flex items-center gap-3">
+          {/* Left: Brand Logo using Updated Logo */}
+          <div className="flex items-center gap-4">
             <button
               onClick={() => handleNavClick('anthology')}
-              className="flex items-center text-left focus:outline-none transition-transform active:scale-95 group"
-              aria-label="RK Studios Home"
+              className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
+              aria-label="RK Photo & Movies Production Home"
             >
-              {/* Official Brand Logo */}
-              <div className="hidden sm:block">
-                <RKStudiosLogo height={44} className="drop-shadow-xs" />
-              </div>
-              {/* Compact Logo on mobile screens */}
-              <div className="sm:hidden flex items-center gap-2">
-                <RKStudiosLogo height={34} className="drop-shadow-xs" />
+              {/* Official Updated Brand Logo */}
+              <div className="transition-transform group-hover:scale-105">
+                <RKStudiosLogo height={52} />
               </div>
             </button>
 
-            {/* Google Verified Review Badge */}
+            {/* Google Rating Pill */}
             <a
               href="https://share.google/XGXzmI1VT65XaGW7H"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#F7F2EA] border border-[#DDD3C5] hover:border-[#C5A059] text-xs font-sans transition-colors"
+              className="hidden 2xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#ded5c7] hover:border-[#a78b71] text-xs font-sans transition-all text-[#4a3f33] shadow-2xs"
               title="Google Verified Reviews (Rohini Sector 23)"
             >
-              <span className="font-bold text-[#1C1C19]">4.9</span>
+              <span className="font-bold text-[#1c1c19] text-[11px]">4.9</span>
               <div className="flex text-[#F4B400]">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3 h-3 fill-current" />
                 ))}
               </div>
-              <span className="text-[10px] text-[#7C6E5E] font-medium hidden 2xl:inline">Google Reviews</span>
+              <span className="text-[10px] text-[#7c6e5e] font-medium">Delhi NCR</span>
             </a>
           </div>
 
-          {/* Desktop & Wide Tablet Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 text-xs font-serif tracking-widest uppercase">
+          {/* Center-Aligned Links in 'Inter' (11px, uppercase, tracking-wide) */}
+          <nav className="hidden xl:flex items-center gap-8 2xl:gap-10">
             {navItems.map((item) => {
               const isActive = activeScreen === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`relative py-2 transition-all group whitespace-nowrap ${
+                  className={`relative py-2 font-sans text-[11px] uppercase tracking-[0.22em] font-semibold transition-all group whitespace-nowrap cursor-pointer ${
                     isActive
-                      ? 'text-[#45123E] font-bold'
-                      : 'text-[#695D51] hover:text-[#1C1C19]'
+                      ? 'text-[#45123E]'
+                      : 'text-[#615446] hover:text-[#1c1c19]'
                   }`}
                 >
-                  <span className="tracking-widest">{item.label}</span>
+                  <span>{item.label}</span>
                   {isActive ? (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#45123E] via-[#EE9B42] to-[#45123E] rounded-full" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#45123E] via-[#a78b71] to-[#45123E] rounded-full shadow-xs" />
                   ) : (
-                    <span className="absolute bottom-0 left-1/2 right-1/2 h-0.5 bg-[#EE9B42]/50 transition-all duration-300 group-hover:left-0 group-hover:right-0 opacity-0 group-hover:opacity-100" />
+                    <span className="absolute bottom-0 left-1/2 right-1/2 h-[1.5px] bg-[#a78b71] transition-all duration-300 group-hover:left-0 group-hover:right-0 opacity-0 group-hover:opacity-100" />
                   )}
                 </button>
               );
             })}
           </nav>
 
-          {/* Action Zone (WhatsApp, Quick Reserve, Menu Toggle) */}
-          <div className="flex items-center gap-2 sm:gap-3">
-
-            {/* Direct WhatsApp Concierge Button */}
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-3">
+            {/* Book Appointment Pill Button */}
             <button
-              onClick={onOpenWhatsApp}
-              className="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-[#25D366] hover:bg-[#20ba59] text-white font-sans text-xs tracking-wider uppercase font-semibold transition-all shadow-xs"
-              title="Chat with Royal Concierge"
+              onClick={onOpenAppointmentModal}
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-xs uppercase tracking-[0.16em] font-bold shadow-md hover:shadow-lg transition-all cursor-pointer active:scale-95"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span className="hidden lg:inline">WhatsApp</span>
-            </button>
-
-            {/* Quick Reserve Button for Desktop */}
-            <button
-              onClick={() => handleNavClick('reserve')}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-[#45123E] hover:bg-[#340C2E] text-[#FFF6EE] font-serif text-xs tracking-widest uppercase transition-all shadow-xs border border-[#C5A059]/40"
-            >
-              <Calendar className="w-3.5 h-3.5 text-[#EE9B42]" />
-              <span className="font-sans font-medium text-[11px]">Book Dates</span>
+              <span>Book Appointment</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#e8d5b7]" />
             </button>
 
             {/* Mobile / Tablet Menu Button Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-md text-[#45123E] hover:bg-[#EFE7DC] transition-colors border border-[#DDD3C4]"
+              className="xl:hidden p-2 rounded-full text-[#45123E] hover:bg-[#efe8dd] transition-colors border border-[#ddd3c4]"
               aria-label="Toggle navigation drawer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -141,33 +124,16 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Tablet Secondary Horizontal Sub-Nav Bar */}
-        <div className="hidden md:flex xl:hidden w-full overflow-x-auto scrollbar-none border-t border-[#E8E1D5] bg-[#F7F2EA] px-4 py-2 justify-center gap-4 text-xs font-serif uppercase tracking-widest">
+        {/* Mobile Horizontal Sub-Navigation Scroll Strip */}
+        <div className="xl:hidden flex items-center overflow-x-auto scrollbar-none px-4 py-2 bg-[#f4eee4] border-t border-[#e2d8cb] gap-2 text-[11px] font-sans">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`px-3 py-1 rounded transition-colors whitespace-nowrap ${
+              className={`px-3 py-1 rounded-full whitespace-nowrap shrink-0 transition-all font-sans text-[11px] uppercase tracking-wider ${
                 activeScreen === item.id
-                  ? 'bg-[#45123E] text-white font-semibold'
-                  : 'text-[#605446] hover:text-[#1C1C19]'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Sub-Nav Pills Scrollable on Small Phones */}
-        <div className="md:hidden flex items-center overflow-x-auto scrollbar-none px-3 py-2 bg-[#F6F0E6] border-t border-[#E8E1D5] gap-2 text-[11px] font-sans tracking-tight">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`px-2.5 py-1 rounded-full whitespace-nowrap shrink-0 transition-all ${
-                activeScreen === item.id
-                  ? 'bg-[#45123E] text-white font-medium shadow-xs'
-                  : 'bg-white/80 text-[#5F5245] border border-[#DDD3C5]'
+                  ? 'bg-[#45123E] text-white font-semibold shadow-xs'
+                  : 'bg-white/80 text-[#544638] hover:text-[#1c1c19] border border-[#dcd1c2]'
               }`}
             >
               {item.label}
@@ -179,78 +145,64 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
         <div className="xl:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex justify-end animate-fadeIn">
-          <div className="w-full max-w-sm h-full bg-[#FCF9F4] shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-[#E0D7C9]">
-            
-            {/* Drawer Top */}
-            <div className="p-6 border-b border-[#EAE3D7] flex items-center justify-between">
-              <RKStudiosLogo height={32} />
+          <div className="w-full max-w-sm h-full bg-[#fcf9f4] border-l border-[#ded5c7] p-6 flex flex-col justify-between overflow-y-auto">
+            {/* Top */}
+            <div className="flex items-center justify-between pb-6 border-b border-[#e6ddd0]">
+              <RKStudiosLogo height={44} />
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-full text-[#6E6050] hover:bg-[#EFE8DE] transition-colors"
+                className="p-2 rounded-full text-[#6b5d4e] hover:text-[#1c1c19] hover:bg-[#efe8dc] transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            {/* Drawer Links */}
-            <div className="p-6 space-y-3 flex-1">
-              <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-[#9A8775]">
-                Private Monograph &amp; Family Sanctuary
+            {/* Navigation Links */}
+            <div className="py-6 space-y-2 flex-1">
+              <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.25em] text-[#775a19] mb-4">
+                Atelier Portals
               </p>
-
-              <div className="space-y-1 pt-2">
-                {navItems.map((item) => {
-                  const isActive = activeScreen === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => handleNavClick(item.id)}
-                      className={`w-full text-left p-3 rounded-lg transition-all flex flex-col ${
-                        isActive
-                          ? 'bg-[#45123E] text-white shadow-sm'
-                          : 'hover:bg-[#EFE8DE] text-[#2C2621]'
-                      }`}
-                    >
-                      <span className="font-serif text-base font-semibold tracking-wide">
-                        {item.label}
-                      </span>
-                      <span className={`text-xs mt-0.5 ${isActive ? 'text-[#F5C78E]' : 'text-[#847565]'}`}>
-                        {item.subtitle}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
+              {navItems.map((item) => {
+                const isActive = activeScreen === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`w-full text-left p-3.5 rounded-2xl transition-all flex flex-col ${
+                      isActive
+                        ? 'bg-[#45123E] text-white shadow-sm'
+                        : 'hover:bg-[#f3ece0] text-[#2c2621]'
+                    }`}
+                  >
+                    <span className="font-serif italic text-base font-semibold">
+                      {item.label}
+                    </span>
+                    <span className={`font-sans text-xs mt-0.5 ${isActive ? 'text-[#e8d5b7]' : 'text-[#7a6b5c]'}`}>
+                      {item.subtitle}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Drawer Footer Actions */}
-            <div className="p-6 bg-[#F6F0E5] border-t border-[#E5DDD0] space-y-3">
+            {/* Bottom Actions */}
+            <div className="pt-6 border-t border-[#e6ddd0] space-y-3">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenWhatsApp();
+                  onOpenAppointmentModal();
                 }}
-                className="w-full py-3 rounded-lg bg-[#25D366] hover:bg-[#20ba59] text-white font-sans text-xs uppercase tracking-widest font-bold shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-xs uppercase tracking-widest font-bold shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>WhatsApp Private Concierge</span>
+                <Calendar className="w-4 h-4 text-[#e8d5b7]" />
+                <span>Book Appointment</span>
               </button>
 
-              <button
-                onClick={() => handleNavClick('reserve')}
-                className="w-full py-3 rounded-lg bg-[#45123E] text-white font-serif text-xs uppercase tracking-widest font-bold shadow-md flex items-center justify-center gap-2"
-              >
-                <Calendar className="w-4 h-4 text-[#EE9B42]" />
-                <span>Reserve Auspicious Dates</span>
-              </button>
-
-              <div className="text-center text-[11px] text-[#7E7060] font-serif italic pt-1">
+              <div className="text-center text-[11px] font-sans text-[#786a5a] tracking-wider pt-2">
                 Rohini Sector 23, Delhi (Opp. SBI Bank) • +91 92128 12625
               </div>
             </div>
-
           </div>
         </div>
       )}

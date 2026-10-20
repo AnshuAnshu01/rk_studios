@@ -5,9 +5,7 @@ import {
   ENHANCEMENTS, 
   EXTRA_SERVICES, 
   STUDIO_PRODUCTS, 
-  InvestmentTier,
-  StudioService,
-  StudioProduct 
+  InvestmentTier
 } from '../data/weddingData';
 import { 
   Sparkles, 
@@ -15,11 +13,9 @@ import {
   ChevronDown, 
   MessageCircle, 
   FileText, 
-  CheckCircle2, 
   Camera, 
   Film, 
   Search, 
-  ShoppingBag, 
   Gift, 
   MapPin, 
   Layers, 
@@ -28,10 +24,9 @@ import {
   Printer, 
   Clock, 
   PhoneCall, 
-  ArrowRight,
-  ShieldCheck,
-  Star,
-  ExternalLink
+  ShieldCheck, 
+  Star, 
+  ExternalLink 
 } from 'lucide-react';
 
 interface ServicesPricingProps {
@@ -48,7 +43,6 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
   const [activeTab, setActiveTab] = useState<'collections' | 'services' | 'products' | 'enhancements' | 'matrix'>('services');
   const [serviceSearch, setServiceSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedProduct, setSelectedProduct] = useState<StudioProduct | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   // Filtered services
@@ -84,13 +78,13 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
   const getServiceIcon = (category: string) => {
     switch (category) {
-      case 'weddings': return <Camera className="w-4 h-4 text-[#C5A059]" />;
-      case 'cinema': return <Film className="w-4 h-4 text-[#C5A059]" />;
-      case 'aerial': return <Plane className="w-4 h-4 text-[#C5A059]" />;
-      case 'portraits': return <Users className="w-4 h-4 text-[#C5A059]" />;
-      case 'lab': return <Printer className="w-4 h-4 text-[#C5A059]" />;
-      case 'regional': return <MapPin className="w-4 h-4 text-[#C5A059]" />;
-      default: return <Sparkles className="w-4 h-4 text-[#C5A059]" />;
+      case 'weddings': return <Camera className="w-4 h-4 text-[#45123E]" />;
+      case 'cinema': return <Film className="w-4 h-4 text-[#45123E]" />;
+      case 'aerial': return <Plane className="w-4 h-4 text-[#45123E]" />;
+      case 'portraits': return <Users className="w-4 h-4 text-[#45123E]" />;
+      case 'lab': return <Printer className="w-4 h-4 text-[#45123E]" />;
+      case 'regional': return <MapPin className="w-4 h-4 text-[#45123E]" />;
+      default: return <Sparkles className="w-4 h-4 text-[#45123E]" />;
     }
   };
 
@@ -103,103 +97,103 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19]">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
+      
       {/* Top Hero Section */}
-      <section className="relative w-full px-4 sm:px-6 lg:px-8 pt-10 pb-12 text-center border-b border-[#e5e2dd]">
+      <section className="relative w-full px-6 sm:px-8 lg:px-12 pt-8 pb-12 text-center border-b border-[#e5dfd5]">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-3 text-[#775a19]">
-            <Sparkles className="w-5 h-5 text-[#775a19]" />
-            <span className="font-headline text-xs tracking-[0.3em] uppercase text-[#775a19] font-medium">
+          <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
+            <Sparkles className="w-4 h-4 text-[#a78b71]" />
+            <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
               SERVICES &amp; STUDIO CATALOGUE • 17+ YEARS OF EXCELLENCE
             </span>
-            <Sparkles className="w-5 h-5 text-[#775a19]" />
           </div>
 
-          <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight mt-1">
+          <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight mt-1">
             Services &amp;{' '}
-            <span className="font-script text-[#c5a059] font-normal text-[1.25em] inline-block">
+            <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
               Products
             </span>
           </h1>
 
-          <p className="font-serif text-lg sm:text-xl text-[#4e4639] max-w-3xl mt-4 leading-relaxed">
-            From royal Indian wedding monographs and cinematic films to ancestral photo restoration, custom framing, and personalized keepsakes. Every service is tailored with utmost artistic reverence and dedicated consultations.
+          <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
+            From royal Indian wedding monographs and cinematic films to ancestral photo restoration, custom framing, and personalized keepsakes. Every discipline is tailored with classical dedication.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-6 text-xs font-serif text-[#706456]">
-            <span className="flex items-center gap-1.5 bg-[#f6f2ea] px-3 py-1.5 rounded-full border border-[#e2dad0]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2E5A44]" />
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-6 text-xs font-sans text-[#594d3f]">
+            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               Opposite SBI Bank, Rohini Sector 23
             </span>
-            <span className="flex items-center gap-1.5 bg-[#f6f2ea] px-3 py-1.5 rounded-full border border-[#e2dad0]">
-              <Clock className="w-3.5 h-3.5 text-[#775a19]" />
+            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
+              <Clock className="w-3.5 h-3.5 text-[#a78b71]" />
               Open Mon–Sun 9:00 AM – 9:00 PM
             </span>
-            <span className="flex items-center gap-1.5 bg-[#f6f2ea] px-3 py-1.5 rounded-full border border-[#e2dad0]">
+            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
               <PhoneCall className="w-3.5 h-3.5 text-[#45123E]" />
               Direct Studio Line: +91 92128 12625
             </span>
           </div>
 
           {/* Navigation Sub-Tabs */}
-          <div className="w-full max-w-4xl mt-10 pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-headline uppercase tracking-wider">
+          <div className="w-full max-w-4xl mt-10 pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-sans uppercase tracking-wider">
             <button
               onClick={() => setActiveTab('services')}
-              className={`px-4 py-2.5 rounded-lg border transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'services'
                   ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#524637] border-[#d8cfc2] hover:bg-[#f5f1eb]'
+                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
               }`}
             >
-              <Camera className="w-4 h-4 text-[#EE9B42]" />
+              <Camera className="w-4 h-4 text-[#e8d5b7]" />
               <span>All Services ({EXTRA_SERVICES.length})</span>
             </button>
 
             <button
               onClick={() => setActiveTab('products')}
-              className={`px-4 py-2.5 rounded-lg border transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'products'
                   ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#524637] border-[#d8cfc2] hover:bg-[#f5f1eb]'
+                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
               }`}
             >
-              <Gift className="w-4 h-4 text-[#EE9B42]" />
+              <Gift className="w-4 h-4 text-[#e8d5b7]" />
               <span>Personalized Products ({STUDIO_PRODUCTS.length})</span>
             </button>
 
             <button
               onClick={() => setActiveTab('collections')}
-              className={`px-4 py-2.5 rounded-lg border transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'collections'
                   ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#524637] border-[#d8cfc2] hover:bg-[#f5f1eb]'
+                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
               }`}
             >
-              <Sparkles className="w-4 h-4 text-[#EE9B42]" />
+              <Sparkles className="w-4 h-4 text-[#e8d5b7]" />
               <span>Signature Collections</span>
             </button>
 
             <button
               onClick={() => setActiveTab('enhancements')}
-              className={`px-4 py-2.5 rounded-lg border transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'enhancements'
                   ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#524637] border-[#d8cfc2] hover:bg-[#f5f1eb]'
+                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
               }`}
             >
-              <Layers className="w-4 h-4 text-[#EE9B42]" />
+              <Layers className="w-4 h-4 text-[#e8d5b7]" />
               <span>Archival Enhancements</span>
             </button>
 
             <button
               onClick={() => setActiveTab('matrix')}
-              className={`px-4 py-2.5 rounded-lg border transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'matrix'
                   ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#524637] border-[#d8cfc2] hover:bg-[#f5f1eb]'
+                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
               }`}
             >
-              <FileText className="w-4 h-4 text-[#EE9B42]" />
+              <FileText className="w-4 h-4 text-[#e8d5b7]" />
               <span>Deliverables Matrix</span>
             </button>
           </div>
@@ -208,95 +202,56 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
       {/* TAB 1: ALL 74 STUDIO SERVICES DIRECTORY */}
       {activeTab === 'services' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-12 bg-[#fcf9f4]">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto">
+            
             {/* Search and Category Filter Bar */}
-            <div className="bg-white p-5 rounded-xl border border-[#ded5c7] shadow-xs mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="glass-card bg-white p-5 rounded-3xl border border-[#ded5c7] mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="relative flex-1">
-                <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9A8B7A]" />
+                <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#786a5a]" />
                 <input
                   type="text"
                   placeholder="Search among all 74 studio services (e.g. Wedding, Drone, Framing, Video, Restoration)..."
                   value={serviceSearch}
                   onChange={e => setServiceSearch(e.target.value)}
-                  className="w-full pl-11 pr-4 py-2.5 bg-[#FAF7F2] border border-[#DDD3C5] rounded-lg font-serif text-sm focus:outline-none focus:border-[#45123E] transition-colors"
+                  className="w-full pl-12 pr-4 py-3 bg-[#FAF5EB] border border-[#ded5c7] rounded-2xl font-sans text-sm text-[#1c1c19] placeholder-gray-500 focus:outline-none focus:border-[#45123E] transition-colors"
                 />
               </div>
 
               {/* Category Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 text-xs font-serif">
-                <button
-                  onClick={() => setSelectedCategory('all')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'all'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  All ({categoryCounts['all']})
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('weddings')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'weddings'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  Weddings ({categoryCounts['weddings'] || 0})
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('cinema')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'cinema'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  Cinema ({categoryCounts['cinema'] || 0})
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('portraits')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'portraits'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  Portraits &amp; Events ({categoryCounts['portraits'] || 0})
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('lab')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'lab'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  Lab, Framing &amp; Print ({categoryCounts['lab'] || 0})
-                </button>
-                <button
-                  onClick={() => setSelectedCategory('regional')}
-                  className={`px-3 py-1.5 rounded-md transition-colors ${
-                    selectedCategory === 'regional'
-                      ? 'bg-[#45123E] text-white font-bold'
-                      : 'bg-[#F2ECE1] text-[#554636] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  Delhi NCR ({categoryCounts['regional'] || 0})
-                </button>
+              <div className="flex flex-wrap items-center gap-1.5 text-xs font-sans">
+                {[
+                  { id: 'all', label: `All (${categoryCounts['all']})` },
+                  { id: 'weddings', label: `Weddings (${categoryCounts['weddings'] || 0})` },
+                  { id: 'cinema', label: `Cinema (${categoryCounts['cinema'] || 0})` },
+                  { id: 'portraits', label: `Portraits (${categoryCounts['portraits'] || 0})` },
+                  { id: 'lab', label: `Lab & Framing (${categoryCounts['lab'] || 0})` },
+                  { id: 'regional', label: `Delhi NCR (${categoryCounts['regional'] || 0})` },
+                ].map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
+                      selectedCategory === cat.id
+                        ? 'bg-[#45123E] text-white font-bold shadow-xs'
+                        : 'bg-[#FAF5EB] text-[#594d3f] hover:text-[#1c1c19] border border-[#ded5c7]'
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
               </div>
             </div>
 
             {/* Services Grid */}
             {filteredServices.length === 0 ? (
-              <div className="bg-white p-12 text-center rounded-xl border border-[#ded5c7]">
-                <Camera className="w-10 h-10 text-[#C5A059] mx-auto mb-3" />
-                <h3 className="font-serif text-lg font-bold text-[#1C1C19]">No services match your search</h3>
-                <p className="font-serif text-sm text-[#6C5F51] mt-1">Try another term or clear the filter to see all 74 studio services.</p>
+              <div className="glass-card bg-white p-12 text-center rounded-3xl border border-[#ded5c7]">
+                <Camera className="w-10 h-10 text-[#a78b71] mx-auto mb-3" />
+                <h3 className="font-serif italic text-xl font-bold text-[#1c1c19]">No services match your search</h3>
+                <p className="font-sans text-xs text-[#594d3f] mt-1 font-normal">Try another term or clear the filter to see all 74 studio disciplines.</p>
                 <button
                   onClick={() => { setServiceSearch(''); setSelectedCategory('all'); }}
-                  className="mt-4 px-4 py-2 bg-[#45123E] text-white rounded text-xs uppercase tracking-wider font-semibold"
+                  className="mt-4 px-5 py-2.5 bg-[#45123E] text-white rounded-full text-xs uppercase tracking-wider font-bold hover:bg-[#340C2E] transition-all cursor-pointer shadow-md"
                 >
                   Reset Search
                 </button>
@@ -306,38 +261,38 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                 {filteredServices.map((service) => (
                   <div
                     key={service.id}
-                    className="bg-white p-6 rounded-xl border border-[#ded5c7] hover:border-[#C5A059] transition-all hover:shadow-md flex flex-col justify-between group"
+                    className="glass-card bg-white p-6 rounded-3xl border border-[#ded5c7] hover:border-[#45123E] flex flex-col justify-between group shadow-2xs hover:shadow-md transition-all"
                   >
                     <div>
                       {/* Top Tag & Icon */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#FAF5EB] text-[11px] font-sans font-semibold uppercase tracking-wider text-[#775a19] border border-[#E8DFC9]">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF5EB] text-[10px] font-sans font-bold uppercase tracking-wider text-[#45123E] border border-[#e5ded4]">
                           {getServiceIcon(service.category)}
                           <span>{getCategoryBadgeLabel(service.category)}</span>
                         </span>
-                        <span className="font-headline text-[10px] uppercase tracking-widest text-[#9D8E7D]">
+                        <span className="font-sans text-[10px] uppercase tracking-widest text-[#786a5a] font-mono font-medium">
                           {service.id.toUpperCase()}
                         </span>
                       </div>
 
-                      <h3 className="font-serif text-xl font-bold text-[#1C1C19] group-hover:text-[#45123E] transition-colors leading-snug">
+                      <h3 className="font-serif italic text-xl font-bold text-[#1c1c19] group-hover:text-[#45123E] transition-colors leading-snug">
                         {service.title}
                       </h3>
 
-                      <p className="font-serif text-sm text-[#574B3C] leading-relaxed mt-2.5">
+                      <p className="font-sans text-xs text-[#594d3f] leading-relaxed mt-2.5">
                         {service.description}
                       </p>
                     </div>
 
-                    <div className="pt-5 mt-5 border-t border-[#F0EBE1] flex items-center justify-between gap-3">
-                      <span className="font-headline text-[11px] tracking-wider uppercase text-[#7C6E5E] font-medium">
-                        Consultation on Request
+                    <div className="pt-5 mt-5 border-t border-[#e8dfd2] flex items-center justify-between gap-3">
+                      <span className="font-sans text-[10px] tracking-wider uppercase text-[#786a5a] font-medium">
+                        Custom Proposal
                       </span>
                       <button
                         onClick={() => handleEnquireService(service.title)}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#45123E] hover:bg-[#320B2C] text-white text-xs font-sans rounded font-semibold transition-colors shadow-xs"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#45123E] hover:bg-[#340C2E] text-white text-xs font-sans rounded-full font-bold transition-all shadow-xs cursor-pointer"
                       >
-                        <MessageCircle className="w-3.5 h-3.5 text-[#EE9B42]" />
+                        <MessageCircle className="w-3.5 h-3.5 fill-current text-[#25D366]" />
                         <span>Enquire</span>
                       </button>
                     </div>
@@ -349,18 +304,18 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
         </section>
       )}
 
-      {/* TAB 2: PERSONALIZED STUDIO PRODUCTS (FROM GREXA SITE) */}
+      {/* TAB 2: PERSONALIZED STUDIO PRODUCTS */}
       {activeTab === 'products' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-12 bg-[#f6f2ea] border-t border-[#e5e2dd]">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="font-headline text-xs text-[#775a19] uppercase tracking-[0.25em] font-semibold block mb-1">
+              <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
                 HANDCRAFTED IN ROHINI ATELIER
               </span>
-              <h2 className="font-headline text-3xl sm:text-4xl text-[#1c1c19]">
-                Products from RK Photo Studio Rohini Sector 23
+              <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
+                Tangible Heirlooms &amp; Keepsakes
               </h2>
-              <p className="font-serif text-base text-[#524435] mt-3">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2">
                 Tangible heirlooms designed to preserve love stories and auspicious family memories. Made with premium archival materials, custom calligraphy, and handcrafted detailing.
               </p>
             </div>
@@ -369,35 +324,35 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
               {STUDIO_PRODUCTS.map((prod) => (
                 <div
                   key={prod.id}
-                  className="bg-white rounded-xl overflow-hidden border border-[#d8cfc2] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
+                  className="glass-card bg-white rounded-3xl overflow-hidden flex flex-col justify-between group border border-[#ded5c7] shadow-2xs hover:shadow-lg transition-all"
                 >
                   <div>
                     {/* Product Image Frame */}
-                    <div className="relative w-full h-64 bg-[#f0ede6] overflow-hidden flex items-center justify-center p-3">
+                    <div className="relative w-full h-60 bg-[#FAF5EB] overflow-hidden flex items-center justify-center p-3 border-b border-[#ded5c7]">
                       <img
                         src={prod.imageUrl}
                         alt={prod.title}
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
-                      <span className="absolute top-3 left-3 bg-[#1C1C19]/85 text-white text-[10px] font-sans uppercase tracking-widest px-2.5 py-1 rounded backdrop-blur-xs font-semibold">
+                      <span className="absolute top-3 left-3 bg-[#45123E] text-white text-[9px] font-sans uppercase tracking-widest px-2.5 py-1 rounded-full font-bold shadow-xs">
                         {prod.category}
                       </span>
                     </div>
 
                     {/* Details */}
-                    <div className="p-5">
-                      <h3 className="font-serif text-lg font-bold text-[#1C1C19] group-hover:text-[#45123E] transition-colors">
+                    <div className="p-6">
+                      <h3 className="font-serif italic text-lg font-bold text-[#1c1c19] group-hover:text-[#45123E] transition-colors">
                         {prod.title}
                       </h3>
-                      <p className="font-serif text-xs text-[#635546] leading-relaxed mt-2">
+                      <p className="font-sans text-xs text-[#594d3f] leading-relaxed mt-2">
                         {prod.description}
                       </p>
 
-                      <ul className="mt-4 space-y-1.5 pt-3 border-t border-[#F0EBE1]">
+                      <ul className="mt-4 space-y-1.5 pt-3 border-t border-[#e8dfd2]">
                         {prod.features.map((feat, idx) => (
-                          <li key={idx} className="flex items-start gap-1.5 text-[11px] font-serif text-[#4C4033]">
-                            <Check className="w-3.5 h-3.5 text-[#C5A059] shrink-0 mt-0.5" />
+                          <li key={idx} className="flex items-start gap-1.5 text-[11px] font-sans text-[#4a3d31]">
+                            <Check className="w-3 h-3 text-[#775a19] shrink-0 mt-0.5" />
                             <span>{feat}</span>
                           </li>
                         ))}
@@ -405,57 +360,34 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                     </div>
                   </div>
 
-                  <div className="p-5 pt-0">
+                  <div className="p-6 pt-0">
                     <button
                       onClick={() => handleEnquireProduct(prod.title)}
-                      className="w-full py-2.5 rounded bg-[#45123E] hover:bg-[#320B2C] text-white font-sans text-xs uppercase tracking-wider font-semibold transition-colors flex items-center justify-center gap-2 shadow-xs"
+                      className="w-full py-2.5 rounded-full bg-[#FAF5EB] hover:bg-[#45123E] text-[#45123E] hover:text-white font-sans text-xs uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 border border-[#ded5c7] cursor-pointer shadow-2xs"
                     >
-                      <MessageCircle className="w-4 h-4 text-[#EE9B42]" />
-                      <span>Enquire This Product</span>
+                      <MessageCircle className="w-4 h-4 text-[#25D366] fill-current" />
+                      <span>Enquire This Keepsake</span>
                     </button>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* Studio Keepsake Assurance Banner */}
-            <div className="mt-12 bg-white p-6 sm:p-8 rounded-xl border border-[#C5A059]/40 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#FAF5EB] border border-[#E5DAC4] flex items-center justify-center text-[#775a19] shrink-0">
-                  <Gift className="w-6 h-6 text-[#775a19]" />
-                </div>
-                <div>
-                  <h4 className="font-serif text-lg font-bold text-[#1C1C19]">
-                    Need Custom Framing or Unique Family Gifting?
-                  </h4>
-                  <p className="font-serif text-sm text-[#615446]">
-                    Bring your photographs to our studio opposite SBI Bank in Sector 23 Rohini for immediate framing consultations and custom layout previews.
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => onOpenWhatsApp("Hi RK Photo Studio, I would like to inquire about customized photo frames and special gift options.")}
-                className="shrink-0 px-6 py-3 bg-[#775a19] hover:bg-[#5f4611] text-white font-headline text-xs tracking-widest uppercase transition-colors rounded shadow-xs"
-              >
-                Discuss Custom Keepsake
-              </button>
-            </div>
           </div>
         </section>
       )}
 
-      {/* TAB 3: SIGNATURE WEDDING COLLECTIONS (NO PRICES) */}
+      {/* TAB 3: SIGNATURE WEDDING COLLECTIONS */}
       {activeTab === 'collections' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-16 bg-[#fcf9f4]">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="font-headline text-xs text-[#775a19] uppercase tracking-[0.25em] font-semibold block mb-1">
+              <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
                 ROYAL BRIDAL MONOGRAPHS
               </span>
-              <h2 className="font-headline text-3xl sm:text-4xl text-[#1c1c19]">
+              <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
                 Signature Wedding Collections
               </h2>
-              <p className="font-serif text-base text-[#524435] mt-3">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2">
                 Archival wedding coverage personally directed with cinema cameras, master prime lenses, drone aerials, and hand-bound Italian leather and silk heirloom volumes.
               </p>
             </div>
@@ -464,56 +396,49 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
               {INVESTMENT_TIERS.map((tier) => (
                 <div
                   key={tier.id}
-                  className={`relative bg-white flex flex-col justify-between p-8 border transition-all ${
+                  className={`relative bg-white rounded-3xl flex flex-col justify-between p-8 sm:p-10 transition-all border ${
                     tier.isPatronPreferred
-                      ? 'border-[#775a19] shadow-xl ring-1 ring-[#775a19]'
-                      : 'border-[#d1c5b4]/60 shadow-xs hover:shadow-md'
+                      ? 'border-[#45123E] shadow-2xl ring-2 ring-[#45123E]/20 -translate-y-2'
+                      : 'border-[#ded5c7] hover:border-[#a78b71] shadow-2xs'
                   }`}
                 >
                   {tier.isPatronPreferred && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#775a19] text-white font-headline text-[10px] tracking-[0.2em] uppercase px-4 py-1 shadow-sm font-semibold">
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#45123E] text-white font-sans text-[10px] font-extrabold uppercase tracking-[0.2em] shadow-md">
                       Patron Preferred • Most Revered
                     </div>
                   )}
 
                   <div>
                     {/* Collection Header */}
-                    <div className="border-b border-[#e5e2dd] pb-6 mb-6">
-                      <span className="font-headline text-xs text-[#775a19] tracking-widest uppercase block mb-1">
+                    <div className="border-b border-[#e8dfd2] pb-6 mb-6">
+                      <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#775a19] font-bold block mb-1">
                         {tier.collectionNumber}
                       </span>
-                      <h3 className="font-headline text-3xl text-[#1c1c19]">
-                        {tier.name}{' '}
-                        <span className="font-script text-[#c5a059] font-normal text-[1.15em] inline-block">
-                          {tier.nameHighlight}
-                        </span>
+                      <h3 className="font-serif italic text-2xl sm:text-3xl font-bold text-[#1c1c19]">
+                        {tier.name} <span className="text-[#a78b71]">{tier.nameHighlight}</span>
                       </h3>
-                      <p className="font-serif italic text-sm text-[#4e4639] mt-1">
+                      <p className="font-sans text-xs text-[#6b5d4e] mt-1">
                         {tier.subtitle}
                       </p>
 
-                      {/* Tailored Proposal Note (Zero Prices!) */}
-                      <div className="mt-5 p-3 rounded bg-[#FAF7F2] border border-[#E8DFC9] text-center">
-                        <span className="font-headline text-xs uppercase tracking-widest text-[#775a19] font-semibold block">
+                      <div className="mt-5 p-3.5 rounded-2xl bg-[#FAF5EB] border border-[#ded5c7] text-center">
+                        <span className="font-sans text-[11px] uppercase tracking-widest text-[#45123E] font-bold block">
                           Tailored Archival Proposal
                         </span>
-                        <span className="font-serif text-xs text-[#6A5D4D] block mt-0.5">
+                        <span className="font-sans text-xs text-[#786a5a] block mt-0.5">
                           {tier.duration}
                         </span>
                       </div>
                     </div>
 
                     {/* Features List */}
-                    <div className="space-y-4 mb-8">
-                      <span className="font-headline text-xs uppercase tracking-wider text-[#775a19] font-medium block">
-                        Included Inclusions &amp; Guild:
-                      </span>
+                    <div className="space-y-3.5 mb-8">
                       {tier.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-3">
-                          <Check className="w-4 h-4 text-[#775a19] shrink-0 mt-0.5" />
-                          <div className="text-sm font-serif">
-                            <strong className="text-[#1c1c19] font-medium">{feat.label}: </strong>
-                            <span className="text-[#4e4639]">{feat.detail}</span>
+                        <div key={idx} className="flex items-start gap-3 text-xs font-sans">
+                          <Check className="w-3.5 h-3.5 text-[#45123E] shrink-0 mt-0.5" />
+                          <div>
+                            <strong className="text-[#1c1c19] font-bold">{feat.label}: </strong>
+                            <span className="text-[#594d3f]">{feat.detail}</span>
                           </div>
                         </div>
                       ))}
@@ -521,26 +446,19 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-6 border-t border-[#e5e2dd] flex flex-col gap-2.5">
+                  <div className="pt-6 border-t border-[#e8dfd2] flex flex-col gap-3">
                     <button
                       onClick={() => {
                         if (onSelectTier) onSelectTier(tier);
                         onOpenWhatsApp(`Hello RK Photo Studio! I would like to reserve dates and request the proposal for "${tier.name} ${tier.nameHighlight}".`);
                       }}
-                      className={`w-full py-3.5 font-headline text-xs uppercase tracking-widest transition-all text-center cursor-pointer font-bold ${
+                      className={`w-full py-3.5 rounded-full font-sans text-xs uppercase tracking-widest transition-all text-center cursor-pointer font-bold ${
                         tier.isPatronPreferred
-                          ? 'bg-[#775a19] hover:bg-[#5f4611] text-white shadow-sm'
-                          : 'bg-[#1c1c19] hover:bg-[#45123E] text-white'
+                          ? 'bg-[#45123E] text-white hover:bg-[#340C2E] shadow-md'
+                          : 'bg-[#FAF5EB] hover:bg-[#45123E] text-[#1c1c19] hover:text-white border border-[#ded5c7]'
                       }`}
                     >
                       {tier.ctaText}
-                    </button>
-                    <button
-                      onClick={() => onOpenWhatsApp(`Inquiry regarding ${tier.name} ${tier.nameHighlight} collection details and custom inclusions.`)}
-                      className="w-full py-2.5 font-serif text-xs text-[#524435] hover:text-[#1c1c19] flex items-center justify-center gap-1.5 transition-colors"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5 text-[#C5A059]" />
-                      <span>Chat with Studio Concierge</span>
                     </button>
                   </div>
                 </div>
@@ -550,20 +468,20 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
         </section>
       )}
 
-      {/* TAB 4: ARCHIVAL ENHANCEMENTS & BESPOKE UPGRADES (NO PRICES) */}
+      {/* TAB 4: ARCHIVAL ENHANCEMENTS */}
       {activeTab === 'enhancements' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-16 bg-[#f6f3ee] border-t border-[#e5e2dd]">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
               <div>
-                <span className="font-headline text-xs text-[#775a19] uppercase tracking-[0.25em] block mb-1 font-semibold">
+                <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] block mb-1 font-bold">
                   A LA CARTE COUTURE
                 </span>
-                <h2 className="font-headline text-3xl sm:text-4xl text-[#1c1c19]">
-                  Archival Additions &amp; Production Extensions
+                <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
+                  Archival Additions &amp; Extensions
                 </h2>
               </div>
-              <p className="font-serif text-base text-[#4e4639] max-w-md">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] max-w-md">
                 Bespoke technical extensions seamlessly woven into your primary wedding coverage or standalone studio commissions.
               </p>
             </div>
@@ -572,35 +490,35 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
               {ENHANCEMENTS.map((enh) => (
                 <div
                   key={enh.code}
-                  className="bg-white p-6 rounded-xl border border-[#d1c5b4]/60 shadow-xs hover:border-[#775a19] transition-all flex flex-col justify-between"
+                  className="glass-card bg-white p-6 rounded-3xl border border-[#ded5c7] flex flex-col justify-between shadow-2xs hover:shadow-md transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="font-headline text-[10px] text-[#775a19] uppercase tracking-widest font-semibold px-2.5 py-1 bg-[#fcf9f4] border border-[#e5e2dd] rounded">
+                      <span className="font-sans text-[10px] text-[#45123E] uppercase tracking-widest font-bold px-2.5 py-1 bg-[#FAF5EB] border border-[#ded5c7] rounded-full">
                         {enh.badge}
                       </span>
-                      <span className="font-headline text-[10px] uppercase tracking-widest text-[#9c9183]">
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-[#786a5a] font-mono">
                         {enh.code}
                       </span>
                     </div>
 
-                    <h3 className="font-headline text-lg text-[#1c1c19] font-medium leading-snug">
+                    <h3 className="font-serif italic text-lg text-[#1c1c19] font-bold leading-snug">
                       {enh.title}
                     </h3>
-                    <p className="font-serif text-sm text-[#4e4639] mt-2.5 leading-relaxed">
+                    <p className="font-sans text-xs text-[#594d3f] mt-2.5 leading-relaxed">
                       {enh.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-[#e5e2dd] flex items-center justify-between">
-                    <span className="font-headline text-[11px] uppercase tracking-wider text-[#706354]">
-                      Inquire for Integration
+                  <div className="pt-4 mt-6 border-t border-[#e8dfd2] flex items-center justify-between">
+                    <span className="font-sans text-[10px] uppercase tracking-wider text-[#786a5a] font-medium">
+                      Integrate into Monograph
                     </span>
                     <button
                       onClick={() => onOpenWhatsApp(`Hi RK Photo Studio, I would like to add "${enh.title}" to our wedding package.`)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#45123E] hover:bg-[#320B2C] text-white text-xs font-sans font-semibold transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white text-xs font-sans font-bold transition-all shadow-2xs cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 text-[#EE9B42]" />
+                      <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-current" />
                       <span>Inquire</span>
                     </button>
                   </div>
@@ -611,53 +529,53 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
         </section>
       )}
 
-      {/* TAB 5: DELIVERABLES MATRIX (NO PRICES) */}
+      {/* TAB 5: DELIVERABLES MATRIX */}
       {activeTab === 'matrix' && (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-16 bg-[#fcf9f4]">
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-10">
-              <span className="font-headline text-xs text-[#775a19] uppercase tracking-[0.25em] font-semibold block mb-1">
+              <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
                 TRANSPARENT ARTISAN SPECIFICATIONS
               </span>
-              <h2 className="font-headline text-3xl sm:text-4xl text-[#1c1c19]">
+              <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
                 Deliverable Comparison Matrix
               </h2>
-              <p className="font-serif text-base text-[#4e4639] mt-2">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2">
                 A rigorous overview of equipment, coverage durations, master plates, and physical heirlooms.
               </p>
             </div>
 
-            <div className="overflow-x-auto bg-white border border-[#d1c5b4]/60 shadow-xs rounded-xl">
+            <div className="overflow-x-auto bg-white border border-[#ded5c7] rounded-3xl shadow-sm">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[#FAF7F2] border-b border-[#e5e2dd]">
-                    <th className="p-4 sm:p-5 font-headline text-xs uppercase tracking-wider text-[#1c1c19]">
+                  <tr className="border-b border-[#ded5c7] bg-[#FAF5EB]">
+                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#1c1c19] font-bold">
                       Artisan Discipline
                     </th>
-                    <th className="p-4 sm:p-5 font-headline text-xs uppercase tracking-wider text-[#775a19]">
+                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
                       The Atelier
                     </th>
-                    <th className="p-4 sm:p-5 font-headline text-xs uppercase tracking-wider text-[#775a19] bg-[#FAF3E6]">
+                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#45123E] font-bold bg-[#f5ecdd]">
                       The Golden (Preferred)
                     </th>
-                    <th className="p-4 sm:p-5 font-headline text-xs uppercase tracking-wider text-[#775a19]">
+                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
                       The Imperial
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#e5e2dd] font-serif text-sm">
+                <tbody className="divide-y divide-[#e8dfd2] font-sans text-xs">
                   {DELIVERABLE_MATRIX.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-[#fcf9f4]/50 transition-colors">
-                      <td className="p-4 sm:p-5 font-headline text-xs uppercase tracking-wider text-[#1c1c19] bg-[#FAF7F2]/50 font-medium">
+                    <tr key={idx} className="hover:bg-[#FAF5EB]/50 transition-colors">
+                      <td className="p-4 sm:p-5 font-bold text-[#1c1c19]">
                         {row.discipline}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#4e4639]">
+                      <td className="p-4 sm:p-5 text-[#594d3f]">
                         {row.monograph}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#1c1c19] font-medium bg-[#FAF3E6]/40">
+                      <td className="p-4 sm:p-5 text-[#45123E] font-bold bg-[#f5ecdd]/40">
                         {row.golden}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#4e4639]">
+                      <td className="p-4 sm:p-5 text-[#594d3f]">
                         {row.imperial}
                       </td>
                     </tr>
@@ -665,45 +583,36 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                 </tbody>
               </table>
             </div>
-
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => onOpenWhatsApp("Hello! I would like to review the Deliverables Matrix and discuss a customized wedding photography plan.")}
-                className="px-6 py-3 bg-[#45123E] hover:bg-[#340C2E] text-white font-headline text-xs uppercase tracking-widest font-semibold transition-colors rounded shadow-xs"
-              >
-                Discuss Tailored Deliverables on WhatsApp
-              </button>
-            </div>
           </div>
         </section>
       )}
 
       {/* Flagship Studio Consultation & Location Canopy */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 py-14 bg-white border-t border-[#e5e2dd]">
+      <section className="w-full px-6 sm:px-8 lg:px-12 py-16 border-t border-[#e5dfd5] bg-white">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <span className="font-headline text-xs text-[#775a19] uppercase tracking-[0.25em] font-semibold block mb-1">
+            <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
               VISIT OUR ROHINI STUDIO
             </span>
-            <h3 className="font-headline text-3xl text-[#1c1c19] leading-tight">
+            <h3 className="font-serif italic text-2xl sm:text-3xl text-[#1c1c19] leading-tight font-bold">
               Opposite State Bank of India (SBI), Pooth Kalan, Rohini Sector 23
             </h3>
-            <p className="font-serif text-sm sm:text-base text-[#544738] mt-3 leading-relaxed">
+            <p className="font-serif text-sm sm:text-base text-[#594d3f] mt-3 leading-relaxed">
               We welcome couples and families to visit our studio in person to touch our Florentine leather albums, inspect sample print finishes, view high-definition cinematic reels on calibrated monitors, and discuss custom packages over fresh masala chai.
             </p>
 
-            <div className="mt-5 space-y-2 text-xs font-serif text-[#4B3E30]">
+            <div className="mt-5 space-y-2 text-xs font-sans text-[#594d3f]">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#EE9B42]" />
-                <span>Opposite SBI Bank, Pooth Kalan, Sector 20 / Sector 23, Rohini, Delhi – 110086</span>
+                <MapPin className="w-4 h-4 text-[#45123E]" />
+                <span>Opposite SBI Bank, Pooth Kalan, Sector 23, Rohini, Delhi – 110085</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#EE9B42]" />
+                <Clock className="w-4 h-4 text-[#45123E]" />
                 <span>Monday to Sunday: 9:00 AM – 9:00 PM (7 Days Open)</span>
               </div>
               <div className="flex items-center gap-2">
-                <PhoneCall className="w-4 h-4 text-[#EE9B42]" />
-                <span>Direct Mobile: 9212812625 / 92128 12625</span>
+                <PhoneCall className="w-4 h-4 text-[#45123E]" />
+                <span>Direct Studio Mobile: +91 92128 12625</span>
               </div>
             </div>
 
@@ -712,23 +621,24 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                 href="https://share.google/XGXzmI1VT65XaGW7H"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#45123E] hover:bg-[#340C2E] text-white rounded font-sans text-xs uppercase tracking-wider font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#45123E] text-white rounded-full font-sans text-xs uppercase tracking-wider font-bold hover:bg-[#340C2E] transition-all shadow-sm"
               >
-                <span>Open Google Maps Pin</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#EE9B42]" />
+                <span>Google Maps Directions</span>
+                <ExternalLink className="w-3.5 h-3.5 text-[#e8d5b7]" />
               </a>
               <button
                 onClick={() => onOpenWhatsApp("Hi RK Photo Studio! I would like to schedule an in-person studio visit to view wedding albums and discuss options.")}
-                className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#C5A059] bg-[#FAF5EB] hover:bg-[#F3EAD8] text-[#1C1C19] rounded font-sans text-xs uppercase tracking-wider font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#ded5c7] bg-[#FAF5EB] hover:bg-[#45123E] hover:text-white text-[#1c1c19] rounded-full font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-2xs"
               >
-                <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-current" />
                 <span>Schedule Studio Visit</span>
               </button>
             </div>
           </div>
 
-          <div className="bg-[#FAF7F2] p-6 rounded-xl border border-[#ded5c7] space-y-4">
-            <h4 className="font-serif text-base font-bold text-[#1C1C19] flex items-center gap-2">
+          {/* Frequently Asked Questions */}
+          <div className="bg-[#FAF5EB] p-6 rounded-3xl border border-[#ded5c7] space-y-4 shadow-sm">
+            <h4 className="font-serif italic text-lg font-bold text-[#1c1c19] flex items-center gap-2">
               <Star className="w-4 h-4 text-[#F4B400] fill-current" />
               <span>Frequently Asked Questions</span>
             </h4>
@@ -740,7 +650,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                   a: 'Yes, absolutely. Because every wedding varies in number of functions, guest sizes, and multi-city travel, we create bespoke packages tailored strictly to your specific needs so you only pay for what you actually require.'
                 },
                 {
-                  q: 'Can you restore very old, torn family photos of Dada-Pardada?',
+                  q: 'Can you restore very old, torn family photos of ancestors?',
                   a: 'Yes! As highlighted in our authentic customer reviews, we specialize in advanced archival photo restoration. We repair creases, restore faded colors, enhance facial features, and provide fresh museum-grade framed copies.'
                 },
                 {
@@ -748,20 +658,20 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                   a: 'We deliver initial social media teasers within 72 hours. Full cinematic wedding films and master retouched photo folios are delivered within 4 to 6 weeks, followed by album design approval and handcrafting.'
                 },
                 {
-                  q: 'Do you provide photo booth rentals and drone coverage across Delhi NCR?',
+                  q: 'Do you provide drone coverage across Delhi NCR?',
                   a: 'Yes, we provide licensed aerial drone operators and customized photo booth rental stations for weddings and parties across Rohini, Pitampura, Paschim Vihar, Kanjhawala, and greater Delhi NCR.'
                 }
               ].map((item, i) => (
-                <div key={i} className="border border-[#E2DAD0] rounded-lg bg-white overflow-hidden">
+                <div key={i} className="border border-[#ded5c7] rounded-2xl bg-white overflow-hidden shadow-2xs">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full text-left p-3.5 font-serif text-sm font-semibold text-[#1C1C19] flex items-center justify-between gap-2"
+                    className="w-full text-left p-3.5 font-sans text-xs font-bold text-[#1c1c19] flex items-center justify-between gap-2"
                   >
                     <span>{item.q}</span>
                     <ChevronDown className={`w-4 h-4 text-[#775a19] shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === i && (
-                    <div className="p-3.5 pt-0 font-serif text-xs text-[#5E5142] leading-relaxed border-t border-[#F0EBE1]">
+                    <div className="p-3.5 pt-0 font-serif text-xs text-[#594d3f] leading-relaxed border-t border-[#f0e8de]">
                       {item.a}
                     </div>
                   )}
@@ -771,6 +681,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
           </div>
         </div>
       </section>
+
     </div>
   );
 };

@@ -8,13 +8,12 @@ import { SacredRitualsHub } from './components/SacredRitualsHub';
 import { FamilyRsvpPortal } from './components/FamilyRsvpPortal';
 import { LoadingScreen } from './components/LoadingScreen';
 import { InvestmentTier } from './data/weddingData';
+import { RKStudiosLogo } from './components/RKStudiosLogo';
+import { AppointmentModal } from './components/AppointmentModal';
 import { 
   MessageCircle, 
   X, 
   Send, 
-  Heart, 
-  Sparkles, 
-  Calendar, 
   ShieldCheck, 
   Clock, 
   ArrowUp,
@@ -27,17 +26,18 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeScreen, setActiveScreen] = useState<string>('anthology');
   const [selectedTierForBooking, setSelectedTierForBooking] = useState<InvestmentTier | null>(null);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
   const [whatsAppMsg, setWhatsAppMsg] = useState('Pranam! We would love to enquire regarding our family celebration dates and bespoke heirloom monographs.');
   const [whatsAppSent, setWhatsAppSent] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isAmbientPlaying, setIsAmbientPlaying] = useState(false);
 
-  // Minimal initial loading effect
+  // Initial loading effect
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 850);
+    }, 700);
     return () => clearTimeout(timer);
   }, []);
 
@@ -75,19 +75,21 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FCF9F4] text-[#1C1C19] flex flex-col font-serif selection:bg-[#C5A059]/20 selection:text-[#5B1315]">
+    <div className="min-h-screen bg-[#fcf9f4] text-[#1c1c19] flex flex-col font-sans selection:bg-[#a78b71]/25 selection:text-[#45123E] bg-dots">
       {/* Top Navigation Bar */}
       <Header 
         activeScreen={activeScreen} 
         setActiveScreen={setActiveScreen}
         onOpenWhatsApp={() => setIsWhatsAppOpen(true)}
+        onOpenAppointmentModal={() => setIsAppointmentOpen(true)}
       />
 
       {/* Main Screen Content */}
-      <main className="flex-1">
+      <main className="flex-1 w-full">
         {activeScreen === 'anthology' && (
           <VisualAnthology 
             onSelectScreen={setActiveScreen} 
+            onOpenAppointmentModal={() => setIsAppointmentOpen(true)}
             onOpenWhatsApp={(msg) => {
               if (msg) setWhatsAppMsg(msg);
               setIsWhatsAppOpen(true);
@@ -128,95 +130,65 @@ export default function App() {
         )}
       </main>
 
-      {/* Floating Action Buttons & Concierge */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+      {/* Floating Action Controls - Discreet, elegant, and non-obtrusive */}
+      <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
         {/* Scroll To Top Button */}
         {showScrollTop && (
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-11 h-11 rounded-full bg-[#1A1A18] text-[#FBF8F2] hover:bg-[#831818] flex items-center justify-center shadow-lg transition-all border border-[#C5A059]/30"
+            className="w-9 h-9 rounded-full bg-white/95 text-[#1c1c19] hover:bg-[#45123E] hover:text-white flex items-center justify-center shadow-md transition-all border border-[#ded5c7] active:scale-90 cursor-pointer"
             title="Scroll to summit"
+            aria-label="Scroll to top"
           >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp className="w-4 h-4" />
           </button>
         )}
-
-        {/* Ambient Shehnai & Sitar Button */}
-        <button
-          onClick={() => setIsAmbientPlaying(!isAmbientPlaying)}
-          className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full text-xs uppercase tracking-widest font-sans transition-all shadow-md border ${
-            isAmbientPlaying 
-              ? 'bg-[#831818] text-[#FAF5EB] border-[#C5A059]' 
-              : 'bg-[#FAF5EB]/95 text-[#6D5D4E] hover:text-[#1A1A18] border-[#E8DFD3]'
-          }`}
-          title="Sacred Wedding Ambiance"
-        >
-          {isAmbientPlaying ? (
-            <>
-              <Volume2 className="w-4 h-4 text-[#C5A059] animate-pulse" />
-              <span className="font-medium text-[11px]">Shehnai & Tanpura Active</span>
-            </>
-          ) : (
-            <>
-              <VolumeX className="w-4 h-4 text-[#A89886]" />
-              <span className="font-medium text-[11px]">Ambient Raga</span>
-            </>
-          )}
-        </button>
 
         {/* Floating Phone Call CTA */}
         <a
           href="tel:+919212812625"
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#45123E] hover:bg-[#320B2C] text-[#FAF5EB] shadow-xl hover:shadow-2xl transition-all duration-300 font-sans text-xs tracking-wider uppercase font-semibold border border-[#C5A059]/60 hover:scale-[1.02] active:scale-[0.98]"
+          className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white shadow-md hover:shadow-lg transition-all duration-300 border border-[#a78b71]/50 hover:scale-105 active:scale-95"
           title="Direct Phone Call: +91 92128 12625"
+          aria-label="Call Studio at +91 92128 12625"
         >
-          <div className="relative">
-            <Phone className="w-4 h-4 text-[#EE9B42] fill-current" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#25D366] rounded-full ring-2 ring-[#45123E]" />
-          </div>
-          <span className="hidden sm:inline">Call Studio</span>
-          <span className="text-[10px] bg-white/15 text-[#FFDEA5] px-2 py-0.5 rounded-full font-mono font-normal">
-            +91 92128 12625
+          <Phone className="w-4 h-4 text-[#e8d5b7] fill-current" />
+          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#45123E]" />
+          {/* Subtle hover tooltip */}
+          <span className="absolute right-12 px-2.5 py-1 rounded-md bg-[#1c1c19]/90 text-white text-[10px] tracking-wider font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
+            Call Atelier: +91 92128 12625
           </span>
         </a>
-
-        {/* Floating WhatsApp Concierge CTA */}
-        <button
-          onClick={() => setIsWhatsAppOpen(true)}
-          className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20b858] text-white shadow-xl hover:shadow-2xl transition-all duration-300 font-sans text-xs tracking-wider uppercase font-semibold hover:scale-[1.02] active:scale-[0.98]"
-        >
-          <div className="relative">
-            <MessageCircle className="w-5 h-5 fill-current" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#FAF5EB] rounded-full border-2 border-[#25D366]" />
-          </div>
-          <span className="hidden sm:inline">WhatsApp Concierge</span>
-          <span className="text-[10px] bg-black/15 px-2 py-0.5 rounded-full lowercase font-normal">atelier online</span>
-        </button>
       </div>
+
+      {/* Own Luxury Appointment Booking Modal */}
+      <AppointmentModal 
+        isOpen={isAppointmentOpen}
+        onClose={() => setIsAppointmentOpen(false)}
+      />
 
       {/* WhatsApp Concierge Modal */}
       {isWhatsAppOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="relative w-full max-w-md bg-[#FAF5EB] border border-[#C5A059]/40 rounded-xl shadow-2xl overflow-hidden font-sans">
+          <div className="relative w-full max-w-md bg-[#FAF5EB] rounded-3xl overflow-hidden font-sans border border-[#ded5c7] shadow-2xl">
             {/* Modal Header */}
-            <div className="bg-[#1A1A18] p-5 text-[#FAF5EB] flex items-start justify-between border-b border-[#C5A059]/30">
+            <div className="p-6 bg-[#45123E] text-white flex items-start justify-between border-b border-[#a78b71]/30">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-[#25D366]/20 border border-[#25D366]/50 flex items-center justify-center text-[#25D366]">
-                  <MessageCircle className="w-6 h-6 fill-current" />
+                <div className="w-11 h-11 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white">
+                  <MessageCircle className="w-6 h-6 fill-current text-[#25D366]" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-lg font-bold text-[#F3EFE6] tracking-wide">
-                    RK Studios Private Atelier
+                  <h4 className="font-serif italic text-lg font-bold text-white tracking-wide">
+                    RK Photo &amp; Movies Production
                   </h4>
-                  <p className="text-[11px] text-[#A89886] flex items-center gap-1.5 mt-0.5">
+                  <p className="text-[11px] text-[#e8d5b7] flex items-center gap-1.5 mt-0.5">
                     <span className="w-2 h-2 rounded-full bg-[#25D366] inline-block animate-ping" />
-                    Senior Curator & Family Liaison On Call
+                    Senior Curator &amp; Family Liaison On Call
                   </p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsWhatsAppOpen(false)}
-                className="text-[#A89886] hover:text-[#FAF5EB] p-1 rounded-md transition-colors"
+                className="text-white/70 hover:text-white p-1 rounded-md transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -229,43 +201,43 @@ export default function App() {
                   <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center border border-emerald-300">
                     <ShieldCheck className="w-8 h-8" />
                   </div>
-                  <h5 className="font-serif text-xl font-bold text-[#1A1A18]">Dispatch Transmitted</h5>
-                  <p className="text-xs text-[#6D5D4E] max-w-xs mx-auto">
+                  <h5 className="font-serif italic text-xl font-bold text-[#1c1c19]">Dispatch Transmitted</h5>
+                  <p className="text-xs text-[#594d3f] max-w-xs mx-auto leading-relaxed">
                     Your confidential celebration inquiry has been logged. Our Senior Atelier Master will ring your WhatsApp within 15 minutes.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSendWhatsApp} className="space-y-4">
-                  <div className="bg-[#F2ECE1] p-3.5 rounded-lg border border-[#E0D4C3] text-xs text-[#5D5042] space-y-1">
-                    <div className="flex items-center justify-between text-[11px] uppercase tracking-wider font-semibold text-[#831818]">
+                  <div className="bg-[#f2ece2] p-3.5 rounded-2xl border border-[#ded5c7] text-xs text-[#594d3f] space-y-1">
+                    <div className="flex items-center justify-between text-[11px] uppercase tracking-wider font-bold text-[#45123E]">
                       <span>Direct Studio &amp; WhatsApp</span>
                       <a href="tel:+919212812625" className="hover:underline">+91 92128 12625</a>
                     </div>
-                    <p className="text-[11px] leading-relaxed">
+                    <p className="text-[11px] leading-relaxed text-[#6d5e4e]">
                       RK Photo Studio • Opposite SBI Bank, Pooth Kalan, Rohini Sector 23, Delhi – 110085.
                     </p>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest text-[#7C6E5E] font-medium mb-1.5">
+                    <label className="block text-[11px] uppercase tracking-widest text-[#775a19] font-bold mb-1.5">
                       Your Message / Celebration Inquiry
                     </label>
                     <textarea
                       rows={4}
                       value={whatsAppMsg}
                       onChange={(e) => setWhatsAppMsg(e.target.value)}
-                      className="w-full bg-[#FBF8F2] border border-[#D5C7B3] rounded-md p-3 text-sm text-[#1A1A18] focus:border-[#831818] focus:outline-none resize-none font-serif"
+                      className="w-full bg-white border border-[#ded5c7] rounded-xl p-3 text-sm text-[#1c1c19] focus:border-[#45123E] focus:outline-none resize-none font-sans"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-[11px] uppercase tracking-widest text-[#7C6E5E] font-medium">
+                    <label className="block text-[10px] uppercase tracking-widest text-[#7c6e5e] font-semibold">
                       Fast Celebration Inquiries
                     </label>
                     <div className="flex flex-wrap gap-1.5 text-xs">
                       {[
                         'Check Auspicious Dates for 2026',
-                        'Reserve "The Sovereign Dynasty" Tier',
+                        'Reserve "The Golden Heritage" Tier',
                         'Bespoke Silk Album Consult',
                         'Multi-City Royal Rituals Coverage'
                       ].map((item, idx) => (
@@ -273,7 +245,7 @@ export default function App() {
                           key={idx}
                           type="button"
                           onClick={() => setWhatsAppMsg(`Pranam! I would like to inquire about: ${item}.`)}
-                          className="px-2.5 py-1 rounded bg-[#EAE2D5] hover:bg-[#D5C7B3] text-[#3E342B] text-[11px] transition-colors"
+                          className="px-2.5 py-1 rounded-full bg-white hover:bg-[#45123E] text-[#594d3f] hover:text-white text-[11px] border border-[#ded5c7] transition-colors"
                         >
                           {item}
                         </button>
@@ -283,13 +255,13 @@ export default function App() {
 
                   <button
                     type="submit"
-                    className="w-full mt-2 py-3 rounded-md bg-[#25D366] hover:bg-[#20b858] text-white font-sans text-xs uppercase tracking-widest font-bold shadow-md hover:shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    className="w-full mt-2 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20b858] text-white font-sans text-xs uppercase tracking-widest font-bold shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
                     <span>Send Message to Atelier</span>
                   </button>
 
-                  <div className="text-center text-[10px] text-[#A89886] flex items-center justify-center gap-2">
+                  <div className="text-center text-[10px] text-[#7c6e5e] flex items-center justify-center gap-1.5">
                     <Clock className="w-3 h-3" />
                     <span>Average reply time: under 12 minutes (9 AM – 11 PM IST)</span>
                   </div>

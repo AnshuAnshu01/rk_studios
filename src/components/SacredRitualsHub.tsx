@@ -102,55 +102,54 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19]">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
       {/* Header Banner */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 pt-10 pb-12 text-center border-b border-[#e5e2dd]">
+      <section className="w-full px-6 sm:px-8 lg:px-12 pt-6 pb-12 text-center border-b border-[#ded5c7]">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-3 text-[#775a19]">
-            <Sparkles className="w-4 h-4 text-[#775a19]" />
-            <span className="font-headline text-xs tracking-[0.3em] uppercase text-[#775a19] font-medium">
+          <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
+            <Sparkles className="w-4 h-4 text-[#a78b71]" />
+            <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
               Vedic Heritage &amp; Clan Lore
             </span>
-            <Sparkles className="w-4 h-4 text-[#775a19]" />
           </div>
 
-          <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight">
+          <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight">
             The Living Language of{' '}
-            <span className="font-script text-[#c5a059] font-normal text-[1.25em] inline-block">
+            <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
               Sacred Rituals
             </span>
           </h1>
 
-          <p className="font-serif text-lg sm:text-xl text-[#4e4639] max-w-3xl mt-4 leading-relaxed">
-            Every thread of turmeric, every vow around the Agni, and every grain of rice showered from elder hands carries centuries of family prayer. Here, we illuminate the profound emotional and Vedic meaning behind each ceremony for cousins, in-laws, and guests across the globe.
+          <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
+            Every thread of turmeric, every vow around the Agni, and every grain of rice showered from elder hands carries centuries of family prayer. Here, we illuminate the profound emotional and Vedic meaning behind each ceremony.
           </p>
 
           {/* Tanpura Ambient Toggle & Action Strip */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={toggleAmbientSound}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 font-headline text-xs uppercase tracking-wider transition-all border ${
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-sans text-xs uppercase tracking-wider transition-all border cursor-pointer ${
                 isPlayingAudio
-                  ? 'bg-[#775a19] text-white border-[#775a19]'
-                  : 'bg-white text-[#775a19] border-[#d1c5b4] hover:bg-[#f0ede9]'
+                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-md font-bold'
+                  : 'bg-white text-[#45123E] border-[#ded5c7] hover:bg-[#FAF5EB] shadow-2xs font-bold'
               }`}
             >
               {isPlayingAudio ? (
                 <>
-                  <Volume2 className="w-4 h-4 animate-pulse" />
+                  <Volume2 className="w-4 h-4 animate-pulse text-[#e8d5b7]" />
                   <span>Tanpura Ambiance Playing</span>
                 </>
               ) : (
                 <>
-                  <VolumeX className="w-4 h-4" />
+                  <VolumeX className="w-4 h-4 text-[#775a19]" />
                   <span>Play Sacred Tanpura Drone</span>
                 </>
               )}
             </button>
 
             <button
-              onClick={onNavigateToRsvp}
-              className="inline-flex items-center gap-2 bg-[#f0ede9] hover:bg-[#ebe8e3] text-[#1c1c19] px-5 py-2.5 font-headline text-xs uppercase tracking-wider border border-[#d1c5b4] transition-colors"
+              onClick={handleRsvpClick}
+              className="inline-flex items-center gap-2 bg-[#45123E] text-white hover:bg-[#340C2E] px-6 py-3 rounded-full font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md cursor-pointer"
             >
               <span>RSVP For Ceremonies</span>
             </button>
@@ -159,7 +158,7 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
       </section>
 
       {/* Main Rituals Explorer */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 py-12">
+      <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Ritual Selector Sidebar (Span 4) */}
           <div className="lg:col-span-4 flex flex-col gap-3">
