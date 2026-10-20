@@ -8,9 +8,13 @@ import {
   Sparkles, 
   ArrowRight, 
   Instagram, 
+  Youtube,
+  Facebook,
   Phone, 
   CheckCircle2,
-  ExternalLink
+  ExternalLink,
+  Cookie,
+  FileText
 } from 'lucide-react';
 
 interface FooterProps {
@@ -32,16 +36,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-20 pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
+    <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-14 sm:pt-20 pb-10 sm:pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
       {/* Background warm radial ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#a78b71]/10 blur-[130px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* 5-Column Desktop Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-16 border-b border-[#ded3c2]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 pb-12 sm:pb-16 border-b border-[#ded3c2]">
           
-          {/* Column 1: Updated Brand Logo & Social Icons */}
+          {/* Column 1: Updated Brand Logo & Verified Social Media Channels */}
           <div className="flex flex-col gap-4 lg:col-span-1">
             <div>
               <RKStudiosLogo height={62} />
@@ -51,46 +55,59 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               “A sacred witness to unbroken vows, heartfelt tears at the Vidai, and generations united in timeless joy.”
             </p>
 
-            {/* Social Icons in circular bordered containers */}
-            <div className="flex items-center gap-2.5 mt-2">
+            {/* Social Media Links: YouTube, Facebook, Instagram, Google Maps, Phone */}
+            <div className="flex flex-wrap items-center gap-2 mt-2">
+              <a
+                href="https://www.youtube.com/@rkphotostudiorohinisector-23"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-[#ded3c2] hover:border-[#ff0000] hover:text-[#ff0000] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="RK Photo Studio Official YouTube Channel"
+              >
+                <Youtube className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#ff0000] transition-colors" />
+              </a>
+
+              <a
+                href="https://www.facebook.com/rkphotostudiorohinisector23/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-[#ded3c2] hover:border-[#1877F2] hover:text-[#1877F2] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="RK Photo Studio Official Facebook Page"
+              >
+                <Facebook className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#1877F2] transition-colors" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/rkphotostudio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-[#ded3c2] hover:border-[#E4405F] hover:text-[#E4405F] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Atelier Instagram Visual Archive"
+              >
+                <Instagram className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#E4405F] transition-colors" />
+              </a>
+
               <a
                 href="https://share.google/XGXzmI1VT65XaGW7H"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
-                title="Google Verified Studio"
+                className="w-9 h-9 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Google Verified Business Location"
               >
                 <MapPin className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
               </a>
-              <a
-                href="https://rk-photo-401657.grexa.site"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
-                title="Official Studio Website"
-              >
-                <Sparkles className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
-              </a>
+
               <a
                 href="tel:+919212812625"
-                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
-                title="Direct Phone Line"
+                className="w-9 h-9 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
+                title="Direct Phone Line: +91 92128 12625"
               >
                 <Phone className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-[#ded3c2] hover:border-[#45123E] hover:text-[#45123E] bg-white flex items-center justify-center transition-all shadow-2xs group"
-                title="Atelier Instagram Archive"
-              >
-                <Instagram className="w-4 h-4 text-[#7c6e5e] group-hover:text-[#45123E] transition-colors" />
               </a>
             </div>
           </div>
 
-          {/* Column 2: Navigation Portals */}
+          {/* Column 2: Navigation Portals & Policies */}
           <div className="flex flex-col gap-3">
             <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
               Portals
@@ -102,34 +119,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span className="text-[#a78b71]">◆</span>
-                  <span>Visual Anthology</span>
+                  <span>Home &amp; Highlights</span>
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('services')}
+                  onClick={() => onNavigate('pricing')}
                   className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span className="text-[#a78b71]">◆</span>
-                  <span>Services &amp; Pricing</span>
+                  <span>Pricing &amp; Collections</span>
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('rituals')}
+                  onClick={() => onNavigate('map')}
                   className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span className="text-[#a78b71]">◆</span>
-                  <span>Sacred Rituals Guide</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('rsvp')}
-                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
-                >
-                  <span className="text-[#a78b71]">◆</span>
-                  <span>Family RSVP Portal</span>
+                  <span>Studio &amp; Google Maps</span>
                 </button>
               </li>
               <li>
@@ -138,7 +146,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer"
                 >
                   <span className="text-[#a78b71]">◆</span>
-                  <span>Reserve Auspicious Dates</span>
+                  <span>Reserve Dates</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('cookies')}
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer font-medium text-[#45123E]"
+                >
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Cookie Policy</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('terms')}
+                  className="hover:text-[#45123E] transition-colors text-left flex items-center gap-1.5 cursor-pointer font-medium text-[#45123E]"
+                >
+                  <span className="text-[#a78b71]">◆</span>
+                  <span>Terms &amp; Conditions</span>
                 </button>
               </li>
             </ul>
@@ -237,21 +263,49 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         </div>
 
-        {/* Bottom Copyright Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-[#7a6b5c]">
-          <div className="flex items-center gap-2">
+        {/* Bottom Copyright & Designed/Developed Bar */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-[#7a6b5c] text-center md:text-left">
+          
+          {/* Left: Studio Copyright */}
+          <div className="flex items-center justify-center md:justify-start gap-2">
             <span className="text-[#a78b71] select-none text-base">¶</span>
-            <p className="tracking-widest uppercase text-[10px] font-medium">
-              © MMXXIV RK PHOTO &amp; MOVIES PRODUCTION. ALL SACRED ARCHIVAL RIGHTS RESERVED.
+            <p className="tracking-widest uppercase text-[10px] font-medium leading-relaxed">
+              © MMXXIV RK PHOTO &amp; MOVIES PRODUCTION. ALL RIGHTS RESERVED.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center items-center gap-4 text-[10px] tracking-widest uppercase text-[#7a6b5c]">
-            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Atelier Covenant</span>
-            <span className="text-gray-300">•</span>
-            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Archival Preservation</span>
-            <span className="text-gray-300">•</span>
-            <span className="hover:text-[#45123E] transition-colors cursor-pointer">Family RSVP Protocol</span>
+
+          {/* CENTER: Prominent Designed and Developed by ACCustomLabs */}
+          <div className="text-center font-sans text-xs tracking-wider text-[#5c4e3f] py-1.5 px-4 rounded-full bg-white/80 border border-[#ded3c2] shadow-2xs">
+            <span>Designed and Developed by </span>
+            <span className="font-bold text-[#45123E] tracking-normal hover:underline cursor-default">
+              ACCustomLabs
+            </span>
           </div>
+
+          {/* Right: Legal & Policy Direct Links */}
+          <div className="flex flex-wrap justify-center items-center gap-3 text-[10px] tracking-widest uppercase text-[#7a6b5c]">
+            <button 
+              onClick={() => onNavigate('cookies')}
+              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
+            >
+              Cookie Policy
+            </button>
+            <span className="text-gray-300">•</span>
+            <button 
+              onClick={() => onNavigate('terms')}
+              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
+            >
+              Terms &amp; Conditions
+            </button>
+            <span className="text-gray-300">•</span>
+            <button 
+              onClick={() => onNavigate('map')}
+              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
+            >
+              Google Maps
+            </button>
+          </div>
+
         </div>
 
       </div>

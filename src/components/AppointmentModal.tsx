@@ -103,32 +103,32 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       aria-labelledby="appointment-modal-title"
     >
       <div 
-        className="relative w-full max-w-2xl bg-[#fcf9f4] rounded-3xl border border-[#ded5c7] shadow-2xl overflow-hidden my-auto animate-cinematic transition-all"
+        className="relative w-full max-w-2xl bg-[#fcf9f4] rounded-2xl sm:rounded-3xl border border-[#ded5c7] shadow-2xl overflow-hidden my-auto animate-cinematic transition-all"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Background Bar */}
-        <div className="relative px-6 sm:px-8 pt-7 pb-6 border-b border-[#e6ded2] bg-gradient-to-r from-[#fbf7f0] via-[#f7f0e4] to-[#fbf7f0]">
+        <div className="relative px-4 sm:px-8 pt-5 sm:pt-7 pb-4 sm:pb-6 border-b border-[#e6ded2] bg-gradient-to-r from-[#fbf7f0] via-[#f7f0e4] to-[#fbf7f0]">
           {/* Subtle Ambient Halo */}
           <div className="absolute top-0 right-1/4 w-64 h-32 bg-[#c5a059]/15 blur-3xl pointer-events-none rounded-full" />
 
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/80 hover:bg-[#45123E] text-[#594d3f] hover:text-white border border-[#ded5c7] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 z-20"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/80 hover:bg-[#45123E] text-[#594d3f] hover:text-white border border-[#ded5c7] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 z-20"
             aria-label="Close appointment modal"
           >
             <X className="w-4 h-4" />
           </button>
 
           {/* Atelier Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-[#ded5c7] text-[#775a19] text-[9px] font-sans font-bold uppercase tracking-[0.25em] mb-2.5 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/90 border border-[#ded5c7] text-[#775a19] text-[9px] font-sans font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-2 shadow-2xs">
             <Sparkles className="w-3 h-3 text-[#c5a059]" />
             <span>BESPOKE APPOINTMENT ATELIER</span>
           </div>
 
           <h2 
             id="appointment-modal-title"
-            className="font-serif italic text-2xl sm:text-3xl text-[#1c1c19] font-normal tracking-tight"
+            className="font-serif italic text-xl sm:text-3xl text-[#1c1c19] font-normal tracking-tight pr-6 sm:pr-0"
           >
             Schedule Your Private Consultation
           </h2>
@@ -138,7 +138,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 max-h-[72vh] overflow-y-auto">
+        <div className="p-4 sm:p-8 max-h-[75vh] sm:max-h-[72vh] overflow-y-auto">
           {isSubmitted ? (
             /* Success State */
             <div className="flex flex-col items-center justify-center text-center py-8 px-4 space-y-4">
@@ -334,11 +334,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-xs uppercase tracking-[0.2em] font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer active:scale-98"
+                  className="w-full py-3 sm:py-3.5 px-4 sm:px-6 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.2em] font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#25D366] fill-current" />
-                  <span>Send Appointment Request to WhatsApp</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#e8d5b7]" />
+                  <MessageCircle className="w-4 h-4 text-[#25D366] fill-current shrink-0" />
+                  <span className="truncate">Send Appointment Request to WhatsApp</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#e8d5b7] shrink-0" />
                 </button>
                 <p className="text-[10px] text-center text-[#7a6b5c] font-sans mt-2">
                   Transmits directly to Studio WhatsApp (+91 92128 12625) • Zero obligation consultation

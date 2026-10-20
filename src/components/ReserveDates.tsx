@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { InvestmentTier } from '../data/weddingData';
 import { Shield, Clock, Eye, MapPin, Phone, Mail, CheckCircle2, MessageCircle, Sparkles, ChevronDown, ExternalLink, Navigation } from 'lucide-react';
+import { PageHero } from './PageHero';
 
 interface ReserveDatesProps {
   initialTier?: InvestmentTier | null;
@@ -38,70 +39,33 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
-      {/* Top Banner Section */}
-      <section className="relative w-full px-6 sm:px-8 lg:px-12 pt-6 pb-10 border-b border-[#ded5c7]">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Metadata */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-6 border-b border-[#ded5c7] text-xs font-sans uppercase tracking-widest gap-2">
-            <div className="flex items-center gap-2 text-[#775a19]">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Haute Folio Concierge • Archival Bureau</span>
-            </div>
-            <span className="text-[#a78b71]">
-              Registry Dossier • Season MMXXIV–MMXXV
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8 flex flex-col gap-2">
-              <span className="font-sans text-xs uppercase tracking-[0.25em] text-[#775a19] font-bold">
-                Sanctuary of Grandeur &amp; Cinéma
-              </span>
-              <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] leading-tight tracking-tight">
-                Reserve Your Dates —{' '}
-                <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
-                  A Bespoke Commission
-                </span>
-              </h1>
-              <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-2 leading-relaxed">
-                We accept a curated cadence of precisely twenty-four monumental nuptial commissions per astronomical year. Each folio is treated as an irreplaceable heirloom monograph.
-              </p>
-            </div>
-
-            {/* Salon Availability Progress Card */}
-            <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-end">
-              <div className="bg-white p-5 rounded-2xl border border-[#ded5c7] shadow-sm flex flex-col gap-2 max-w-xs w-full text-left">
-                <div className="flex items-center justify-between text-[#45123E]">
-                  <span className="font-sans text-xs uppercase tracking-widest font-bold">
-                    Salon Availability
-                  </span>
-                  <span className="font-sans text-xs font-bold text-[#775a19]">
-                    LV / XXIV
-                  </span>
-                </div>
-                <p className="font-sans text-xs text-[#594d3f] leading-relaxed">
-                  Winter &amp; Spring Salon dates are allocated through competitive artistic consultation and patron alignment.
-                </p>
-                <div className="h-1.5 w-full bg-[#f0eae0] mt-1 overflow-hidden rounded-full">
-                  <div className="h-full bg-[#45123E] w-[78%] transition-all duration-1000"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pb-16 font-sans">
+      {/* 1. Page Hero with Glowing Fire Background & Photos Moving Left to Right */}
+      <PageHero
+        badge="Direct Studio Consultation"
+        title="Reserve Your Celebration"
+        titleHighlight="With Heartfelt Devotion"
+        subtitle="Every couple has their own cadence, every family their own beloved rituals. Tell us about your auspicious dates, and let us prepare a timeless visual heirloom for you."
+        primaryAction={{
+          label: "Inquire via WhatsApp",
+          onClick: () => onOpenWhatsApp("Pranam! We would love to reserve our wedding dates and schedule a consultation.")
+        }}
+        secondaryAction={{
+          label: "Direct Call (+91 92128 12625)",
+          onClick: () => window.open('tel:+919212812625')
+        }}
+      />
 
       {/* Main Reservation Section */}
-      <section className="w-full px-6 sm:px-8 lg:px-12 py-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Form & Protocols (Span 7) */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#ded5c7] shadow-lg relative text-[#1c1c19]">
+          <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8">
+            <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#ded5c7] shadow-lg relative text-[#1c1c19]">
               {/* Stepper Header Strip */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 mb-6 bg-[#f6f3ee] p-3 border border-[#e5e2dd]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-6 bg-[#f6f3ee] p-3 rounded-xl border border-[#e5e2dd]">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-[#775a19] text-white flex items-center justify-center font-numeral text-xs font-bold">
+                  <div className="w-6 h-6 bg-[#775a19] text-white flex items-center justify-center font-numeral text-xs font-bold rounded-full">
                     I
                   </div>
                   <div className="flex flex-col">

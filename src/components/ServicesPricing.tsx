@@ -10,6 +10,7 @@ import {
 import { 
   Sparkles, 
   Check, 
+  CheckCircle2, 
   ChevronDown, 
   MessageCircle, 
   FileText, 
@@ -25,9 +26,9 @@ import {
   Clock, 
   PhoneCall, 
   ShieldCheck, 
-  Star, 
   ExternalLink 
 } from 'lucide-react';
+import { PageHero } from './PageHero';
 
 interface ServicesPricingProps {
   onSelectTier?: (tier: InvestmentTier) => void;
@@ -40,7 +41,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
   onSelectTier,
   onOpenWhatsApp
 }) => {
-  const [activeTab, setActiveTab] = useState<'collections' | 'services' | 'products' | 'enhancements' | 'matrix'>('services');
+  const [activeTab, setActiveTab] = useState<'collections' | 'services' | 'products' | 'enhancements' | 'matrix'>('collections');
   const [serviceSearch, setServiceSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -97,129 +98,109 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pb-16 font-sans">
       
-      {/* Top Hero Section */}
-      <section className="relative w-full px-6 sm:px-8 lg:px-12 pt-8 pb-12 text-center border-b border-[#e5dfd5]">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
-            <Sparkles className="w-4 h-4 text-[#a78b71]" />
-            <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
-              SERVICES &amp; STUDIO CATALOGUE • 17+ YEARS OF EXCELLENCE
-            </span>
-          </div>
+      {/* 1. Page Hero with Glowing Fire Background & Photos Moving Left to Right */}
+      <PageHero
+        badge="Transparent Pricing & Collections"
+        title="An Investment in"
+        titleHighlight="Generational Love"
+        subtitle="The laughter of childhood friends, the proud gaze of a father, and vows whispered before the sacred havan agni. We treat every celebration as a priceless family heirloom."
+        primaryAction={{
+          label: "Inquire via WhatsApp",
+          onClick: () => onOpenWhatsApp("Pranam! We would love to discuss wedding photography collections and custom quotes.")
+        }}
+        secondaryAction={{
+          label: "Call Studio (+91 92128 12625)",
+          onClick: () => window.open('tel:+919212812625')
+        }}
+      />
 
-          <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight mt-1">
-            Services &amp;{' '}
-            <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
-              Products
-            </span>
-          </h1>
+      {/* Navigation Sub-Tabs Bar */}
+      <div className="w-full px-3 sm:px-6 lg:px-12 py-3 sm:py-5 bg-white/85 border-b border-[#e5dfd5] sticky top-16 sm:top-20 z-30 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto flex items-center overflow-x-auto scrollbar-none pb-1 sm:pb-0 sm:flex-wrap sm:justify-center gap-1.5 sm:gap-3 text-xs font-sans uppercase tracking-wider -mx-3 px-3 sm:mx-0 sm:px-0">
+          <button
+            onClick={() => setActiveTab('collections')}
+            className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+              activeTab === 'collections'
+                ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
+                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
+            <span>Wedding Collections</span>
+          </button>
 
-          <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
-            From royal Indian wedding monographs and cinematic films to ancestral photo restoration, custom framing, and personalized keepsakes. Every discipline is tailored with classical dedication.
-          </p>
+          <button
+            onClick={() => setActiveTab('services')}
+            className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+              activeTab === 'services'
+                ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
+                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+            }`}
+          >
+            <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
+            <span>All Studio Services ({EXTRA_SERVICES.length})</span>
+          </button>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-6 text-xs font-sans text-[#594d3f]">
-            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              Opposite SBI Bank, Rohini Sector 23
-            </span>
-            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
-              <Clock className="w-3.5 h-3.5 text-[#a78b71]" />
-              Open Mon–Sun 9:00 AM – 9:00 PM
-            </span>
-            <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-[#ded5c7] text-[#1c1c19] shadow-2xs">
-              <PhoneCall className="w-3.5 h-3.5 text-[#45123E]" />
-              Direct Studio Line: +91 92128 12625
-            </span>
-          </div>
+          <button
+            onClick={() => setActiveTab('products')}
+            className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+              activeTab === 'products'
+                ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
+                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+            }`}
+          >
+            <Gift className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
+            <span>Personalized Keepsakes ({STUDIO_PRODUCTS.length})</span>
+          </button>
 
-          {/* Navigation Sub-Tabs */}
-          <div className="w-full max-w-4xl mt-10 pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-sans uppercase tracking-wider">
-            <button
-              onClick={() => setActiveTab('services')}
-              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'services'
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
-              }`}
-            >
-              <Camera className="w-4 h-4 text-[#e8d5b7]" />
-              <span>All Services ({EXTRA_SERVICES.length})</span>
-            </button>
+          <button
+            onClick={() => setActiveTab('enhancements')}
+            className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+              activeTab === 'enhancements'
+                ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
+                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
+            <span>Heirloom Enhancements</span>
+          </button>
 
-            <button
-              onClick={() => setActiveTab('products')}
-              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'products'
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
-              }`}
-            >
-              <Gift className="w-4 h-4 text-[#e8d5b7]" />
-              <span>Personalized Products ({STUDIO_PRODUCTS.length})</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('collections')}
-              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'collections'
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
-              }`}
-            >
-              <Sparkles className="w-4 h-4 text-[#e8d5b7]" />
-              <span>Signature Collections</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('enhancements')}
-              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'enhancements'
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
-              }`}
-            >
-              <Layers className="w-4 h-4 text-[#e8d5b7]" />
-              <span>Archival Enhancements</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('matrix')}
-              className={`px-4 py-2.5 rounded-full border transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'matrix'
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                  : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
-              }`}
-            >
-              <FileText className="w-4 h-4 text-[#e8d5b7]" />
-              <span>Deliverables Matrix</span>
-            </button>
-          </div>
+          <button
+            onClick={() => setActiveTab('matrix')}
+            className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+              activeTab === 'matrix'
+                ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
+                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+            }`}
+          >
+            <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
+            <span>Deliverables Matrix</span>
+          </button>
         </div>
-      </section>
+      </div>
 
       {/* TAB 1: ALL 74 STUDIO SERVICES DIRECTORY */}
       {activeTab === 'services' && (
-        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
+        <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto">
             
             {/* Search and Category Filter Bar */}
-            <div className="glass-card bg-white p-5 rounded-3xl border border-[#ded5c7] mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="glass-card bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-[#ded5c7] mb-6 sm:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="relative flex-1">
-                <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#786a5a]" />
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-[#786a5a]" />
                 <input
                   type="text"
-                  placeholder="Search among all 74 studio services (e.g. Wedding, Drone, Framing, Video, Restoration)..."
+                  placeholder="Search among all 74 studio services..."
                   value={serviceSearch}
                   onChange={e => setServiceSearch(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-[#FAF5EB] border border-[#ded5c7] rounded-2xl font-sans text-sm text-[#1c1c19] placeholder-gray-500 focus:outline-none focus:border-[#45123E] transition-colors"
+                  className="w-full pl-10 sm:pl-12 pr-4 py-2.5 sm:py-3 bg-[#FAF5EB] border border-[#ded5c7] rounded-xl sm:rounded-2xl font-sans text-xs sm:text-sm text-[#1c1c19] placeholder-gray-500 focus:outline-none focus:border-[#45123E] transition-colors"
                 />
               </div>
 
-              {/* Category Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 text-xs font-sans">
+              {/* Category Pills - Smooth horizontal swipe on smartphone */}
+              <div className="flex items-center overflow-x-auto scrollbar-none pb-1 sm:pb-0 sm:flex-wrap gap-1.5 text-xs font-sans -mx-2 px-2 sm:mx-0 sm:px-0">
                 {[
                   { id: 'all', label: `All (${categoryCounts['all']})` },
                   { id: 'weddings', label: `Weddings (${categoryCounts['weddings'] || 0})` },
@@ -231,7 +212,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-full transition-all cursor-pointer shrink-0 whitespace-nowrap text-[11px] sm:text-xs ${
                       selectedCategory === cat.id
                         ? 'bg-[#45123E] text-white font-bold shadow-xs'
                         : 'bg-[#FAF5EB] text-[#594d3f] hover:text-[#1c1c19] border border-[#ded5c7]'
@@ -245,9 +226,9 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
             {/* Services Grid */}
             {filteredServices.length === 0 ? (
-              <div className="glass-card bg-white p-12 text-center rounded-3xl border border-[#ded5c7]">
+              <div className="glass-card bg-white p-8 sm:p-12 text-center rounded-2xl sm:rounded-3xl border border-[#ded5c7]">
                 <Camera className="w-10 h-10 text-[#a78b71] mx-auto mb-3" />
-                <h3 className="font-serif italic text-xl font-bold text-[#1c1c19]">No services match your search</h3>
+                <h3 className="font-serif italic text-lg sm:text-xl font-bold text-[#1c1c19]">No services match your search</h3>
                 <p className="font-sans text-xs text-[#594d3f] mt-1 font-normal">Try another term or clear the filter to see all 74 studio disciplines.</p>
                 <button
                   onClick={() => { setServiceSearch(''); setSelectedCategory('all'); }}
@@ -257,11 +238,11 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {filteredServices.map((service) => (
                   <div
                     key={service.id}
-                    className="glass-card bg-white p-6 rounded-3xl border border-[#ded5c7] hover:border-[#45123E] flex flex-col justify-between group shadow-2xs hover:shadow-md transition-all"
+                    className="glass-card bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#ded5c7] hover:border-[#45123E] flex flex-col justify-between group shadow-2xs hover:shadow-md transition-all"
                   >
                     <div>
                       {/* Top Tag & Icon */}
@@ -378,32 +359,32 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
       {/* TAB 3: SIGNATURE WEDDING COLLECTIONS */}
       {activeTab === 'collections' && (
-        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
+        <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
+            <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+              <span className="font-sans text-[10px] sm:text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
                 ROYAL BRIDAL MONOGRAPHS
               </span>
-              <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
+              <h2 className="font-serif italic text-2xl sm:text-4xl text-[#1c1c19] font-normal">
                 Signature Wedding Collections
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2 px-2">
                 Archival wedding coverage personally directed with cinema cameras, master prime lenses, drone aerials, and hand-bound Italian leather and silk heirloom volumes.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
               {INVESTMENT_TIERS.map((tier) => (
                 <div
                   key={tier.id}
-                  className={`relative bg-white rounded-3xl flex flex-col justify-between p-8 sm:p-10 transition-all border ${
+                  className={`relative bg-white rounded-2xl sm:rounded-3xl flex flex-col justify-between p-6 sm:p-10 transition-all border ${
                     tier.isPatronPreferred
-                      ? 'border-[#45123E] shadow-2xl ring-2 ring-[#45123E]/20 -translate-y-2'
+                      ? 'border-[#45123E] shadow-xl sm:shadow-2xl ring-2 ring-[#45123E]/20 lg:-translate-y-2'
                       : 'border-[#ded5c7] hover:border-[#a78b71] shadow-2xs'
                   }`}
                 >
                   {tier.isPatronPreferred && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#45123E] text-white font-sans text-[10px] font-extrabold uppercase tracking-[0.2em] shadow-md">
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 rounded-full bg-[#45123E] text-white font-sans text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.2em] shadow-md whitespace-nowrap">
                       Patron Preferred • Most Revered
                     </div>
                   )}
@@ -470,14 +451,14 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
       {/* TAB 4: ARCHIVAL ENHANCEMENTS */}
       {activeTab === 'enhancements' && (
-        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
+        <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-3 sm:gap-4">
               <div>
-                <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] block mb-1 font-bold">
+                <span className="font-sans text-[10px] sm:text-[11px] text-[#775a19] uppercase tracking-[0.25em] block mb-1 font-bold">
                   A LA CARTE COUTURE
                 </span>
-                <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
+                <h2 className="font-serif italic text-2xl sm:text-4xl text-[#1c1c19] font-normal">
                   Archival Additions &amp; Extensions
                 </h2>
               </div>
@@ -486,31 +467,31 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {ENHANCEMENTS.map((enh) => (
                 <div
                   key={enh.code}
-                  className="glass-card bg-white p-6 rounded-3xl border border-[#ded5c7] flex flex-col justify-between shadow-2xs hover:shadow-md transition-all"
+                  className="glass-card bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#ded5c7] flex flex-col justify-between shadow-2xs hover:shadow-md transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="font-sans text-[10px] text-[#45123E] uppercase tracking-widest font-bold px-2.5 py-1 bg-[#FAF5EB] border border-[#ded5c7] rounded-full">
+                      <span className="font-sans text-[9px] sm:text-[10px] text-[#45123E] uppercase tracking-widest font-bold px-2.5 py-1 bg-[#FAF5EB] border border-[#ded5c7] rounded-full">
                         {enh.badge}
                       </span>
-                      <span className="font-sans text-[10px] uppercase tracking-widest text-[#786a5a] font-mono">
+                      <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-widest text-[#786a5a] font-mono">
                         {enh.code}
                       </span>
                     </div>
 
-                    <h3 className="font-serif italic text-lg text-[#1c1c19] font-bold leading-snug">
+                    <h3 className="font-serif italic text-base sm:text-lg text-[#1c1c19] font-bold leading-snug">
                       {enh.title}
                     </h3>
-                    <p className="font-sans text-xs text-[#594d3f] mt-2.5 leading-relaxed">
+                    <p className="font-sans text-xs text-[#594d3f] mt-2 sm:mt-2.5 leading-relaxed">
                       {enh.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-[#e8dfd2] flex items-center justify-between">
+                  <div className="pt-3.5 sm:pt-4 mt-5 sm:mt-6 border-t border-[#e8dfd2] flex items-center justify-between">
                     <span className="font-sans text-[10px] uppercase tracking-wider text-[#786a5a] font-medium">
                       Integrate into Monograph
                     </span>
@@ -531,34 +512,34 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
 
       {/* TAB 5: DELIVERABLES MATRIX */}
       {activeTab === 'matrix' && (
-        <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
+        <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
+            <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+              <span className="font-sans text-[10px] sm:text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
                 TRANSPARENT ARTISAN SPECIFICATIONS
               </span>
-              <h2 className="font-serif italic text-3xl sm:text-4xl text-[#1c1c19] font-normal">
+              <h2 className="font-serif italic text-2xl sm:text-4xl text-[#1c1c19] font-normal">
                 Deliverable Comparison Matrix
               </h2>
-              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2">
+              <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-1.5 sm:mt-2 px-2">
                 A rigorous overview of equipment, coverage durations, master plates, and physical heirlooms.
               </p>
             </div>
 
-            <div className="overflow-x-auto bg-white border border-[#ded5c7] rounded-3xl shadow-sm">
-              <table className="w-full text-left border-collapse">
+            <div className="overflow-x-auto bg-white border border-[#ded5c7] rounded-2xl sm:rounded-3xl shadow-sm">
+              <table className="w-full text-left border-collapse min-w-[540px]">
                 <thead>
                   <tr className="border-b border-[#ded5c7] bg-[#FAF5EB]">
-                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#1c1c19] font-bold">
+                    <th className="p-3.5 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#1c1c19] font-bold">
                       Artisan Discipline
                     </th>
-                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
+                    <th className="p-3.5 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
                       The Atelier
                     </th>
-                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#45123E] font-bold bg-[#f5ecdd]">
+                    <th className="p-3.5 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#45123E] font-bold bg-[#f5ecdd]">
                       The Golden (Preferred)
                     </th>
-                    <th className="p-4 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
+                    <th className="p-3.5 sm:p-5 font-sans text-xs uppercase tracking-wider text-[#775a19] font-bold">
                       The Imperial
                     </th>
                   </tr>
@@ -566,16 +547,16 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
                 <tbody className="divide-y divide-[#e8dfd2] font-sans text-xs">
                   {DELIVERABLE_MATRIX.map((row, idx) => (
                     <tr key={idx} className="hover:bg-[#FAF5EB]/50 transition-colors">
-                      <td className="p-4 sm:p-5 font-bold text-[#1c1c19]">
+                      <td className="p-3.5 sm:p-5 font-bold text-[#1c1c19]">
                         {row.discipline}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#594d3f]">
+                      <td className="p-3.5 sm:p-5 text-[#594d3f]">
                         {row.monograph}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#45123E] font-bold bg-[#f5ecdd]/40">
+                      <td className="p-3.5 sm:p-5 text-[#45123E] font-bold bg-[#f5ecdd]/40">
                         {row.golden}
                       </td>
-                      <td className="p-4 sm:p-5 text-[#594d3f]">
+                      <td className="p-3.5 sm:p-5 text-[#594d3f]">
                         {row.imperial}
                       </td>
                     </tr>
@@ -588,16 +569,16 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
       )}
 
       {/* Flagship Studio Consultation & Location Canopy */}
-      <section className="w-full px-6 sm:px-8 lg:px-12 py-16 border-t border-[#e5dfd5] bg-white">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-12 sm:py-16 border-t border-[#e5dfd5] bg-white">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
           <div>
-            <span className="font-sans text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
+            <span className="font-sans text-[10px] sm:text-[11px] text-[#775a19] uppercase tracking-[0.25em] font-bold block mb-1">
               VISIT OUR ROHINI STUDIO
             </span>
-            <h3 className="font-serif italic text-2xl sm:text-3xl text-[#1c1c19] leading-tight font-bold">
+            <h3 className="font-serif italic text-xl sm:text-3xl text-[#1c1c19] leading-tight font-bold">
               Opposite State Bank of India (SBI), Pooth Kalan, Rohini Sector 23
             </h3>
-            <p className="font-serif text-sm sm:text-base text-[#594d3f] mt-3 leading-relaxed">
+            <p className="font-serif text-xs sm:text-base text-[#594d3f] mt-2.5 sm:mt-3 leading-relaxed">
               We welcome couples and families to visit our studio in person to touch our Florentine leather albums, inspect sample print finishes, view high-definition cinematic reels on calibrated monitors, and discuss custom packages over fresh masala chai.
             </p>
 
@@ -639,7 +620,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
           {/* Frequently Asked Questions */}
           <div className="bg-[#FAF5EB] p-6 rounded-3xl border border-[#ded5c7] space-y-4 shadow-sm">
             <h4 className="font-serif italic text-lg font-bold text-[#1c1c19] flex items-center gap-2">
-              <Star className="w-4 h-4 text-[#F4B400] fill-current" />
+              <CheckCircle2 className="w-4 h-4 text-[#45123E]" />
               <span>Frequently Asked Questions</span>
             </h4>
 

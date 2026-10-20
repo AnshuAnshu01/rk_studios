@@ -19,92 +19,366 @@
   }
 }
 
-/* Light Studio Radial Dot Grid Overlay (32px spacing, warm gold-sand dots at 14% opacity) */
+/* Dots removed completely per user request for clean aesthetic */
 .bg-dots {
-  background-image: radial-gradient(rgba(167, 139, 113, 0.15) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
+  background-image: none !important;
 }
 
 /* Glassmorphism core card styling for light mode */
 .glass-card {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(209, 197, 180, 0.55);
-  box-shadow: 0 10px 30px -10px rgba(167, 139, 113, 0.12);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(218, 208, 195, 0.65);
+  box-shadow: 0 10px 30px -10px rgba(167, 139, 113, 0.08);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(167, 139, 113, 0.7);
-  box-shadow: 0 14px 40px -5px rgba(167, 139, 113, 0.22);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(167, 139, 113, 0.6);
+  box-shadow: 0 14px 40px -5px rgba(167, 139, 113, 0.18);
 }
 
-/* Central warm gold glow effect */
-.central-glow {
-  box-shadow: 0 0 80px rgba(167, 139, 113, 0.18);
+/* ========================================================= */
+/* SACRED FIRE GLOWING BACKGROUND & FRONT GLASS PANE AESTHETICS */
+/* ========================================================= */
+
+/* Fire Stage Ambient Chamber - Deep smoky hearth backdrop for maximum flame contrast */
+.fire-stage-chamber {
+  position: relative;
+  background: radial-gradient(
+    ellipse at 50% 92%,
+    rgba(82, 18, 65, 0.96) 0%,
+    rgba(45, 9, 36, 0.98) 42%,
+    rgba(18, 4, 16, 1) 100%
+  );
+  overflow: hidden;
 }
 
-.central-glow-lg {
-  box-shadow: 0 0 120px rgba(167, 139, 113, 0.25);
+/* Ambient Pulsing Hearth Firelight Glow (Flickers like real sacred fire) */
+.fire-ambient-flicker {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 95%,
+    rgba(255, 170, 0, 0.35) 0%,
+    rgba(234, 88, 12, 0.22) 35%,
+    rgba(220, 38, 38, 0.12) 65%,
+    transparent 85%
+  );
+  animation: hearthFlicker 3.8s ease-in-out infinite alternate;
 }
 
-/* Neural connection lines adapted for light mode */
-.node-line {
-  stroke-width: 2.5;
-  stroke: url(#goldGradientLight);
-  animation: pulsing-branch 3.5s ease-in-out infinite alternate;
-}
-
-.node-line-dashed {
-  stroke-width: 1.5;
-  stroke: #a78b71;
-  stroke-dasharray: 5 15;
-  opacity: 0.7;
-  animation: flow 18s linear infinite;
-}
-
-@keyframes pulsing-branch {
+@keyframes hearthFlicker {
   0% {
-    opacity: 0.5;
-    stroke-width: 2.2;
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.03);
   }
   50% {
-    opacity: 0.85;
-    stroke-width: 2.8;
+    opacity: 0.88;
+    transform: scale(0.99);
+  }
+  75% {
+    opacity: 1.08;
+    transform: scale(1.05);
   }
   100% {
-    opacity: 0.5;
-    stroke-width: 2.2;
+    opacity: 0.92;
+    transform: scale(1.01);
   }
 }
 
-@keyframes flow {
-  from {
-    stroke-dashoffset: 200;
+/* Intense Glowing Fire Hearth Core - Incandescent white-hot center at base */
+.fire-flame-intense {
+  background: radial-gradient(
+    ellipse at 50% 95%,
+    rgba(255, 255, 240, 1) 0%,
+    rgba(255, 220, 100, 0.98) 12%,
+    rgba(255, 140, 0, 0.92) 28%,
+    rgba(234, 88, 12, 0.85) 45%,
+    rgba(220, 38, 38, 0.72) 65%,
+    rgba(90, 15, 60, 0.45) 85%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  animation: flameLick 3.4s ease-in-out infinite alternate;
+}
+
+/* Secondary Dancing Flame Tongues - Licks upward dynamically */
+.fire-flame-tongues {
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(255, 230, 80, 0.95) 0%,
+    rgba(255, 110, 0, 0.85) 25%,
+    rgba(225, 29, 72, 0.7) 50%,
+    rgba(136, 19, 55, 0.4) 75%,
+    transparent 90%
+  );
+  filter: blur(22px);
+  animation: flameLickSecondary 2.9s ease-in-out infinite alternate-reverse;
+}
+
+/* Left & Right Flanking Flame Licks */
+.fire-flame-left {
+  background: radial-gradient(
+    ellipse at 40% 100%,
+    rgba(255, 180, 20, 0.85) 0%,
+    rgba(249, 115, 22, 0.7) 35%,
+    rgba(220, 38, 38, 0.5) 60%,
+    transparent 85%
+  );
+  filter: blur(30px);
+  animation: flameFlankLeft 4.1s ease-in-out infinite alternate;
+}
+
+.fire-flame-right {
+  background: radial-gradient(
+    ellipse at 60% 100%,
+    rgba(255, 160, 0, 0.85) 0%,
+    rgba(234, 88, 12, 0.7) 35%,
+    rgba(190, 24, 93, 0.5) 60%,
+    transparent 85%
+  );
+  filter: blur(30px);
+  animation: flameFlankRight 3.7s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes flameLick {
+  0% {
+    transform: scale(0.96, 0.92) translateY(12px);
+    opacity: 0.9;
+    filter: blur(28px) brightness(1);
   }
-  to {
-    stroke-dashoffset: 0;
+  35% {
+    transform: scale(1.06, 1.14) translateY(-18px) skewX(1deg);
+    opacity: 1;
+    filter: blur(24px) brightness(1.22);
+  }
+  70% {
+    transform: scale(0.98, 1.02) translateY(-6px) skewX(-1.5deg);
+    opacity: 0.94;
+    filter: blur(26px) brightness(1.1);
+  }
+  100% {
+    transform: scale(1.1, 1.2) translateY(-26px) skewX(0.5deg);
+    opacity: 1;
+    filter: blur(22px) brightness(1.28);
   }
 }
 
-/* Satellite media cards - full image presentation with graceful hover */
-.satellite-card {
-  width: clamp(230px, 22vw, 340px);
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(209, 197, 180, 0.65);
-  border-radius: 24px;
-  box-shadow: 0 8px 30px rgba(167, 139, 113, 0.14);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes flameLickSecondary {
+  0% {
+    transform: scale(1.05, 1.1) translateY(-15px) rotate(-2deg);
+    opacity: 0.82;
+  }
+  50% {
+    transform: scale(0.94, 0.9) translateY(8px) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.12, 1.22) translateY(-22px) rotate(-1deg);
+    opacity: 0.9;
+  }
 }
 
-.satellite-card:hover {
-  transform: scale(1.04) translateY(-3px);
-  border-color: #a78b71;
-  box-shadow: 0 16px 45px rgba(167, 139, 113, 0.28);
+@keyframes flameFlankLeft {
+  0% {
+    transform: scale(0.95, 0.95) translateY(5px) rotate(-3deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.12, 1.2) translateY(-20px) rotate(1deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.02, 1.05) translateY(-8px) rotate(-2deg);
+    opacity: 0.85;
+  }
+}
+
+@keyframes flameFlankRight {
+  0% {
+    transform: scale(1.08, 1.15) translateY(-18px) rotate(3deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(0.92, 0.9) translateY(10px) rotate(-1deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.14, 1.25) translateY(-24px) rotate(2deg);
+    opacity: 0.88;
+  }
+}
+
+/* Master Glass Sheet Sitting in Front of the Fire */
+.front-glass-sheet {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  backdrop-filter: blur(20px) saturate(150%) brightness(104%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(104%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(245, 158, 11, 0.3),
+    0 25px 70px -15px rgba(0, 0, 0, 0.45);
+}
+
+/* Crystal Frosted Glass Surface for Hero Panel */
+/* Rich architectural glass pane with polished chamfered bevels and fire refraction */
+.hero-glass-surface {
+  position: relative;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.86) 0%, 
+    rgba(255, 248, 240, 0.72) 50%, 
+    rgba(255, 255, 255, 0.80) 100%
+  );
+  backdrop-filter: blur(28px) saturate(165%) contrast(105%);
+  -webkit-backdrop-filter: blur(28px) saturate(165%) contrast(105%);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 3px 6px 0 rgba(255, 255, 255, 0.5),
+    inset 1.5px 0 2px 0 rgba(255, 255, 255, 0.45),
+    inset -1.5px 0 2px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2.5px 5px 0 rgba(245, 158, 11, 0.42),
+    0 35px 80px -15px rgba(0, 0, 0, 0.5),
+    0 0 50px 0 rgba(245, 158, 11, 0.3),
+    0 0 90px 0 rgba(220, 38, 38, 0.15);
+}
+
+/* Architectural Brass Glass Standoff / Rivet Mount */
+.glass-standoff {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fef08a 25%, #f59e0b 65%, #78350f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Glass Reflection Light Sheen Glare across the pane */
+.glass-reflection-sheen {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 24%,
+    rgba(255, 255, 255, 0.22) 32%,
+    transparent 45%,
+    rgba(255, 255, 255, 0.3) 75%,
+    transparent 85%
+  );
+  pointer-events: none;
+}
+
+/* Dynamic Glare Sweep across the crystal glass surface */
+.glass-glare-sweep {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  animation: glassSweep 7.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 15;
+}
+
+@keyframes glassSweep {
+  0% {
+    left: -150%;
+  }
+  30% {
+    left: 180%;
+  }
+  100% {
+    left: 180%;
+  }
+}
+
+/* Rising Golden Ember Sparks */
+.ember-spark {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #fef08a 25%, #f59e0b 65%, #dc2626 100%);
+  box-shadow: 
+    0 0 10px 2px rgba(245, 158, 11, 0.95),
+    0 0 20px 5px rgba(220, 38, 38, 0.45);
+  animation: floatEmberUpward var(--ember-dur, 6s) ease-in infinite;
+  pointer-events: none;
+}
+
+@keyframes floatEmberUpward {
+  0% {
+    transform: translateY(100%) scale(0.4) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.95;
+    transform: translateY(35%) scale(1.15) translateX(var(--ember-drift, 25px));
+  }
+  85% {
+    opacity: 0.7;
+    transform: translateY(0%) scale(0.85) translateX(calc(var(--ember-drift, 25px) * 1.3));
+  }
+  100% {
+    transform: translateY(-25%) scale(0.2) translateX(calc(var(--ember-drift, 25px) * 1.8));
+    opacity: 0;
+  }
+}
+
+/* Photo card fire backlight shadow */
+.photo-fire-backlight {
+  box-shadow: 
+    0 12px 35px -5px rgba(0, 0, 0, 0.5),
+    0 0 25px 2px rgba(245, 158, 11, 0.28),
+    0 0 50px 5px rgba(220, 38, 38, 0.15);
+}
+
+/* Smooth continuous marquee moving from left to right */
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeftToRight 42s linear infinite;
+}
+
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
 }
 
 /* Typography Helpers */
@@ -121,10 +395,6 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.font-script {
-  font-family: 'Great Vibes', cursive, 'Playfair Display', serif;
-}
-
 /* Custom scrollbar hiding */
 ::-webkit-scrollbar {
   display: none;
@@ -134,56 +404,25 @@
   scrollbar-width: none;
 }
 
-/* Luxury Editorial Hero & Loading Animations */
-@keyframes loadingSweep {
-  0% {
-    left: -40%;
-  }
-  50% {
-    left: 40%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
 @keyframes cinematicFadeIn {
   from {
     opacity: 0;
-    transform: scale(1.025);
-    filter: blur(4px);
+    transform: scale(1.02);
   }
   to {
     opacity: 1;
     transform: scale(1);
-    filter: blur(0px);
   }
 }
 
 .animate-cinematic {
-  animation: cinematicFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematicFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Subtle editorial frame shadow */
 .editorial-frame-shadow {
   box-shadow: 
-    0 20px 50px -15px rgba(69, 18, 62, 0.12),
-    0 10px 25px -10px rgba(167, 139, 113, 0.15),
+    0 20px 45px -15px rgba(69, 18, 62, 0.1),
+    0 10px 20px -10px rgba(167, 139, 113, 0.12),
     0 0 0 1px rgba(229, 220, 206, 0.8);
 }
-
-/* Hero auto-advance timer progress bar */
-@keyframes slideProgress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.animate-slide-progress {
-  animation: slideProgress 4.5s linear forwards;
-}
-
-
