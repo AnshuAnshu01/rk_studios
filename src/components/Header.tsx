@@ -6,7 +6,6 @@ import {
   Menu, 
   X, 
   Sparkles, 
-  Star,
   ArrowRight
 } from 'lucide-react';
 
@@ -58,23 +57,6 @@ export const Header: React.FC<HeaderProps> = ({
                 <RKStudiosLogo height={52} />
               </div>
             </button>
-
-            {/* Google Rating Pill */}
-            <a
-              href="https://share.google/XGXzmI1VT65XaGW7H"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden 2xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#ded5c7] hover:border-[#a78b71] text-xs font-sans transition-all text-[#4a3f33] shadow-2xs"
-              title="Google Verified Reviews (Rohini Sector 23)"
-            >
-              <span className="font-bold text-[#1c1c19] text-[11px]">4.9</span>
-              <div className="flex text-[#F4B400]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-current" />
-                ))}
-              </div>
-              <span className="text-[10px] text-[#7c6e5e] font-medium">Delhi NCR</span>
-            </a>
           </div>
 
           {/* Center-Aligned Links in 'Inter' (11px, uppercase, tracking-wide) */}
