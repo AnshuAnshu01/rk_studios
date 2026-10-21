@@ -138,7 +138,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-4 sm:p-8 max-h-[75vh] sm:max-h-[72vh] overflow-y-auto">
+        <div className="p-4 sm:p-8 max-h-[75vh] sm:max-h-[72vh] overflow-y-auto" data-lenis-prevent>
           {isSubmitted ? (
             /* Success State */
             <div className="flex flex-col items-center justify-center text-center py-8 px-4 space-y-4">

@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { VisualAnthology } from './components/VisualAnthology';
@@ -39,6 +41,37 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  const lenisRef = useRef<Lenis | null>(null);
+
+  // Initialize Lenis for buttery-smooth, seamless scrolling across mobile, tablet, and web views
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 1.35,
+      infinite: false,
+    });
+
+    lenisRef.current = lenis;
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
   // Initial loading effect - page content will only reveal once loading finishes
   useEffect(() => {
     const fadeTimer = setTimeout(() => {
@@ -55,7 +88,11 @@ export default function App() {
 
   // Scroll to top when screen changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [activeScreen]);
 
   // Handle scroll progress and scroll-to-top button visibility
@@ -185,7 +222,13 @@ export default function App() {
         {/* Scroll To Top Button with Circular Border Filling on Scroll */}
         {showScrollTop && (
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => {
+              if (lenisRef.current) {
+                lenisRef.current.scrollTo(0, { duration: 1.15 });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
             className="group relative w-11 h-11 flex items-center justify-center rounded-full bg-white/95 text-[#1c1c19] hover:text-[#45123E] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
             title={`Scroll to top (${Math.round(scrollProgress)}%)`}
             aria-label="Scroll to top"

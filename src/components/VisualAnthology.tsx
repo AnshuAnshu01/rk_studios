@@ -702,7 +702,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
           
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-18">
             <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#ded5c7] shadow-2xs">
-              <span className="text-[#a78b71]">✦</span>
+              
               <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#775a19] font-bold">
                 ROYAL MATRIMONIAL EDITIONS • BESPOKE COMMISSIONS
               </span>
@@ -1243,6 +1243,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
           <div 
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl max-h-[92vh] bg-white rounded-2xl sm:rounded-3xl overflow-y-auto md:overflow-hidden border border-[#ded5c7] flex flex-col md:flex-row shadow-2xl animate-fadeIn"
+            data-lenis-prevent
           >
             <button
               onClick={() => setLightboxPlate(null)}
@@ -1345,7 +1346,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
       {/* ========================================================= */}
       {isUploadModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-          <div className="relative w-full max-w-lg bg-[#FAF5EB] rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-[#ded5c7] shadow-2xl max-h-[92vh] overflow-y-auto">
+          <div className="relative w-full max-w-lg bg-[#FAF5EB] rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-[#ded5c7] shadow-2xl max-h-[92vh] overflow-y-auto" data-lenis-prevent>
             <div className="flex items-center justify-between pb-3.5 sm:pb-4 border-b border-[#ded5c7] mb-5 sm:mb-6">
               <div>
                 <h4 className="font-serif italic text-lg sm:text-xl font-bold text-[#1c1c19]">

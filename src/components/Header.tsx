@@ -170,7 +170,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* ========================================================= */}
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex justify-end animate-cinematic">
-          <div className="w-full max-w-xs sm:max-w-sm h-full bg-[#fcf9f4] border-l border-[#ded5c7] p-6 flex flex-col justify-between overflow-y-auto">
+          <div className="w-full max-w-xs sm:max-w-sm h-full bg-[#fcf9f4] border-l border-[#ded5c7] p-6 flex flex-col justify-between overflow-y-auto" data-lenis-prevent>
             
             {/* Drawer Top Header */}
             <div className="flex items-center justify-between pb-5 border-b border-[#e6ddd0]">

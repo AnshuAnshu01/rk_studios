@@ -13,6 +13,7 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scroll-padding-top: 5rem;
+    overscroll-behavior-y: none;
   }
 
   html, body {
@@ -24,7 +25,32 @@
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y;
   }
+}
+
+/* ========================================================= */
+/* SUPERSMOOTH SEAMLESS SCROLLING STYLING (LENIS INTEGRATION)*/
+/* ========================================================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 /* Dots removed completely per user request for clean aesthetic */
