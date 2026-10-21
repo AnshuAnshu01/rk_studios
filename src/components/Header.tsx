@@ -61,57 +61,56 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="fixed top-0 left-0 right-0 w-full z-50 bg-white/75 backdrop-blur-2xl border-b border-white/85 shadow-[0_4px_25px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.95)] transition-all">
         <div className="w-full px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-4">
           
-          {/* Brand Logo */}
+          {/* Brand Logo: LOGO|RK Studio in a single line */}
           <button
             onClick={() => handleNavClick('anthology')}
-            className="flex items-center gap-2.5 text-left focus:outline-none cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2.5 text-left focus:outline-none cursor-pointer shrink-0 flex-nowrap"
             aria-label="RK Photo & Movies Production Home"
           >
-            <div className="transition-transform hover:scale-[1.02]">
-              <RKStudiosLogo height={44} />
+            <div className="transition-transform hover:scale-[1.02] shrink-0">
+              <RKStudiosLogo height={40} />
             </div>
-            <span className="text-[#ded5c7] text-xl font-light select-none hidden sm:inline">|</span>
-            <span className="font-serif italic text-sm sm:text-base font-bold text-[#45123E] tracking-wide hidden sm:inline">RK Studios</span>
+            <span className="text-[#ded5c7] text-lg font-light select-none">|</span>
+            <span className="font-serif italic text-xs sm:text-sm lg:text-base font-bold text-[#45123E] tracking-wide whitespace-nowrap">
+              RK Studio
+            </span>
           </button>
 
-          {/* Desktop Navigation Links in Order of Landing Page */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          {/* Redesigned Desktop Navigation Links - Kept Close Together in a Sleek Capsule */}
+          <nav className="hidden lg:flex items-center gap-1 bg-[#f3ece0]/70 p-1 rounded-full border border-[#ded5c7]/70 shadow-xs backdrop-blur-md">
             {primaryNavItems.map((item) => {
               const isActive = activeScreen === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`relative py-1 font-sans text-xs uppercase tracking-[0.2em] font-semibold transition-colors cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full font-sans text-xs uppercase tracking-[0.14em] font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'text-[#45123E]'
-                      : 'text-[#6b5847] hover:text-[#1c1c19]'
+                      ? 'bg-[#45123E] text-white shadow-xs'
+                      : 'text-[#6b5847] hover:text-[#1c1c19] hover:bg-white/70'
                   }`}
                 >
                   <span>{item.label}</span>
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#45123E] rounded-full" />
-                  )}
                 </button>
               );
             })}
 
-            {/* Minimal More Dropdown (Without Icons) */}
+            {/* Minimal More Dropdown - Fits inside the tight capsule */}
             <div className="relative">
               <button
                 onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
                 onMouseEnter={() => setMoreDropdownOpen(true)}
-                className={`py-1 font-sans text-xs uppercase tracking-[0.2em] font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-full font-sans text-xs uppercase tracking-[0.14em] font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1 whitespace-nowrap ${
                   moreNavItems.some(i => i.id === activeScreen)
-                    ? 'text-[#45123E]'
-                    : 'text-[#6b5847] hover:text-[#1c1c19]'
+                    ? 'bg-[#45123E] text-white shadow-xs'
+                    : 'text-[#6b5847] hover:text-[#1c1c19] hover:bg-white/70'
                 }`}
               >
                 <span>More</span>
-                <span className="text-[8px] opacity-70">▼</span>
+                <span className="text-[7px] opacity-75">▼</span>
               </button>
 
-              {/* Minimalist Floating Menu Panel - Pure typography, no icons */}
+              {/* Minimalist Floating Menu Panel */}
               {moreDropdownOpen && (
                 <div 
                   onMouseLeave={() => setMoreDropdownOpen(false)}
@@ -176,11 +175,11 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* Drawer Top Header */}
             <div className="flex items-center justify-between pb-5 border-b border-[#e6ddd0]">
-              <div className="flex items-center gap-2.5">
-                <RKStudiosLogo height={36} />
+              <div className="flex items-center gap-1.5 flex-nowrap shrink-0">
+                <RKStudiosLogo height={32} />
                 <span className="text-[#ded5c7] text-lg font-light select-none">|</span>
-                <span className="font-serif italic text-base font-bold text-[#45123E] tracking-wide">
-                  RK Studios
+                <span className="font-serif italic text-sm font-bold text-[#45123E] tracking-wide whitespace-nowrap">
+                  RK Studio
                 </span>
               </div>
               <button

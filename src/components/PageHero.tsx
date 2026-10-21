@@ -36,12 +36,11 @@ export const PageHero: React.FC<PageHeroProps> = ({
           <img
             src={backgroundImageUrl}
             alt=""
-            className="w-full h-full object-cover object-center opacity-30 scale-105"
+            className="w-full h-full object-cover object-center opacity-85 scale-100"
             loading="eager"
           />
-          {/* Subtle cinematic gradient fades for pristine typography readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EB]/85 via-[#FAF5EB]/70 to-[#FAF5EB]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5EB]/90 via-transparent to-[#FAF5EB]/90" />
+          {/* Subtle vertical blend preserving clear photo visibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EB]/45 via-transparent to-[#FAF5EB]/70" />
         </div>
       )}
 

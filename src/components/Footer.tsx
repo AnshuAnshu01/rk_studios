@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RKStudiosLogo } from './RKStudiosLogo';
 import { 
   BookOpen, 
@@ -6,12 +6,10 @@ import {
   Film, 
   MapPin, 
   Sparkles, 
-  ArrowRight, 
   Instagram, 
   Youtube,
   Facebook,
   Phone, 
-  CheckCircle2,
   ExternalLink,
   Cookie,
   FileText
@@ -22,19 +20,6 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const [digestEmail, setDigestEmail] = useState('');
-  const [digestSubscribed, setDigestSubscribed] = useState(false);
-
-  const handleDigestSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!digestEmail.trim()) return;
-    setDigestSubscribed(true);
-    setTimeout(() => {
-      setDigestEmail('');
-      setDigestSubscribed(false);
-    }, 4000);
-  };
-
   return (
     <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-14 sm:pt-20 pb-28 sm:pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
       {/* Background warm radial ambient glow */}
@@ -42,13 +27,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* 6-Column Desktop Grid for Grand Logo Presentation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-8 pb-12 sm:pb-16 border-b border-[#ded3c2]">
+        {/* Balanced Grid for Footer Portals & Brand Information */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 pb-12 sm:pb-16 border-b border-[#ded3c2]">
           
           {/* Column 1: Grand Master Logo & Verified Social Media Channels */}
           <div className="flex flex-col gap-4 lg:col-span-2">
-            <div className="py-1">
-              <RKStudiosLogo height={96} className="transition-transform duration-300 hover:scale-[1.02]" />
+            <div className="py-1 inline-flex items-center gap-2 sm:gap-3 flex-nowrap">
+              <div className="shrink-0">
+                <RKStudiosLogo height={64} className="transition-transform duration-300 hover:scale-[1.02]" />
+              </div>
+              <span className="text-[#ded5c7] text-2xl sm:text-3xl font-light select-none">|</span>
+              <span className="font-serif italic text-xl sm:text-2xl font-bold text-[#45123E] tracking-wide whitespace-nowrap">
+                RK Studio
+              </span>
             </div>
 
             <p className="font-serif italic text-sm sm:text-base text-[#5d4f40] leading-relaxed mt-1 max-w-sm">
@@ -224,42 +215,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Column 5: Join Digest */}
-          <div className="flex flex-col gap-3">
-            <span className="font-sans text-[11px] uppercase tracking-[0.24em] font-bold text-[#775a19]">
-              Join Digest
-            </span>
-            <p className="font-sans text-xs text-[#594d3f] leading-relaxed">
-              Receive private invitations to seasonal monograph exhibitions, auspicious muhurat calendars, and bridal folios.
-            </p>
-
-            <form onSubmit={handleDigestSubmit} className="relative mt-2">
-              <div className="relative flex items-center">
-                <input
-                  type="email"
-                  value={digestEmail}
-                  onChange={(e) => setDigestEmail(e.target.value)}
-                  placeholder="Enter family email..."
-                  required
-                  className="w-full bg-white border border-[#ded3c2] focus:border-[#45123E] rounded-full pl-4 pr-12 py-3 text-xs text-[#1c1c19] placeholder-gray-400 focus:outline-none transition-all font-sans shadow-2xs"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-1.5 w-9 h-9 rounded-full bg-[#45123E] text-white hover:bg-[#340C2E] flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer"
-                  title="Subscribe to Digest"
-                >
-                  <ArrowRight className="w-4 h-4 text-[#e8d5b7]" />
-                </button>
-              </div>
-
-              {digestSubscribed && (
-                <div className="mt-2 text-[11px] text-[#45123E] flex items-center gap-1 font-sans font-medium animate-fadeIn">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Honored. Your invitation dispatch has been logged.</span>
-                </div>
-              )}
-            </form>
-          </div>
 
         </div>
 

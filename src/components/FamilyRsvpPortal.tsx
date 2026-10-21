@@ -152,11 +152,11 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
           <img
             src="/images/4.jpg"
             alt=""
-            className="w-full h-full object-cover object-center opacity-25 scale-105"
+            className="w-full h-full object-cover object-center opacity-85 scale-100"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EB]/85 via-[#FAF5EB]/70 to-[#FAF5EB]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5EB]/90 via-transparent to-[#FAF5EB]/90" />
+          {/* Subtle vertical blend preserving clear photo visibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EB]/45 via-transparent to-[#FAF5EB]/70" />
         </div>
 
         <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10 glass-lucid px-6 sm:px-10 py-8 sm:py-12 rounded-3xl border border-white/85 shadow-2xl backdrop-blur-2xl">
