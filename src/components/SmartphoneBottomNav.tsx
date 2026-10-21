@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Sparkles, 
+  Home, 
   BookOpen, 
   MapPin, 
   Calendar, 
@@ -29,7 +29,7 @@ export const SmartphoneBottomNav: React.FC<SmartphoneBottomNavProps> = ({
     >
       <div className="grid grid-cols-5 items-center justify-around gap-1 max-w-md mx-auto">
         
-        {/* Tab 1: Anthology / Home */}
+        {/* Tab 1: Home (Non-star clean icon matching desktop nav) */}
         <button
           onClick={() => onNavigate('anthology')}
           className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all ${
@@ -37,15 +37,15 @@ export const SmartphoneBottomNav: React.FC<SmartphoneBottomNavProps> = ({
               ? 'text-[#45123E]'
               : 'text-[#7c6e5e] hover:text-[#1c1c19]'
           }`}
-          aria-label="View Anthology"
+          aria-label="View Home"
         >
           <div className={`p-1.5 rounded-full transition-transform ${
             activeScreen === 'anthology' ? 'bg-[#45123E]/10 scale-110' : ''
           }`}>
-            <Sparkles className="w-4 h-4" />
+            <Home className="w-4 h-4" />
           </div>
           <span className="text-[10px] font-sans font-medium tracking-tight mt-0.5">
-            Anthology
+            Home
           </span>
         </button>
 

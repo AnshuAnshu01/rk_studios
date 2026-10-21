@@ -217,8 +217,8 @@ export default function App() {
         )}
       </main>
 
-      {/* Floating Action Controls - Discreet, elegant, and positioned above smartphone bottom nav */}
-      <div className="fixed bottom-[5.5rem] right-3 sm:bottom-5 sm:right-5 z-30 flex flex-col items-end gap-2.5 pointer-events-auto">
+      {/* Floating Action Controls - Positioned comfortably above smartphone bottom nav */}
+      <div className="fixed bottom-[calc(4.75rem+max(env(safe-area-inset-bottom,0px),14px))] sm:bottom-6 right-3.5 sm:right-6 z-50 flex flex-col items-end gap-2.5 pointer-events-auto">
         {/* Scroll To Top Button with Circular Border Filling on Scroll */}
         {showScrollTop && (
           <button 
@@ -229,7 +229,7 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="group relative w-11 h-11 flex items-center justify-center rounded-full bg-white/95 text-[#1c1c19] hover:text-[#45123E] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+            className="group relative w-11 h-11 flex items-center justify-center rounded-full bg-white/95 text-[#1c1c19] hover:text-[#45123E] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer border border-[#ded5c7]"
             title={`Scroll to top (${Math.round(scrollProgress)}%)`}
             aria-label="Scroll to top"
           >
@@ -275,13 +275,13 @@ export default function App() {
         {/* Floating Phone Call CTA */}
         <a
           href="tel:+919212812625"
-          className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white shadow-md hover:shadow-lg transition-all duration-300 border border-[#a78b71]/50 hover:scale-105 active:scale-95"
+          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white shadow-[0_8px_25px_rgba(69,18,62,0.35)] hover:shadow-2xl transition-all duration-300 border-2 border-white/90 hover:scale-105 active:scale-95"
           title="Direct Phone Call: +91 92128 12625"
           aria-label="Call Studio at +91 92128 12625"
         >
-          <Phone className="w-4 h-4 text-[#e8d5b7] fill-current" />
+          <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-[#f5ebd9] fill-current" />
           {/* Subtle hover tooltip */}
-          <span className="absolute right-12 px-2.5 py-1 rounded-md bg-[#1c1c19]/90 text-white text-[10px] tracking-wider font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
+          <span className="absolute right-13 px-2.5 py-1 rounded-md bg-[#1c1c19]/90 text-white text-[10px] tracking-wider font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
             Call Atelier: +91 92128 12625
           </span>
         </a>
