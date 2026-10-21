@@ -100,12 +100,13 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
   return (
     <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pb-16 font-sans">
       
-      {/* 1. Page Hero with Glowing Fire Background & Photos Moving Left to Right */}
+      {/* 1. Page Hero with Distinct Landscape Photo (/images/7.jpg) */}
       <PageHero
         badge="Transparent Pricing & Collections"
         title="An Investment in"
         titleHighlight="Generational Love"
-        subtitle="The laughter of childhood friends, the proud gaze of a father, and vows whispered before the sacred havan agni. We treat every celebration as a priceless family heirloom."
+        subtitle="Long after the shehnai falls silent and the marigolds dry, it is the quiet glance between a bride and her mother, the tear in a father's eye, and the laughter of childhood friends that stay with you forever. We treat every celebration as a priceless family heirloom."
+        backgroundImageUrl="/images/7.jpg"
         primaryAction={{
           label: "Inquire via WhatsApp",
           onClick: () => onOpenWhatsApp("Pranam! We would love to discuss wedding photography collections and custom quotes.")
@@ -117,14 +118,14 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
       />
 
       {/* Navigation Sub-Tabs Bar */}
-      <div className="w-full px-3 sm:px-6 lg:px-12 py-3 sm:py-5 bg-white/85 border-b border-[#e5dfd5] sticky top-16 sm:top-20 z-30 backdrop-blur-md">
+      <div className="w-full px-3 sm:px-6 lg:px-12 py-3 sm:py-5 glass-lucid border-b border-white/85 sticky top-16 sm:top-20 z-30 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto flex items-center overflow-x-auto scrollbar-none pb-1 sm:pb-0 sm:flex-wrap sm:justify-center gap-1.5 sm:gap-3 text-xs font-sans uppercase tracking-wider -mx-3 px-3 sm:mx-0 sm:px-0">
           <button
             onClick={() => setActiveTab('collections')}
             className={`px-3.5 sm:px-4 py-2 rounded-full border transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'collections'
                 ? 'bg-[#45123E] text-white border-[#45123E] shadow-sm font-bold'
-                : 'bg-white text-[#594d3f] border-[#ded5c7] hover:text-[#1c1c19] hover:border-[#45123E]'
+                : 'glass-lucid-pill text-[#594d3f] border-white/80 hover:text-[#1c1c19] hover:bg-white'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e8d5b7]" />
@@ -377,10 +378,10 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({
               {INVESTMENT_TIERS.map((tier) => (
                 <div
                   key={tier.id}
-                  className={`relative bg-white rounded-2xl sm:rounded-3xl flex flex-col justify-between p-6 sm:p-10 transition-all border ${
+                  className={`relative glass-lucid-card rounded-2xl sm:rounded-3xl flex flex-col justify-between p-6 sm:p-10 transition-all border ${
                     tier.isPatronPreferred
-                      ? 'border-[#45123E] shadow-xl sm:shadow-2xl ring-2 ring-[#45123E]/20 lg:-translate-y-2'
-                      : 'border-[#ded5c7] hover:border-[#a78b71] shadow-2xs'
+                      ? 'border-[#45123E] shadow-2xl ring-2 ring-[#45123E]/20 lg:-translate-y-2'
+                      : 'border-white/80 hover:border-[#a78b71] shadow-md'
                   }`}
                 >
                   {tier.isPatronPreferred && (

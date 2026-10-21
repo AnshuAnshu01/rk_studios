@@ -99,16 +99,16 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
   const [isHeroAutoPlaying, setIsHeroAutoPlaying] = useState<boolean>(true);
   const [isHeroHovered, setIsHeroHovered] = useState<boolean>(false);
 
-  // Curated 8 best images for the luxury hero loop
+  // Curated images for the luxury hero marquee (ordered exactly per reference design)
   const heroShowcasePlates = [
+    PLATES_DATA[5], // Plate 06: The Sacred Agni (/images/6.jpg)
+    PLATES_DATA[6], // Plate 07: The Royal Pre-Wedding Romance (/images/7.jpg)
+    PLATES_DATA[9], // Plate 10: Bridal Splendor & Intricate Regalia
     PLATES_DATA[0], // Plate 01: The Crimson Veil at Pichola (/images/1.jpg)
     PLATES_DATA[1], // Plate 02: Serenade of Morning Light (/images/2.jpg)
     PLATES_DATA[2], // Plate 03: A Mother's Gaze (/images/3.jpg)
     PLATES_DATA[3], // Plate 04: The Whirlwind of Sangeet (/images/4.jpg)
     PLATES_DATA[4], // Plate 05: Promises under the Starlight (/images/5.jpg)
-    PLATES_DATA[5], // Plate 06: The Sacred Agni (/images/6.jpg)
-    PLATES_DATA[6], // Plate 07: The Royal Pre-Wedding Romance (/images/7.jpg)
-    PLATES_DATA[9], // Plate 10: Bridal Splendor & Intricate Regalia
   ];
 
   const currentHeroPlate = heroShowcasePlates[heroActivePlateIdx] || heroShowcasePlates[0];
@@ -323,19 +323,25 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
       </svg>
 
       {/* ========================================================= */}
-      {/* LUXURY EDITORIAL WEDDING PHOTOGRAPHY HERO SECTION */}
-      {/* Professional Cinematic Background Video (/rk_bg.mp4) + Transparent Layout */}
+      {/* REDESIGNED LUXURY GLASS LUCID WEDDING PHOTOGRAPHY HERO    */}
+      {/* Cinematic Background Video + Glass Lucid Centerpiece       */}
+      {/* Edge-to-Edge Moving Photos with Bilateral Fade Vignettes  */}
+      {/* ========================================================= */}
+      {/* ========================================================= */}
+      {/* HOME PAGE HERO - EXACT MATCH TO USER'S REFERENCE DESIGN    */}
+      {/* 1. Top Section: Edge-to-Edge Moving Photo Cards            */}
+      {/* 2. Bottom Section: Golden Bokeh Backdrop + Atelier Badge + */}
+      {/*    "Every Frame, A Legacy" + Action Buttons                */}
       {/* ========================================================= */}
       <section 
         ref={heroSectionRef}
-        className="relative w-full pt-24 sm:pt-36 pb-16 sm:pb-28 px-4 sm:px-6 lg:px-12 flex flex-col items-center justify-center text-center overflow-hidden"
+        className="relative w-full pt-20 sm:pt-24 pb-14 sm:pb-20 overflow-hidden flex flex-col justify-between"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 75%, #e2d2ba 0%, #cdb592 38%, #b3976f 75%, #9b7e55 100%)'
+        }}
       >
-        
-        {/* ========================================================= */}
-        {/* LAYER 1: PROFESSIONAL CINEMATIC BACKGROUND VIDEO (/rk_bg.mp4) */}
-        {/* ========================================================= */}
+        {/* Cinematic ambient video overlay with soft opacity */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          {/* Authentic High-Definition Background Video from public folder */}
           <video
             ref={heroVideoRef}
             src="/rk_bg.mp4"
@@ -348,33 +354,59 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
               e.currentTarget.currentTime = 0;
               e.currentTarget.play().catch(() => {});
             }}
-            className="w-full h-full object-cover opacity-85 scale-100"
+            className="w-full h-full object-cover opacity-25 mix-blend-overlay"
           >
             <source src="/rk_bg.mp4" type="video/mp4" />
           </video>
-          
-          {/* Subtle cinematic scrim: keeps video movement clearly visible while protecting text contrast */}
-          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#fcf9f4]/35 via-transparent to-[#fcf9f4] pointer-events-none" />
+          {/* Subtle gradient wash across top to keep navbar transition pristine */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#fcf9f4]/80 via-transparent to-black/20 pointer-events-none" />
         </div>
 
-        {/* Soft Ambient Warm Ivory-to-Champagne Lighting */}
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-gradient-to-b from-[#c5a059]/15 via-[#a78b71]/10 to-transparent blur-[130px] rounded-full pointer-events-none z-0" />
+        {/* Luminous Golden Bokeh Orbs & Sparkle Particles */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          {/* Large soft bokeh orbs */}
+          <div className="absolute top-1/4 left-[15%] w-72 h-72 rounded-full bg-[#ffeaad]/25 blur-3xl" />
+          <div className="absolute bottom-12 right-[18%] w-80 h-80 rounded-full bg-[#fde08b]/30 blur-3xl" />
+          <div className="absolute bottom-8 left-[35%] w-96 h-96 rounded-full bg-[#fff4cc]/35 blur-3xl" />
+          <div className="absolute top-1/2 right-[8%] w-60 h-60 rounded-full bg-[#eed7a1]/25 blur-2xl" />
+
+          {/* Medium sparkling bokeh dots */}
+          <div className="absolute top-[28%] left-[8%] w-12 h-12 rounded-full bg-white/40 blur-md" />
+          <div className="absolute top-[65%] left-[22%] w-16 h-16 rounded-full bg-[#fff3c4]/50 blur-lg" />
+          <div className="absolute top-[48%] right-[25%] w-14 h-14 rounded-full bg-[#fff6d6]/60 blur-md" />
+          <div className="absolute bottom-[20%] left-[10%] w-20 h-20 rounded-full bg-[#ffe89e]/35 blur-xl" />
+          <div className="absolute bottom-[25%] right-[12%] w-24 h-24 rounded-full bg-[#ffd875]/40 blur-xl" />
+
+          {/* Golden glint sparkles */}
+          <div className="absolute top-[52%] left-[18%] w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_3px_rgba(255,255,255,0.8)]" />
+          <div className="absolute top-[40%] right-[32%] w-2 h-2 rounded-full bg-[#fff9db] shadow-[0_0_10px_4px_rgba(255,240,180,0.8)]" />
+          <div className="absolute top-[72%] left-[42%] w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_3px_rgba(255,255,255,0.8)]" />
+          <div className="absolute top-[62%] right-[15%] w-2.5 h-2.5 rounded-full bg-[#fffae8] shadow-[0_0_12px_4px_rgba(255,250,220,0.9)]" />
+          <div className="absolute bottom-[15%] right-[28%] w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_3px_rgba(255,255,255,0.8)]" />
+          <div className="absolute bottom-[35%] left-[30%] w-2 h-2 rounded-full bg-[#fff2b2] shadow-[0_0_10px_3px_rgba(255,242,178,0.7)]" />
+        </div>
 
         {/* ========================================================= */}
-        {/* LAYER 2: HERO PHOTOS MOVING FROM LEFT TO RIGHT (Marquee)  */}
+        {/* 1. TOP HALF: MOVING PHOTO CARDS (EDGE-TO-EDGE MARQUEE)   */}
         {/* ========================================================= */}
-        <div className="relative w-full overflow-hidden py-4 sm:py-6 z-20 my-3 sm:my-5 select-none">
-          {/* Frosted edge gradient masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-36 z-30 pointer-events-none bg-gradient-to-r from-[#fcf9f4]/60 via-[#fcf9f4]/20 to-transparent" />
-          <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-36 z-30 pointer-events-none bg-gradient-to-l from-[#fcf9f4]/60 via-[#fcf9f4]/20 to-transparent" />
+        <div 
+          className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden pt-2 pb-6 z-20 select-none"
+          style={{
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)'
+          }}
+        >
+          {/* Frosted bilateral fade vignettes */}
+          <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 md:w-44 z-30 pointer-events-none bg-gradient-to-r from-[#d9caa9]/90 via-[#d9caa9]/40 to-transparent" />
+          <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 md:w-44 z-30 pointer-events-none bg-gradient-to-l from-[#d9caa9]/90 via-[#d9caa9]/40 to-transparent" />
 
-          <div className="animate-marquee-ltr flex items-center gap-4 sm:gap-6">
+          {/* Smooth continuous marquee */}
+          <div className="animate-marquee-ltr flex items-center gap-4 sm:gap-5 will-change-transform py-2">
             {[...heroShowcasePlates, ...heroShowcasePlates].map((plate, index) => (
               <div
                 key={`${plate.id}-${index}`}
                 onClick={() => handlePlateClick(plate)}
-                className="relative shrink-0 w-44 sm:w-56 md:w-64 aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden glass-card shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer group border border-white/80 hover:scale-[1.04] hover:border-[#a78b71]"
+                className="relative shrink-0 w-44 sm:w-60 md:w-64 aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 cursor-pointer group border border-white/60 hover:scale-[1.03] hover:border-[#ffe8a3] hover:shadow-[0_20px_45px_rgba(0,0,0,0.35)]"
                 title={`View ${plate.title}`}
               >
                 <img
@@ -384,21 +416,21 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
                   loading="lazy"
                 />
                 
-                {/* Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-65 group-hover:opacity-90 transition-opacity duration-300" />
+                {/* Deep bottom vignette matching the screenshot */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
 
-                {/* Minimal caption */}
-                <div className="absolute bottom-3 left-3 right-3 text-left">
-                  <span className="font-serif italic text-white text-xs sm:text-sm font-medium block truncate drop-shadow-sm">
+                {/* Card Title & Location */}
+                <div className="absolute bottom-3 left-3 sm:bottom-3.5 sm:left-4 sm:right-4 right-3 text-left">
+                  <span className="font-serif italic text-white text-xs sm:text-base font-normal block leading-tight drop-shadow-md">
                     {plate.title}
                   </span>
-                  <span className="font-sans text-[10px] text-[#fef08a] font-light block truncate mt-0.5">
+                  <span className="font-serif text-[10px] sm:text-xs text-[#fef08a] font-light block truncate mt-0.5 sm:mt-1 drop-shadow-sm">
                     {plate.location.split(',')[0]}
                   </span>
                 </div>
 
-                <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/20">
-                  <Eye className="w-3.5 h-3.5" />
+                <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/45 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/25">
+                  <Eye className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                 </div>
               </div>
             ))}
@@ -406,59 +438,61 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
         </div>
 
         {/* ========================================================= */}
-        {/* LAYER 3: TRANSPARENT HERO CONTENT (Matching Reference 2)  */}
-        {/* Completely transparent without box, card, or standoffs    */}
+        {/* 2. BOTTOM HALF: ATELIER ACTIVE + TYPOGRAPHY + ACTIONS     */}
         {/* ========================================================= */}
-        <div className="relative z-30 max-w-4xl mx-auto px-4 sm:px-6 text-center mt-3 sm:mt-5">
+        <div className="relative z-30 max-w-4xl mx-auto px-3 sm:px-8 pt-3 sm:pt-6 pb-2 text-center flex flex-col items-center">
           
-          {/* 1. Live Notification Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#ded5c7] shadow-sm mb-6 transition-all hover:border-[#a78b71]">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
-            <span className="font-sans font-bold text-[9px] text-emerald-800 tracking-widest uppercase">
+          {/* Pill Badge: ATELIER ACTIVE | Accepting 24 Bespoke Nuptials in 2026 */}
+          <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-stone-200/70 mb-4 sm:mb-6 transition-transform hover:scale-[1.02] max-w-[95%]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span className="text-[9px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#065f46] shrink-0">
               ATELIER ACTIVE
             </span>
-            <span className="w-px h-3 bg-[#ded5c7]" />
-            <span className="font-sans text-xs text-[#524436] tracking-wide font-medium">
+            <span className="text-stone-300 text-xs font-light">|</span>
+            <span className="text-[11px] sm:text-[13px] font-sans text-stone-700 font-medium tracking-tight truncate">
               Accepting 24 Bespoke Nuptials in 2026
             </span>
           </div>
 
-          {/* 2. Main Headline */}
+          {/* Main Headline: Every Frame, A Legacy */}
           <h1 
-            className="font-serif italic font-normal text-[#1c1c19] tracking-tight leading-[1.12]"
-            style={{ fontSize: 'clamp(2.2rem, 6.5vw, 5rem)' }}
+            className="font-serif tracking-tight leading-[1.06] mb-3 sm:mb-4 text-center select-none"
+            style={{ fontSize: 'clamp(2.1rem, 7vw, 4.8rem)' }}
           >
-            Every Frame,{' '}
-            <span className="text-[#45123E] font-serif not-italic font-bold">
+            <span className="italic font-normal text-[#2b2723]">
+              Every Frame,{' '}
+            </span>
+            <span className="not-italic font-bold text-[#45123E]">
               A Legacy
             </span>
           </h1>
 
-          {/* 3. Subtitle */}
-          <p className="font-serif text-xs sm:text-base md:text-lg text-[#4a3b2c] max-w-2xl mx-auto mt-3.5 sm:mt-4 leading-relaxed font-normal px-2">
+          {/* Subtitle */}
+          <p className="font-serif text-xs sm:text-base md:text-lg text-[#3d3429] max-w-2xl mx-auto leading-relaxed font-normal px-4 mb-6 sm:mb-8 drop-shadow-[0_1px_1px_rgba(255,255,255,0.4)]">
             Preserving the unshed tears, quiet pheras, and unrepeatable devotion of India's most evocative celebrations through timeless medium format artistry.
           </p>
 
-          {/* 4. Action Buttons */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto max-w-sm sm:max-w-none mx-auto">
+          {/* Call to Action Buttons matching screenshot */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <button
               onClick={() => {
                 const el = document.getElementById('curated-anthology');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-[#3b122d] hover:bg-[#2c0b20] text-white font-sans text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-md hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center gap-2"
             >
               <span>EXPLORE THE COLLECTION</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#e8d5b7]" />
+              <span className="text-[#e8d5b7] text-sm">→</span>
             </button>
 
             <button
               onClick={handleOpenReserve}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#FAF5EB] hover:bg-white text-[#1c1c19] border border-[#ded5c7] hover:border-[#45123E] font-sans text-xs uppercase tracking-[0.16em] font-semibold transition-all duration-300 shadow-xs active:scale-95 cursor-pointer text-center"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 rounded-full bg-white/95 hover:bg-white text-[#1c1c19] border border-stone-200/90 font-sans text-xs uppercase tracking-[0.16em] font-semibold transition-all duration-300 shadow-sm hover:shadow-md active:scale-95 cursor-pointer text-center"
             >
               BOOK APPOINTMENT
             </button>
           </div>
+
         </div>
 
       </section>
@@ -503,7 +537,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
             ].map((feature, idx) => (
               <div
                 key={idx}
-                className="glass-card glass-card-hover p-5 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between group cursor-default border border-[#ded5c7]"
+                className="glass-lucid-card p-5 sm:p-8 rounded-2xl sm:rounded-3xl flex flex-col justify-between group cursor-default border border-white/80 shadow-md hover:shadow-xl"
               >
                 <div>
                   <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#45123E]/10 border border-[#45123E]/20 flex items-center justify-center mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-110">
@@ -519,14 +553,13 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* ========================================================= */}
       {/* GRAND SALON CURATED PLATES GALLERY (MASONRY & FILTER TABS) */}
       {/* ========================================================= */}
-      <section id="curated-anthology" className="w-full px-4 sm:px-8 lg:px-12 py-14 sm:py-20 border-t border-[#e5dfd5] relative">
+      <section id="curated-anthology" className="w-full px-4 sm:px-8 lg:px-12 py-14 sm:py-20 border-t border-[#e5dfd5]/70 relative">
         <div className="max-w-7xl mx-auto">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
@@ -547,7 +580,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
 
             {/* Curatorial Folio Status */}
             <div className="flex items-center gap-2.5 text-xs font-sans text-[#594d3f]">
-              <span className="px-3.5 py-1.5 rounded-full bg-white border border-[#ded5c7] text-[#1c1c19] font-semibold shadow-2xs text-[11px] sm:text-xs">
+              <span className="px-3.5 py-1.5 rounded-full glass-lucid-pill text-[#1c1c19] font-semibold text-[11px] sm:text-xs">
                 {filteredPlates.length} Plates Active
               </span>
               {favoritePlates.length > 0 && (
@@ -558,8 +591,8 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
             </div>
           </div>
 
-          {/* Category Filter Nav Tabs - Edge-to-edge smooth horizontal swipe on smartphones */}
-          <div className="flex items-center overflow-x-auto scrollbar-none pb-3 mb-8 sm:mb-10 gap-2 border-b border-[#ded5c7] -mx-4 px-4 sm:mx-0 sm:px-0">
+          {/* Category Filter Nav Tabs - Lucid floating pill scroll */}
+          <div className="flex items-center overflow-x-auto scrollbar-none pb-3 mb-8 sm:mb-10 gap-2 border-b border-stone-200/70 -mx-4 px-4 sm:mx-0 sm:px-0">
             {[
               { id: 'all', label: `I. All Works (${PLATES_DATA.length})` },
               { id: 'pheras', label: 'II. Weddings & Pheras' },
@@ -574,10 +607,10 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-3.5 sm:px-4 py-2 rounded-full font-sans text-xs tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+                className={`px-4 py-2 rounded-full font-sans text-xs tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                   activeFilter === tab.id
-                    ? 'bg-[#45123E] text-white font-bold shadow-sm'
-                    : 'bg-white text-[#594d3f] hover:text-[#1c1c19] border border-[#ded5c7] hover:border-[#45123E]'
+                    ? 'bg-[#3b122d] text-white font-bold shadow-md'
+                    : 'glass-lucid-pill text-[#594d3f] hover:text-[#1c1c19] hover:bg-white'
                 }`}
               >
                 {tab.label}
@@ -594,7 +627,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
                 <React.Fragment key={plate.id}>
                   {/* Curatorial Quote Interlude */}
                   {index === 5 && (
-                    <div className="md:col-span-12 py-12 px-8 sm:px-16 my-8 rounded-3xl bg-[#FAF5EB] border border-[#e2d5c3] shadow-xs flex flex-col items-center text-center">
+                    <div className="md:col-span-12 py-12 px-8 sm:px-16 my-8 rounded-3xl glass-lucid border border-white/90 shadow-[0_20px_50px_rgba(69,18,62,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] flex flex-col items-center text-center">
                       <span className="text-[#a78b71] font-serif text-3xl mb-2">§</span>
                       <blockquote className="font-serif italic text-xl sm:text-2xl text-[#1c1c19] max-w-3xl leading-snug">
                         “We don't count the megapixels or stage artificial poses. We wait in the shadows for that split second when a proud father hugs his new son-in-law, when the bride wipes away a tear at her Vidai, and when two souls realize their universe has just begun.”
@@ -607,7 +640,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
 
                   <div
                     onClick={() => handlePlateClick(plate)}
-                    className={`${plate.colSpanDesktop} rounded-3xl overflow-hidden glass-card glass-card-hover group cursor-pointer relative flex flex-col justify-between border border-[#ded5c7]`}
+                    className={`${plate.colSpanDesktop} rounded-3xl overflow-hidden glass-lucid-card group cursor-pointer relative flex flex-col justify-between border border-white/80 shadow-md hover:shadow-2xl`}
                   >
                     {/* Plate Photograph - framed cleanly */}
                     <div className={`w-full ${plate.aspectRatio} relative overflow-hidden bg-[#FAF5EB]`}>
@@ -618,13 +651,6 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 opacity-40 group-hover:opacity-70 transition-opacity" />
-
-                      {/* Plate Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className="font-sans text-[10px] uppercase tracking-widest text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 font-bold">
-                          {plate.plateNumber}
-                        </span>
-                      </div>
 
                       {/* Favorite Button */}
                       <button
@@ -666,40 +692,48 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
       </section>
 
       {/* ========================================================= */}
-      {/* PRICING SECTION (THREE-TIERED LAYOUT WITH CENTER HIGHLIGHT) */}
+      {/* REDESIGNED SACRED MONOGRAPH TIERS (LUXURY GLASS LUCID)    */}
       {/* ========================================================= */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-14 sm:py-24 border-t border-[#e5dfd5] relative bg-white/50">
-        <div className="max-w-7xl mx-auto">
+      <section id="monograph-tiers" className="w-full px-4 sm:px-8 lg:px-12 py-16 sm:py-28 border-t border-[#e5dfd5] relative bg-gradient-to-b from-[#fcf9f4] via-white/80 to-[#fcf9f4] overflow-hidden">
+        {/* Soft Ambient Radial Light */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-r from-[#c5a059]/10 via-[#45123E]/6 to-transparent blur-[140px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-            <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#775a19] font-bold block mb-2 sm:mb-3">
-              BESPOKE PATRON COMMISSIONS
-            </span>
-            <h2 className="font-serif italic text-2xl sm:text-5xl text-[#1c1c19] font-normal">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-18">
+            <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#ded5c7] shadow-2xs">
+              <span className="text-[#a78b71]">✦</span>
+              <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#775a19] font-bold">
+                ROYAL MATRIMONIAL EDITIONS • BESPOKE COMMISSIONS
+              </span>
+            </div>
+            
+            <h2 className="font-serif italic text-3xl sm:text-5xl lg:text-6xl text-[#1c1c19] font-normal tracking-tight">
               Sacred Monograph Tiers
             </h2>
-            <p className="font-sans text-xs sm:text-sm text-[#594d3f] mt-2 sm:mt-3 px-2">
-              Limited to twenty-four matrimonial celebrations per year to preserve unparalleled artistic dedication.
+            
+            <p className="font-sans text-xs sm:text-sm md:text-base text-[#594d3f] mt-3 sm:mt-4 px-2 leading-relaxed max-w-2xl mx-auto">
+              Strictly limited to twenty-four matrimonial celebrations per year to preserve supreme artistic devotion. Hand-bound in Florence, Italy, with archival pigment inks tested to endure for centuries.
             </p>
 
-            {/* Responsive toggle: Clean stacked buttons on smartphone, inline pill on tablet/desktop */}
-            <div className="mt-6 sm:mt-8 inline-flex flex-col sm:flex-row items-stretch sm:items-center p-1.5 sm:p-1 rounded-2xl sm:rounded-full bg-[#f0eae0] border border-[#ded3c2] w-full sm:w-auto max-w-xs sm:max-w-none mx-auto gap-1 sm:gap-0">
+            {/* Responsive Duration Switcher */}
+            <div className="mt-7 sm:mt-9 inline-flex flex-col sm:flex-row items-stretch sm:items-center p-1.5 rounded-2xl sm:rounded-full bg-white/90 backdrop-blur-xl border border-[#ded3c2] shadow-sm w-full sm:w-auto max-w-xs sm:max-w-none mx-auto gap-1 sm:gap-0">
               <button
                 onClick={() => setPricingPlan('single')}
-                className={`px-4 sm:px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-full font-sans text-xs tracking-wider uppercase transition-all cursor-pointer text-center ${
+                className={`px-5 py-2.5 rounded-xl sm:rounded-full font-sans text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer text-center ${
                   pricingPlan === 'single'
                     ? 'bg-[#45123E] text-white font-bold shadow-md'
-                    : 'text-[#594d3f] hover:text-[#1c1c19]'
+                    : 'text-[#594d3f] hover:text-[#1c1c19] hover:bg-black/5'
                 }`}
               >
-                Intimate (1–2 Days)
+                Intimate Nuptials (1–2 Days)
               </button>
               <button
                 onClick={() => setPricingPlan('multiday')}
-                className={`px-4 sm:px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-full font-sans text-xs tracking-wider uppercase transition-all cursor-pointer text-center ${
+                className={`px-5 py-2.5 rounded-xl sm:rounded-full font-sans text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer text-center ${
                   pricingPlan === 'multiday'
                     ? 'bg-[#45123E] text-white font-bold shadow-md'
-                    : 'text-[#594d3f] hover:text-[#1c1c19]'
+                    : 'text-[#594d3f] hover:text-[#1c1c19] hover:bg-black/5'
                 }`}
               >
                 Royal Festivities (3–5 Days)
@@ -707,7 +741,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
             </div>
           </div>
 
-          {/* Three-Tiered Layout */}
+          {/* Three-Tiered Layout with Glass Lucid Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {INVESTMENT_TIERS.map((tier, idx) => {
               const isCenterPro = tier.isPatronPreferred || idx === 1;
@@ -715,54 +749,72 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
               return (
                 <div
                   key={tier.id}
-                  className={`relative rounded-2xl sm:rounded-3xl p-6 sm:p-10 flex flex-col justify-between transition-all duration-300 glass-card bg-white ${
+                  className={`relative rounded-3xl p-6 sm:p-10 flex flex-col justify-between transition-all duration-500 backdrop-blur-2xl ${
                     isCenterPro
-                      ? 'border-[#45123E] shadow-xl sm:shadow-2xl ring-2 ring-[#45123E]/20 lg:-translate-y-4'
-                      : 'border-[#ded5c7] hover:border-[#a78b71]'
+                      ? 'bg-gradient-to-b from-white/95 via-[#FAF5EB]/90 to-white/95 border-2 border-[#45123E] shadow-2xl ring-4 ring-[#45123E]/10 lg:-translate-y-4'
+                      : 'glass-lucid-card bg-white/85 border border-white/90 hover:border-[#a78b71] hover:bg-white/95'
                   }`}
                 >
-                  {/* Top-Centered Badge */}
+                  {/* Top-Centered Sovereign Badge */}
                   {isCenterPro && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 rounded-full bg-[#45123E] text-white font-sans text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.2em] shadow-md whitespace-nowrap">
-                      Most Popular • Patron Preferred
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#45123E] text-white font-sans text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.22em] shadow-lg flex items-center gap-1.5 whitespace-nowrap border border-[#e8d5b7]/40">
+                      <Sparkles className="w-3 h-3 text-[#e8d5b7]" />
+                      <span>Patron Preferred • Sovereign Standard</span>
                     </div>
                   )}
 
                   <div>
                     {/* Header */}
-                    <div className="mb-5 sm:mb-6">
-                      <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#775a19] font-bold block mb-1">
-                        {tier.collectionNumber}
-                      </span>
-                      <h3 className="font-serif italic text-xl sm:text-3xl font-bold text-[#1c1c19]">
-                        {tier.name} <span className="text-[#a78b71]">{tier.nameHighlight}</span>
+                    <div className="mb-6 pb-5 border-b border-[#ded5c7]/60">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#775a19] font-bold">
+                          {tier.collectionNumber}
+                        </span>
+                        {isCenterPro && (
+                          <span className="font-sans text-[10px] uppercase tracking-wider text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full font-semibold">
+                            Full Access
+                          </span>
+                        )}
+                      </div>
+                      
+                      <h3 className="font-serif italic text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1c1c19] tracking-tight">
+                        {tier.name} <span className="text-[#a78b71] not-italic">{tier.nameHighlight}</span>
                       </h3>
-                      <p className="font-sans text-xs text-[#6b5d4e] mt-1">
+                      
+                      <p className="font-sans text-xs text-[#6b5d4e] mt-1.5 leading-relaxed font-medium">
                         {tier.subtitle}
                       </p>
                     </div>
 
-                    {/* Price in bold font */}
-                    <div className="my-5 sm:my-6 pb-5 sm:pb-6 border-b border-[#e8dfd2]">
+                    {/* Price display with glass styling */}
+                    <div className="my-5 pb-5 border-b border-[#ded5c7]/60">
                       <div className="flex items-baseline gap-2">
-                        <span className="font-sans font-bold text-3xl sm:text-5xl text-[#1c1c19] tracking-tight">
+                        <span className="font-sans font-extrabold text-3xl sm:text-5xl text-[#1c1c19] tracking-tight">
                           {getTierPriceDisplay(tier.id)}
                         </span>
                         <span className="font-sans text-xs text-[#786a5a]">/ celebration</span>
                       </div>
-                      <span className="font-sans text-[11px] text-[#775a19] block mt-1 font-medium">
-                        {tier.duration}
-                      </span>
+                      
+                      <div className="mt-2 flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#a78b71] inline-block" />
+                        <span className="font-sans text-xs text-[#775a19] font-semibold">
+                          {pricingPlan === 'single' ? 'Intimate Ceremonies (1–2 Days)' : tier.duration}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Features list */}
-                    <ul className="space-y-3 sm:space-y-3.5 my-5 sm:my-6">
+                    {/* Features list with polished luxury checkmark badges */}
+                    <ul className="space-y-3.5 my-6">
                       {tier.features.map((feat, fIdx) => (
-                        <li key={fIdx} className="flex items-start gap-2.5 sm:gap-3 text-xs font-sans">
-                          <div className="w-4 h-4 rounded-full bg-[#45123E]/10 border border-[#45123E]/30 flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-2.5 h-2.5 text-[#45123E]" />
+                        <li key={fIdx} className="flex items-start gap-3 text-xs font-sans">
+                          <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                            isCenterPro
+                              ? 'bg-[#45123E] text-white shadow-xs'
+                              : 'bg-[#45123E]/10 text-[#45123E] border border-[#45123E]/20'
+                          }`}>
+                            <Check className="w-2.5 h-2.5 stroke-[3]" />
                           </div>
-                          <div>
+                          <div className="leading-relaxed">
                             <span className="text-[#1c1c19] font-bold">{feat.label}: </span>
                             <span className="text-[#594d3f]">{feat.detail}</span>
                           </div>
@@ -771,22 +823,38 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
                     </ul>
                   </div>
 
-                  {/* CTA Button */}
-                  <div className="pt-4 sm:pt-6">
+                  {/* Dual Action Buttons */}
+                  <div className="pt-6 border-t border-[#ded5c7]/60 space-y-2.5">
                     <button
-                      onClick={() => onOpenWhatsApp(`Pranam! I would like to inquire about reserving ${tier.name} ${tier.nameHighlight} collection.`)}
-                      className={`w-full py-3.5 sm:py-4 rounded-full font-sans text-xs uppercase tracking-[0.18em] font-bold transition-all shadow-md active:scale-95 cursor-pointer text-center ${
+                      onClick={() => onOpenWhatsApp(`Pranam! I would like to inquire about reserving ${tier.name} ${tier.nameHighlight} collection for our family celebration.`)}
+                      className={`w-full py-3.5 sm:py-4 rounded-full font-sans text-xs uppercase tracking-[0.18em] font-bold transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-2 ${
                         isCenterPro
-                          ? 'bg-[#45123E] text-white hover:bg-[#340C2E] shadow-lg'
+                          ? 'bg-[#45123E] text-white hover:bg-[#340C2E] shadow-xl hover:shadow-2xl'
                           : 'bg-[#FAF5EB] hover:bg-[#45123E] text-[#1c1c19] hover:text-white border border-[#ded5c7]'
                       }`}
                     >
-                      {tier.ctaText}
+                      <MessageCircle className="w-4 h-4 text-[#e8d5b7]" />
+                      <span>{tier.ctaText}</span>
+                    </button>
+
+                    <button
+                      onClick={handleOpenReserve}
+                      className="w-full py-2.5 text-center text-[11px] font-sans font-semibold tracking-wider uppercase text-[#775a19] hover:text-[#45123E] transition-colors cursor-pointer"
+                    >
+                      Schedule In-Person Consultation →
                     </button>
                   </div>
                 </div>
               );
             })}
+          </div>
+
+          {/* Guarantee / Archival Integrity Seal */}
+          <div className="mt-12 sm:mt-16 text-center max-w-xl mx-auto p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-md border border-[#ded5c7] text-xs text-[#594d3f]">
+            <p className="flex items-center justify-center gap-2 font-medium text-[#1c1c19]">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span>All monographs include 10-Year Cloud Redundancy &amp; Physical Master Negatives</span>
+            </p>
           </div>
 
         </div>
@@ -962,95 +1030,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
         </div>
       </section>
 
-      {/* ========================================================= */}
-      {/* GOOGLE VERIFIED REVIEWS (4.9★ IN ROHINI SECTOR 23) */}
-      {/* ========================================================= */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-14 sm:py-20 border-t border-[#e5dfd5] relative">
-        <div className="max-w-7xl mx-auto">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 mb-2 text-[#775a19]">
-                <Award className="w-4 h-4 text-[#a78b71]" />
-                <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold">
-                  GOOGLE VERIFIED PATRON TESTIMONIALS
-                </span>
-              </div>
-              <h2 className="font-serif italic text-2xl sm:text-4xl text-[#1c1c19] font-normal">
-                Loved by Five Hundred Royal Families
-              </h2>
-            </div>
-            
-            <a
-              href="https://share.google/XGXzmI1VT65XaGW7H"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-[#FAF5EB] text-[#1c1c19] border border-[#ded5c7] font-sans text-xs uppercase tracking-wider transition-all shadow-2xs w-full sm:w-auto text-center"
-            >
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
-              <span className="font-bold">4.9 / 5.0 on Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#a78b71]" />
-            </a>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {GOOGLE_REVIEWS.map((rev) => (
-              <div
-                key={rev.id}
-                className="glass-card bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-[#ded5c7]"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3.5 sm:mb-4">
-                    <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-wider text-[#775a19] font-semibold">
-                      {rev.eventType}
-                    </span>
-                    <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-wider text-[#786a5a] bg-[#FAF5EB] px-2.5 py-0.5 rounded-full border border-[#e5ded4]">
-                      {rev.timeAgo}
-                    </span>
-                  </div>
-
-                  <p className="font-serif text-xs sm:text-sm text-[#3e3226] leading-relaxed italic mb-5 sm:mb-6">
-                    “{rev.reviewText}”
-                  </p>
-                </div>
-
-                <div className="pt-3.5 sm:pt-4 border-t border-[#e8dfd2] flex items-center justify-between">
-                  <div className="flex items-center gap-2.5 sm:gap-3">
-                    {rev.avatarImg ? (
-                      <img 
-                        src={rev.avatarImg} 
-                        alt={rev.author} 
-                        className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#a78b71]/40" 
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className={`w-8 h-8 rounded-full ${rev.avatarBg} text-white flex items-center justify-center font-sans text-xs font-bold shrink-0`}>
-                        {rev.author.charAt(0)}
-                      </div>
-                    )}
-                    <div>
-                      <span className="font-sans font-bold text-xs text-[#1c1c19] block">
-                        {rev.author}
-                      </span>
-                      <span className="font-sans text-[10px] text-[#786a5a]">
-                        {rev.location}
-                      </span>
-                    </div>
-                  </div>
-
-                  {rev.verified && (
-                    <div className="flex items-center gap-1 text-emerald-700 text-[10px] font-sans font-semibold">
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Verified</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
 
       {/* ========================================================= */}
       {/* STUDIO JOURNAL & WEDDING STORIES */}
@@ -1285,7 +1265,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
             <div className="w-full md:w-2/5 p-5 sm:p-8 flex flex-col justify-between overflow-y-auto bg-[#FAF5EB]">
               <div>
                 <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#775a19] font-bold block mb-1">
-                  {lightboxPlate.plateNumber}
+                  CURATED FINE ART MONOGRAPH
                 </span>
                 <h3 className="font-serif italic text-xl sm:text-2xl font-bold text-[#1c1c19] mb-1.5 sm:mb-2">
                   {lightboxPlate.title}

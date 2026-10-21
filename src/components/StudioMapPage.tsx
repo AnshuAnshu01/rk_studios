@@ -26,12 +26,13 @@ export const StudioMapPage: React.FC<StudioMapPageProps> = ({
 }) => {
   return (
     <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen">
-      {/* 1. Page Hero with Sacred Fire Glow & Moving Background Photos */}
+      {/* 1. Page Hero with Distinct Landscape Photo (/images/2.jpg) */}
       <PageHero
         badge="Visit Our Delhi Atelier"
         title="A Place for Memories,"
         titleHighlight="Shared Over Warm Chai"
-        subtitle="Before booking, we invite couples and parents to hold the hand-stitched leather albums, see genuine print proofs under soft light, and talk about your family's story."
+        subtitle="Before deciding anything, we invite couples and parents to sit with us, hold the hand-stitched leather albums, feel the textured cotton rag prints, and share your family's story."
+        backgroundImageUrl="/images/2.jpg"
         primaryAction={{
           label: "Book Studio Visit",
           onClick: onOpenAppointmentModal
@@ -48,7 +49,7 @@ export const StudioMapPage: React.FC<StudioMapPageProps> = ({
           
           {/* Left Column: Interactive Google Map */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="glass-card rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ded5c7] shadow-xl bg-white p-2.5 sm:p-3">
+            <div className="glass-lucid-card rounded-2xl sm:rounded-3xl overflow-hidden border border-white/85 shadow-2xl p-2.5 sm:p-3">
               {/* Map Iframe */}
               <div className="relative w-full h-[280px] sm:h-[460px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#e8e2d8]">
                 <iframe
@@ -60,7 +61,7 @@ export const StudioMapPage: React.FC<StudioMapPageProps> = ({
                 />
                 
                 {/* Floating Studio Pin Pill */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#ded5c7] shadow-md flex items-center gap-2 max-w-[90%]">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass-lucid-pill px-3 py-1.5 rounded-full border border-white/90 shadow-md flex items-center gap-2 max-w-[90%]">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
                   <span className="font-sans text-[11px] sm:text-xs font-semibold text-[#1c1c19] truncate">
                     RK Photo Studio • Rohini Sector 23
@@ -97,7 +98,7 @@ export const StudioMapPage: React.FC<StudioMapPageProps> = ({
           <div className="lg:col-span-5 flex flex-col gap-6">
             
             {/* Atelier Address & Details Card */}
-            <div className="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-[#ded5c7] shadow-lg bg-white space-y-5 sm:space-y-6">
+            <div className="glass-lucid-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-white/85 shadow-2xl space-y-5 sm:space-y-6">
               <div>
                 <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#775a19] font-bold block mb-1">
                   ATELIER SANCTUARY

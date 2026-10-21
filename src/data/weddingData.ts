@@ -214,57 +214,57 @@ export const INVESTMENT_TIERS: InvestmentTier[] = [
   {
     id: 'tier-1',
     collectionNumber: 'COLLECTION NO. I',
-    subtitle: 'Intimate Nuptials & Sittings',
+    subtitle: 'Intimate Nuptials & Warm Family Sittings',
     name: 'The Atelier',
     nameHighlight: 'Monograph',
-    pricingNote: 'Bespoke Consultation • Tailored to Ceremony Scale',
-    duration: '1 Full Day or 2 Intimate Half-Days (up to 12 hours)',
+    pricingNote: 'Heartfelt Consultation • Tailored to Ceremony Scale',
+    duration: '1 Full Day or 2 Intimate Half-Days (Quiet Pheras & Sittings)',
     features: [
-      { label: 'Coverage', detail: '1 Full Day or 2 Intimate Half-Days (up to 12 hours)' },
-      { label: 'Artisans', detail: 'Senior Associate Photographer & Cinematographer' },
-      { label: 'Still Yield', detail: '400+ Hand-Retouched Master Color Plates' },
-      { label: 'Haute Cinema', detail: '5-7 Minute 4K Cinematic Highlight Vignette' },
-      { label: 'Bookbinding', detail: '12×12 Linen Bound 40-Page Layflat Folio' },
-      { label: 'Delivery', detail: 'Private Encrypted Gallery Cloud Archive (10 Yrs)' }
+      { label: 'Heartfelt Coverage', detail: '1 Full Day or 2 Warm Half-Days (Quiet Pheras & Sittings)' },
+      { label: 'Artisan Masters', detail: 'Senior Associate Photographer & Dedicated Cinematographer' },
+      { label: 'Still Yield', detail: '400+ Hand-Retouched Art Plates with Natural Skin Tones' },
+      { label: 'Soulful Cinema', detail: '5-7 Minute Theatrical Highlight Film with Original Audio' },
+      { label: 'Heirloom Folio', detail: '12×12 Italian Linen 40-Page Layflat Family Album' },
+      { label: 'Family Archive', detail: 'Private Encrypted Cloud Gallery for 10 Years' }
     ],
     ctaText: 'Inquire For Monograph Availability'
   },
   {
     id: 'tier-2',
     collectionNumber: 'PATRON PREFERRED — NO. II',
-    subtitle: 'Tri-Nuptial Court Monograph',
+    subtitle: 'Complete 3-Day Wedding Celebrations',
     name: 'The Golden',
     nameHighlight: 'Heritage',
-    pricingNote: 'Archival Preservation Suite Included • Custom Proposal',
-    duration: '3 Full Days Complete Immersion (Sangeet, Phere, Reception)',
+    pricingNote: 'Archival Family Preservation Suite Included',
+    duration: '3 Full Days of Deep Coverage (Sangeet, Sacred Pheras, Reception)',
     isPatronPreferred: true,
     features: [
-      { label: 'Coverage', detail: '3 Full Days Complete Immersion (Sangeet, Phere, Reception)' },
-      { label: 'Artisan Guild', detail: '2 Master Photographers + 2 Motion Cinematographers' },
-      { label: 'Still Yield', detail: '850+ Fine Art Color Corrected & Retouched Plates' },
-      { label: 'Haute Cinema', detail: '15-20 Min Theatrical Wedding Film + 4 Min Teaser' },
-      { label: 'Aerial Suite', detail: 'Single Certified 4K Drone Operator for Palace Grounds' },
-      { label: 'Heirloom Album', detail: 'Handcrafted 14×14 Silk Velvet 60-Page Volume' },
-      { label: 'Curator Box', detail: 'Gilded Walnut Heirloom USB & 20 Cotton Rag Matted Prints' }
+      { label: 'Deep Coverage', detail: '3 Full Days of Immersion (Sangeet, Sacred Pheras, Reception)' },
+      { label: 'Dedicated Guild', detail: '2 Master Photographers + 2 Motion Cinematographers' },
+      { label: 'Emotional Stills', detail: '850+ Fine Art Plates Capturing Every Silent Tear and Laugh' },
+      { label: 'Theatrical Cinema', detail: '15-20 Min Theatrical Wedding Film + 4 Min Emotional Teaser' },
+      { label: 'Palace Aerials', detail: 'Single Certified 4K Drone Operator for Palace Grounds' },
+      { label: 'Heirloom Volume', detail: 'Handcrafted 14×14 Silk Velvet 60-Page Family Monograph' },
+      { label: 'Curator Keepsake', detail: 'Gilded Walnut Wood USB & 20 Cotton Rag Matted Prints' }
     ],
     ctaText: 'Request Heritage Proposal'
   },
   {
     id: 'tier-3',
     collectionNumber: 'COLLECTION NO. III',
-    subtitle: 'Sovereign Grand Monograph',
+    subtitle: 'Sovereign Grand Nuptials & Multi-City Festivities',
     name: 'The Imperial',
     nameHighlight: 'Heirloom',
-    pricingNote: 'Principal Director RK Personally Present • Comprehensive',
+    pricingNote: 'Principal Director RK Personally Present Throughout',
     duration: '5 Days Comprehensive Festivities & Pre-Shoots',
     features: [
-      { label: 'Direction', detail: 'Personally Directed & Captured by Founder RK' },
-      { label: 'Coverage', detail: '5 Days Comprehensive Festivities & Pre-Shoots' },
-      { label: 'Full Guild', detail: '4 Master Stills Artisans + 3 Cinema Specialists' },
-      { label: 'Aerial Guild', detail: 'Dual Sync Drones (Indoor Micro-FPV + Outdoor 6K)' },
-      { label: 'Stills Yield', detail: '1,500+ Archival Grade Frames + Hasselblad Session' },
-      { label: 'Cinema Suite', detail: '40-Min Feature Film + 6-Min Haute Trailer + Raw SSD' },
-      { label: 'Leather Heirlooms', detail: 'Florentine Gold-Embossed Master Album + 2 Parent Folios' }
+      { label: 'Directorship', detail: 'Personally Directed & Captured by Founder RK' },
+      { label: 'Comprehensive Scope', detail: '5 Days of Complete Festivities, Pre-Shoots & Private Sittings' },
+      { label: 'Full Artisan Guild', detail: '4 Master Stills Artisans + 3 Cinema Specialists' },
+      { label: 'Dual Aerial Fleet', detail: 'Dual Sync Drones (Indoor Micro-FPV + Outdoor 6K Cinema)' },
+      { label: 'Museum Frames', detail: '1,500+ Archival Frames + Medium-Format Bridal Sittings' },
+      { label: 'Cinematic Vault', detail: '40-Min Feature Film + 6-Min Haute Trailer + Raw Cinema SSD' },
+      { label: 'Generational Keepsakes', detail: 'Florentine Gold-Embossed Master Album + 2 Parent Folios' }
     ],
     ctaText: 'Request Private Audience'
   }

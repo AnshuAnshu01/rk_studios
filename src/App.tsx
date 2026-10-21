@@ -14,6 +14,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { InvestmentTier } from './data/weddingData';
 import { RKStudiosLogo } from './components/RKStudiosLogo';
 import { AppointmentModal } from './components/AppointmentModal';
+import { SmartphoneBottomNav } from './components/SmartphoneBottomNav';
 import { 
   MessageCircle, 
   X, 
@@ -28,6 +29,7 @@ import {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const [activeScreen, setActiveScreen] = useState<string>('anthology');
   const [selectedTierForBooking, setSelectedTierForBooking] = useState<InvestmentTier | null>(null);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
@@ -36,14 +38,19 @@ export default function App() {
   const [whatsAppSent, setWhatsAppSent] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isAmbientPlaying, setIsAmbientPlaying] = useState(false);
 
-  // Initial loading effect
+  // Initial loading effect - page content will only reveal once loading finishes
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const fadeTimer = setTimeout(() => {
+      setIsFadingOut(true);
+    }, 500);
+    const removeTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 700);
-    return () => clearTimeout(timer);
+    }, 900);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
   }, []);
 
   // Scroll to top when screen changes
@@ -81,12 +88,14 @@ export default function App() {
     }, 2500);
   };
 
+  // During loading, show exclusively the LoadingScreen so hero section never peeks in the same view
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen isFading={isFadingOut} />;
   }
 
   return (
     <div className="min-h-screen bg-[#fcf9f4] text-[#1c1c19] flex flex-col font-sans selection:bg-[#a78b71]/25 selection:text-[#45123E]">
+
       {/* Top Navigation Bar */}
       <Header 
         activeScreen={activeScreen} 
@@ -95,8 +104,8 @@ export default function App() {
         onOpenAppointmentModal={() => setIsAppointmentOpen(true)}
       />
 
-      {/* Main Screen Content */}
-      <main className="flex-1 w-full">
+      {/* Main Screen Content with comfortable bottom dock clearance on mobile */}
+      <main className="flex-1 w-full pb-24 sm:pb-0">
         {(activeScreen === 'anthology' || activeScreen === 'gallery') && (
           <VisualAnthology 
             onSelectScreen={setActiveScreen} 
@@ -171,8 +180,8 @@ export default function App() {
         )}
       </main>
 
-      {/* Floating Action Controls - Discreet, elegant, and non-obtrusive */}
-      <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
+      {/* Floating Action Controls - Discreet, elegant, and positioned above smartphone bottom nav */}
+      <div className="fixed bottom-20 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
         {/* Scroll To Top Button with Circular Border Filling on Scroll */}
         {showScrollTop && (
           <button 
@@ -228,7 +237,6 @@ export default function App() {
           aria-label="Call Studio at +91 92128 12625"
         >
           <Phone className="w-4 h-4 text-[#e8d5b7] fill-current" />
-          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#45123E]" />
           {/* Subtle hover tooltip */}
           <span className="absolute right-12 px-2.5 py-1 rounded-md bg-[#1c1c19]/90 text-white text-[10px] tracking-wider font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
             Call Atelier: +91 92128 12625
@@ -353,6 +361,17 @@ export default function App() {
 
       {/* Classical Archival Footer */}
       <Footer onNavigate={(screen) => setActiveScreen(screen)} />
+
+      {/* Smartphone Bottom Navigation Dock with WhatsApp and Quick Menus */}
+      <SmartphoneBottomNav 
+        activeScreen={activeScreen}
+        onNavigate={(screen) => setActiveScreen(screen)}
+        onOpenWhatsApp={(msg) => {
+          if (msg) setWhatsAppMsg(msg);
+          setIsWhatsAppOpen(true);
+        }}
+        onOpenAppointmentModal={() => setIsAppointmentOpen(true)}
+      />
     </div>
   );
 }

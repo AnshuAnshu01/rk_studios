@@ -23,12 +23,13 @@ export const TermsConditionsPage: React.FC<TermsConditionsPageProps> = ({
 }) => {
   return (
     <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen">
-      {/* 1. Page Hero Banner */}
+      {/* 1. Page Hero Banner with Distinct Landscape Photo (/images/5.jpg) */}
       <PageHero
-        badge="Legal &amp; Atelier Governance"
-        title="Terms &amp; Conditions,"
+        badge="Legal & Atelier Governance"
+        title="Terms & Conditions,"
         titleHighlight="A Covenant of Sacred Trust"
         subtitle="Clear, dignified terms governing our bespoke wedding photography, cinematography engagements, copyright stewardship, and artisanal album delivery."
+        backgroundImageUrl="/images/5.jpg"
         primaryAction={{
           label: "Return to Home",
           onClick: onNavigateHome

@@ -63,12 +63,13 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({
 
   return (
     <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen">
-      {/* 1. Page Hero Banner */}
+      {/* 1. Page Hero Banner with Distinct Landscape Photo (/images/3.jpg) */}
       <PageHero
-        badge="Data Stewardship &amp; Privacy"
+        badge="Data Stewardship & Privacy"
         title="Cookie Policy,"
         titleHighlight="Honoring Family Trust"
-        subtitle="Transparent insight into how RK Photo Studio utilizes functional cookies, local browser storage, and cryptographic protection to safeguard your wedding proofs and dates."
+        subtitle="Transparent insight into how RK Photo Studio utilizes functional cookies, local browser storage, and cryptographic protection to safeguard your wedding proofs and family memories."
+        backgroundImageUrl="/images/3.jpg"
         primaryAction={{
           label: "Return to Home",
           onClick: onNavigateHome

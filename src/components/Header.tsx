@@ -29,8 +29,10 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAppointmentModal
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
 
-  const navItems = [
+  // Primary navigation matching reference design
+  const primaryNavItems = [
     { id: 'anthology', label: 'Home' },
     { id: 'pricing', label: 'Pricing & Collections' },
     { id: 'map', label: 'Studio & Maps' },
@@ -38,9 +40,17 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'rituals', label: 'Sacred Rituals' },
   ];
 
+  // Secondary menus grouped in the minimal More dropdown (strictly without icons)
+  const moreNavItems = [
+    { id: 'rsvp', label: 'Family RSVP Portal' },
+    { id: 'cookies', label: 'Cookie Policy' },
+    { id: 'terms', label: 'Terms & Conditions' },
+  ];
+
   const handleNavClick = (id: string) => {
     setActiveScreen(id);
     setMobileMenuOpen(false);
+    setMoreDropdownOpen(false);
   };
 
   return (
@@ -48,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* ========================================================= */}
       {/* MINIMAL TOP NAVBAR                                        */}
       {/* ========================================================= */}
-      <header className="fixed top-0 left-0 right-0 w-full z-50 bg-[#fcf9f4]/95 backdrop-blur-md border-b border-[#e8e2d8] transition-all">
+      <header className="fixed top-0 left-0 right-0 w-full z-50 bg-white/75 backdrop-blur-2xl border-b border-white/85 shadow-[0_4px_25px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.95)] transition-all">
         <div className="w-full px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-4">
           
           {/* Brand Logo */}
@@ -58,14 +68,13 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="RK Photo & Movies Production Home"
           >
             <div className="transition-transform hover:scale-[1.02]">
-              <RKStudiosLogo height={42} className="sm:hidden" />
-              <RKStudiosLogo height={50} className="hidden sm:inline-flex" />
+              <RKStudiosLogo height={44} />
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-            {navItems.map((item) => {
+          {/* Desktop Navigation Links in Order of Landing Page */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {primaryNavItems.map((item) => {
               const isActive = activeScreen === item.id;
               return (
                 <button
@@ -84,6 +93,44 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               );
             })}
+
+            {/* Minimal More Dropdown (Without Icons) */}
+            <div className="relative">
+              <button
+                onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
+                onMouseEnter={() => setMoreDropdownOpen(true)}
+                className={`py-1 font-sans text-xs uppercase tracking-[0.2em] font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  moreNavItems.some(i => i.id === activeScreen)
+                    ? 'text-[#45123E]'
+                    : 'text-[#6b5847] hover:text-[#1c1c19]'
+                }`}
+              >
+                <span>More</span>
+                <span className="text-[8px] opacity-70">▼</span>
+              </button>
+
+              {/* Minimalist Floating Menu Panel - Pure typography, no icons */}
+              {moreDropdownOpen && (
+                <div 
+                  onMouseLeave={() => setMoreDropdownOpen(false)}
+                  className="absolute top-full right-0 mt-3 w-52 glass-lucid border border-white/90 rounded-2xl shadow-2xl py-2 z-50 animate-cinematic backdrop-blur-2xl"
+                >
+                  {moreNavItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`w-full text-left px-4 py-2.5 text-[11px] font-sans uppercase tracking-widest transition-colors cursor-pointer block ${
+                        activeScreen === item.id
+                          ? 'bg-white/80 text-[#45123E] font-bold'
+                          : 'text-[#594d3f] hover:text-[#1c1c19] hover:bg-white/60 font-medium'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Right Action Controls */}
@@ -98,13 +145,12 @@ export const Header: React.FC<HeaderProps> = ({
               <Phone className="w-4 h-4 text-[#45123E]" />
             </a>
 
-            {/* Book Appointment CTA (Desktop) */}
+            {/* Book Appointment CTA (Desktop) - Styled identical to reference */}
             <button
               onClick={onOpenAppointmentModal}
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#45123E] hover:bg-[#340C2E] text-white font-sans text-xs uppercase tracking-[0.16em] font-semibold shadow-sm hover:shadow-md transition-all cursor-pointer active:scale-95"
+              className="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#3b122d] hover:bg-[#2c0b20] text-white font-sans text-xs uppercase tracking-[0.16em] font-semibold shadow-sm hover:shadow-md transition-all cursor-pointer active:scale-95"
             >
-              <span>Book Appointment</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#e8d5b7]" />
+              BOOK APPOINTMENT
             </button>
 
             {/* Mobile Minimal Menu Toggle Button */}
@@ -128,7 +174,14 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* Drawer Top Header */}
             <div className="flex items-center justify-between pb-5 border-b border-[#e6ddd0]">
-              <RKStudiosLogo height={38} />
+              <div className="flex items-center gap-2">
+                <span className="font-serif italic text-lg font-bold text-[#45123E] tracking-wide">
+                  RK Atelier
+                </span>
+                <span className="text-[10px] uppercase tracking-widest text-[#775a19] bg-[#f0e6d6] px-2.5 py-0.5 rounded-full font-sans font-semibold">
+                  Directory
+                </span>
+              </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-2 rounded-full text-[#6b5847] hover:text-[#1c1c19] hover:bg-[#efe8dc] transition-colors cursor-pointer"
@@ -138,31 +191,54 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
             </div>
 
-            {/* Minimal Nav Links for Smartphone */}
-            <div className="py-6 space-y-1.5 flex-1">
-              <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#775a19] block mb-3 px-2">
-                Navigation
+            {/* Minimal Nav Links for Smartphone in Order of Landing Page */}
+            <div className="py-4 space-y-1 flex-1 overflow-y-auto">
+              <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#775a19] block mb-2 px-2">
+                Main Portals
               </span>
               
-              {navItems.map((item) => {
+              {primaryNavItems.map((item) => {
                 const isActive = activeScreen === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item.id)}
-                    className={`w-full text-left px-4 py-3.5 rounded-2xl transition-all flex items-center justify-between cursor-pointer ${
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-[#45123E] text-white shadow-xs'
+                        ? 'bg-[#45123E] text-white shadow-xs font-semibold'
                         : 'hover:bg-[#f3ece0] text-[#1c1c19]'
                     }`}
                   >
-                    <span className="font-serif italic text-base font-medium">
+                    <span className="font-serif italic text-base">
                       {item.label}
                     </span>
                     <ArrowRight className={`w-3.5 h-3.5 ${isActive ? 'text-[#e8d5b7]' : 'text-[#a78b71]'}`} />
                   </button>
                 );
               })}
+
+              {/* Minimal More Menu for Smartphone (Without Icons) */}
+              <div className="pt-4 mt-3 border-t border-[#e6ddd0] space-y-1">
+                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.25em] text-[#775a19] block mb-2 px-2">
+                  More
+                </span>
+                {moreNavItems.map((item) => {
+                  const isActive = activeScreen === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`w-full text-left px-4 py-2.5 rounded-lg text-xs font-sans uppercase tracking-wider transition-colors cursor-pointer ${
+                        isActive
+                          ? 'text-[#45123E] font-bold bg-[#f3ece0]'
+                          : 'text-[#6b5847] hover:text-[#1c1c19] font-medium'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Drawer Footer Actions */}

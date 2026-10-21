@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SACRED_RITUALS, RitualDetail } from '../data/weddingData';
-import { Sparkles, Heart, Volume2, VolumeX, MessageSquare, Feather, Clock, Palette, Users } from 'lucide-react';
+import { Sparkles, Heart, MessageSquare, Feather, Clock, Palette, Users } from 'lucide-react';
+import { PageHero } from './PageHero';
 
 interface SacredRitualsHubProps {
   onNavigateToGallery?: () => void;
@@ -18,7 +19,6 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
     else if (onNavigateToRsvp) onNavigateToRsvp();
   };
   const [selectedRitual, setSelectedRitual] = useState<RitualDetail>(SACRED_RITUALS[0]);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [familyStories, setFamilyStories] = useState<{ author: string; ritualName: string; text: string; date: string }[]>([
     {
       author: 'Aarti Bua (Jaipur)',
@@ -38,49 +38,6 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
   const [newStoryRitual, setNewStoryRitual] = useState('Haldi & Tel Baan');
   const [newStoryText, setNewStoryText] = useState('');
   const [showStoryForm, setShowStoryForm] = useState(false);
-
-  // Web Audio Synthesizer for serene Indian Tanpura / Temple Bell ambient atmosphere
-  const toggleAmbientSound = () => {
-    try {
-      if (!isPlayingAudio) {
-        const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        const ctx = new AudioContextClass();
-        
-        // Gentle Tanpura root drone (C#3 ~ 138.59 Hz)
-        const osc1 = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
-        const gainNode = ctx.createGain();
-
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(138.59, ctx.currentTime);
-        
-        osc2.type = 'triangle';
-        osc2.frequency.setValueAtTime(207.65, ctx.currentTime); // Fifth note (G#3)
-
-        gainNode.gain.setValueAtTime(0.04, ctx.currentTime);
-
-        osc1.connect(gainNode);
-        osc2.connect(gainNode);
-        gainNode.connect(ctx.destination);
-
-        osc1.start();
-        osc2.start();
-
-        // Save reference to window for toggling
-        (window as unknown as { __tanpuraCtx?: AudioContext }).__tanpuraCtx = ctx;
-        setIsPlayingAudio(true);
-      } else {
-        const win = window as unknown as { __tanpuraCtx?: AudioContext };
-        if (win.__tanpuraCtx) {
-          win.__tanpuraCtx.close();
-          win.__tanpuraCtx = undefined;
-        }
-        setIsPlayingAudio(false);
-      }
-    } catch {
-      setIsPlayingAudio(false);
-    }
-  };
 
   const handleAddStory = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,97 +59,56 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
-      {/* Header Banner */}
-      <section className="w-full px-6 sm:px-8 lg:px-12 pt-6 pb-12 text-center border-b border-[#ded5c7]">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
-            <Sparkles className="w-4 h-4 text-[#a78b71]" />
-            <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
-              Vedic Heritage &amp; Clan Lore
-            </span>
-          </div>
-
-          <h1 className="font-serif italic font-normal text-4xl sm:text-5xl lg:text-6xl text-[#1c1c19] tracking-tight leading-tight">
-            The Living Language of{' '}
-            <span className="text-[#45123E] not-italic font-bold inline-block hover:text-[#775a19] transition-colors">
-              Sacred Rituals
-            </span>
-          </h1>
-
-          <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
-            Every thread of turmeric, every vow around the Agni, and every grain of rice showered from elder hands carries centuries of family prayer. Here, we illuminate the profound emotional and Vedic meaning behind each ceremony.
-          </p>
-
-          {/* Tanpura Ambient Toggle & Action Strip */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={toggleAmbientSound}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-sans text-xs uppercase tracking-wider transition-all border cursor-pointer ${
-                isPlayingAudio
-                  ? 'bg-[#45123E] text-white border-[#45123E] shadow-md font-bold'
-                  : 'bg-white text-[#45123E] border-[#ded5c7] hover:bg-[#FAF5EB] shadow-2xs font-bold'
-              }`}
-            >
-              {isPlayingAudio ? (
-                <>
-                  <Volume2 className="w-4 h-4 animate-pulse text-[#e8d5b7]" />
-                  <span>Tanpura Ambiance Playing</span>
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-4 h-4 text-[#775a19]" />
-                  <span>Play Sacred Tanpura Drone</span>
-                </>
-              )}
-            </button>
-
-            <button
-              onClick={handleRsvpClick}
-              className="inline-flex items-center gap-2 bg-[#45123E] text-white hover:bg-[#340C2E] px-6 py-3 rounded-full font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md cursor-pointer"
-            >
-              <span>RSVP For Ceremonies</span>
-            </button>
-          </div>
-        </div>
-      </section>
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pb-16 font-sans">
+      {/* Page Hero with Distinct Existing Landscape Photo (/images/6.jpg) */}
+      <PageHero
+        badge="Vedic Heritage & Family Lore"
+        title="The Living Language of"
+        titleHighlight="Sacred Rituals"
+        subtitle="Every thread of auspicious turmeric, every vow whispered around the sacred fire, and every tearful blessing showered from elder hands carries generations of quiet devotion. Here, we honor the deep emotional soul behind each ritual."
+        backgroundImageUrl="/images/6.jpg"
+        primaryAction={{
+          label: "RSVP For Ceremonies",
+          onClick: handleRsvpClick
+        }}
+      />
 
       {/* Main Rituals Explorer */}
-      <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Ritual Selector Sidebar (Span 4) */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            <span className="font-headline text-xs uppercase tracking-widest text-[#7f7667] mb-1 block">
-              The Nuptial Progression
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+          {/* Left Column: Ritual Selector Sidebar (Horizontal swipeable ribbon on smartphone, vertical sidebar on desktop) */}
+          <div className="lg:col-span-4 flex flex-col gap-2">
+            <span className="font-headline text-[10px] sm:text-xs uppercase tracking-widest text-[#7f7667] mb-0.5 block">
+              The Nuptial Progression (Swipe to Select)
             </span>
-            <div className="space-y-2">
+            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible scrollbar-none pb-2 lg:pb-0 gap-2 -mx-4 px-4 sm:mx-0 sm:px-0">
               {SACRED_RITUALS.map((ritual, idx) => {
                 const isSelected = selectedRitual.id === ritual.id;
                 return (
                   <button
                     key={ritual.id}
                     onClick={() => setSelectedRitual(ritual)}
-                    className={`w-full text-left p-4 border transition-all flex items-start justify-between gap-3 ${
+                    className={`w-auto shrink-0 lg:w-full text-left px-3.5 sm:px-4 py-2.5 sm:py-3.5 rounded-2xl border transition-all flex items-center lg:items-start justify-between gap-2.5 sm:gap-3 cursor-pointer whitespace-nowrap lg:whitespace-normal ${
                       isSelected
-                        ? 'bg-white border-[#775a19] shadow-md ring-1 ring-[#775a19]'
-                        : 'bg-[#f6f3ee] border-[#d1c5b4]/50 hover:bg-white text-[#1c1c19]'
+                        ? 'bg-[#3b122d] text-white border-white/80 shadow-md'
+                        : 'glass-lucid-pill hover:bg-white text-[#1c1c19]'
                     }`}
                   >
                     <div className="flex flex-col">
-                      <div className="flex items-center gap-2">
-                        <span className="font-numeral text-xs text-[#775a19] font-bold">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <span className={`font-numeral text-xs font-bold ${isSelected ? 'text-[#e8d5b7]' : 'text-[#775a19]'}`}>
                           0{idx + 1}.
                         </span>
-                        <span className="font-headline text-base font-semibold text-[#1c1c19]">
+                        <span className={`font-headline text-sm sm:text-base font-semibold ${isSelected ? 'text-white' : 'text-[#1c1c19]'}`}>
                           {ritual.name}
                         </span>
                       </div>
-                      <span className="font-serif text-xs text-[#7f7667] mt-1">
+                      <span className={`font-serif text-[11px] sm:text-xs mt-0.5 ${isSelected ? 'text-white/80' : 'text-[#7f7667]'}`}>
                         {ritual.hindiName} • {ritual.timing.split(' ')[0]}
                       </span>
                     </div>
                     {isSelected && (
-                      <span className="text-[#775a19] text-xs font-headline font-bold">
+                      <span className="text-[#e8d5b7] text-[9px] sm:text-[10px] font-headline font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/20 ml-2">
                         ACTIVE
                       </span>
                     )}
@@ -204,7 +120,7 @@ export const SacredRitualsHub: React.FC<SacredRitualsHubProps> = ({
 
           {/* Right Column: In-Depth Ritual Chronicle (Span 8) */}
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="bg-white p-6 sm:p-10 border border-[#d1c5b4]/70 shadow-lg relative">
+            <div className="glass-lucid-card p-6 sm:p-10 rounded-3xl border border-white/85 shadow-2xl relative">
               {/* Ornate corner motifs */}
               <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#c5a059]"></div>
               <div className="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-[#c5a059]"></div>

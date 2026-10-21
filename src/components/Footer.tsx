@@ -42,16 +42,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* 5-Column Desktop Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 pb-12 sm:pb-16 border-b border-[#ded3c2]">
+        {/* 6-Column Desktop Grid for Grand Logo Presentation */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-8 pb-12 sm:pb-16 border-b border-[#ded3c2]">
           
-          {/* Column 1: Updated Brand Logo & Verified Social Media Channels */}
-          <div className="flex flex-col gap-4 lg:col-span-1">
-            <div>
-              <RKStudiosLogo height={62} />
+          {/* Column 1: Grand Master Logo & Verified Social Media Channels */}
+          <div className="flex flex-col gap-4 lg:col-span-2">
+            <div className="py-1">
+              <RKStudiosLogo height={96} className="transition-transform duration-300 hover:scale-[1.02]" />
             </div>
 
-            <p className="font-serif italic text-sm text-[#5d4f40] leading-relaxed mt-1">
+            <p className="font-serif italic text-sm sm:text-base text-[#5d4f40] leading-relaxed mt-1 max-w-sm">
               “A sacred witness to unbroken vows, heartfelt tears at the Vidai, and generations united in timeless joy.”
             </p>
 

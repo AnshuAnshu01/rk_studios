@@ -40,12 +40,13 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
 
   return (
     <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pb-16 font-sans">
-      {/* 1. Page Hero with Glowing Fire Background & Photos Moving Left to Right */}
+      {/* 1. Page Hero with Distinct Landscape Photo (/images/1.jpg) */}
       <PageHero
         badge="Direct Studio Consultation"
         title="Reserve Your Celebration"
         titleHighlight="With Heartfelt Devotion"
-        subtitle="Every couple has their own cadence, every family their own beloved rituals. Tell us about your auspicious dates, and let us prepare a timeless visual heirloom for you."
+        subtitle="Every couple has their own unique melody, every family their own cherished rituals. Share your auspicious dates with us, and let us prepare a timeless visual heirloom that your children and grandchildren will hold with love."
+        backgroundImageUrl="/images/1.jpg"
         primaryAction={{
           label: "Inquire via WhatsApp",
           onClick: () => onOpenWhatsApp("Pranam! We would love to reserve our wedding dates and schedule a consultation.")
@@ -61,7 +62,7 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Form & Protocols (Span 7) */}
           <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8">
-            <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#ded5c7] shadow-lg relative text-[#1c1c19]">
+            <div className="glass-lucid p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/85 shadow-2xl relative text-[#1c1c19] backdrop-blur-2xl">
               {/* Stepper Header Strip */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-6 bg-[#f6f3ee] p-3 rounded-xl border border-[#e5e2dd]">
                 <div className="flex items-center gap-2">
@@ -397,7 +398,7 @@ export const ReserveDates: React.FC<ReserveDatesProps> = ({
           {/* Right Column: Atelier Coordinates & Consultations (Span 5) */}
           <div className="lg:col-span-5 flex flex-col gap-8">
             {/* Atelier Coordinates Card */}
-            <div className="bg-white p-6 border border-[#d1c5b4]/70 shadow-md flex flex-col gap-6">
+            <div className="glass-lucid-card rounded-3xl p-6 sm:p-8 border border-white/85 shadow-2xl flex flex-col gap-6">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-between">
                   <span className="font-headline text-xs uppercase tracking-widest text-[#775a19] font-semibold">

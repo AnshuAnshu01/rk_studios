@@ -144,14 +144,26 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
   });
 
   return (
-    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] bg-dots min-h-screen pt-28 pb-16 font-sans">
-      {/* Header Banner */}
-      <section className="w-full px-6 sm:px-8 lg:px-12 pt-6 pb-12 text-center border-b border-[#ded5c7]">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
+    <div className="w-full bg-[#fcf9f4] text-[#1c1c19] min-h-screen pt-20 sm:pt-24 pb-16 font-sans">
+      {/* Header Banner with Distinct Landscape Photo (/images/4.jpg) */}
+      <section className="relative w-full px-6 sm:px-8 lg:px-12 pt-8 pb-14 text-center border-b border-[#ded5c7] overflow-hidden bg-[#FAF5EB]">
+        {/* Landscape Photo Layer */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <img
+            src="/images/4.jpg"
+            alt=""
+            className="w-full h-full object-cover object-center opacity-25 scale-105"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5EB]/85 via-[#FAF5EB]/70 to-[#FAF5EB]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5EB]/90 via-transparent to-[#FAF5EB]/90" />
+        </div>
+
+        <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10 glass-lucid px-6 sm:px-10 py-8 sm:py-12 rounded-3xl border border-white/85 shadow-2xl backdrop-blur-2xl">
           <div className="inline-flex items-center gap-2 mb-3 text-[#775a19]">
             <Sparkles className="w-4 h-4 text-[#a78b71]" />
             <span className="font-sans text-[11px] tracking-[0.25em] uppercase font-bold">
-              Family Communion &amp; Hospitality Bureau
+              Family Warmth &amp; Sacred Hospitality
             </span>
           </div>
 
@@ -163,11 +175,11 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
           </h1>
 
           <p className="font-serif text-base sm:text-lg text-[#594d3f] max-w-2xl mt-4 leading-relaxed font-normal">
-            In our traditions, a guest is revered as the divine itself (<em>Atithi Devo Bhava</em>). Confirm your presence across auspicious ceremonies, share stay preferences, and leave lifelong blessings for the couple.
+            In our Indian homes, every guest brings a blessing of the divine (<em>Atithi Devo Bhava</em>). Confirm your presence across auspicious ceremonies, share stay preferences, and leave lifelong blessings for the couple.
           </p>
 
           {/* Master View Mode Switcher */}
-          <div className="mt-8 flex items-center justify-center p-1 rounded-full bg-[#f0eae0] border border-[#ded5c7]">
+          <div className="mt-8 flex items-center justify-center p-1 rounded-full glass-lucid-pill border border-white/90">
             <button
               onClick={() => setActiveTab('rsvp-wall')}
               className={`px-6 py-2.5 rounded-full font-sans text-xs uppercase tracking-wider transition-all cursor-pointer ${
@@ -197,7 +209,7 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
         <section className="w-full px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: RSVP Form (Span 7) */}
-            <div className="lg:col-span-7 bg-white p-6 sm:p-10 border border-[#d1c5b4]/70 shadow-lg relative">
+            <div className="lg:col-span-7 glass-lucid-card p-6 sm:p-10 rounded-3xl border border-white/85 shadow-2xl relative">
               <div className="border-b border-[#e5e2dd] pb-4 mb-6">
                 <span className="font-headline text-xs uppercase tracking-widest text-[#775a19] font-bold block mb-1">
                   Sacred Attendance
@@ -403,7 +415,7 @@ export const FamilyRsvpPortal: React.FC<FamilyRsvpPortalProps> = ({ onOpenRitual
 
             {/* Right: The Sacred Aashirwad Wall (Span 5) */}
             <div className="lg:col-span-5 flex flex-col gap-6">
-              <div className="bg-white p-6 border border-[#d1c5b4]/70 shadow-md">
+              <div className="glass-lucid-card p-6 sm:p-8 rounded-3xl border border-white/85 shadow-2xl">
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#e5e2dd]">
                   <div className="flex items-center gap-2 text-[#775a19]">
                     <Heart className="w-4 h-4 text-[#775a19]" />
