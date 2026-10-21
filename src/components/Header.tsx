@@ -64,12 +64,14 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Brand Logo */}
           <button
             onClick={() => handleNavClick('anthology')}
-            className="flex items-center gap-3 text-left focus:outline-none cursor-pointer"
+            className="flex items-center gap-2.5 text-left focus:outline-none cursor-pointer"
             aria-label="RK Photo & Movies Production Home"
           >
             <div className="transition-transform hover:scale-[1.02]">
               <RKStudiosLogo height={44} />
             </div>
+            <span className="text-[#ded5c7] text-xl font-light select-none hidden sm:inline">|</span>
+            <span className="font-serif italic text-sm sm:text-base font-bold text-[#45123E] tracking-wide hidden sm:inline">RK Studios</span>
           </button>
 
           {/* Desktop Navigation Links in Order of Landing Page */}
@@ -174,12 +176,11 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* Drawer Top Header */}
             <div className="flex items-center justify-between pb-5 border-b border-[#e6ddd0]">
-              <div className="flex items-center gap-2">
-                <span className="font-serif italic text-lg font-bold text-[#45123E] tracking-wide">
-                  RK Atelier
-                </span>
-                <span className="text-[10px] uppercase tracking-widest text-[#775a19] bg-[#f0e6d6] px-2.5 py-0.5 rounded-full font-sans font-semibold">
-                  Directory
+              <div className="flex items-center gap-2.5">
+                <RKStudiosLogo height={36} />
+                <span className="text-[#ded5c7] text-lg font-light select-none">|</span>
+                <span className="font-serif italic text-base font-bold text-[#45123E] tracking-wide">
+                  RK Studios
                 </span>
               </div>
               <button

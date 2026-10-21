@@ -441,18 +441,7 @@ export const VisualAnthology: React.FC<VisualAnthologyProps> = ({
         {/* 2. BOTTOM HALF: ATELIER ACTIVE + TYPOGRAPHY + ACTIONS     */}
         {/* ========================================================= */}
         <div className="relative z-30 max-w-4xl mx-auto px-3 sm:px-8 pt-3 sm:pt-6 pb-2 text-center flex flex-col items-center">
-          
-          {/* Pill Badge: ATELIER ACTIVE | Accepting 24 Bespoke Nuptials in 2026 */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-stone-200/70 mb-4 sm:mb-6 transition-transform hover:scale-[1.02] max-w-[95%]">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span className="text-[9px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#065f46] shrink-0">
-              ATELIER ACTIVE
-            </span>
-            <span className="text-stone-300 text-xs font-light">|</span>
-            <span className="text-[11px] sm:text-[13px] font-sans text-stone-700 font-medium tracking-tight truncate">
-              Accepting 24 Bespoke Nuptials in 2026
-            </span>
-          </div>
+
 
           {/* Main Headline: Every Frame, A Legacy */}
           <h1 

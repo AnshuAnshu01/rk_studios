@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-14 sm:pt-20 pb-10 sm:pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
+    <footer className="w-full bg-[#f5efe5] text-[#1c1c19] pt-14 sm:pt-20 pb-28 sm:pb-12 border-t border-[#e2d8cb] relative overflow-hidden font-sans">
       {/* Background warm radial ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#a78b71]/10 blur-[130px] pointer-events-none rounded-full" />
 
@@ -264,46 +264,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom Copyright & Designed/Developed Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-[#7a6b5c] text-center md:text-left">
+        <div className="pt-8 flex flex-col items-center justify-center gap-2 text-xs font-sans text-[#7a6b5c] text-center">
           
-          {/* Left: Studio Copyright */}
-          <div className="flex items-center justify-center md:justify-start gap-2">
-            <span className="text-[#a78b71] select-none text-base">¶</span>
-            <p className="tracking-widest uppercase text-[10px] font-medium leading-relaxed">
-              © MMXXIV RK PHOTO &amp; MOVIES PRODUCTION. ALL RIGHTS RESERVED.
-            </p>
-          </div>
+          {/* Centered Copyright */}
+          <p className="tracking-widest uppercase text-[10px] font-medium leading-relaxed">
+            © MMXXIV RK PHOTO &amp; MOVIES PRODUCTION. ALL RIGHTS RESERVED.
+          </p>
 
-          {/* CENTER: Prominent Designed and Developed by ACCustomLabs */}
-          <div className="text-center font-sans text-xs tracking-wider text-[#5c4e3f] py-1.5 px-4 rounded-full bg-white/80 border border-[#ded3c2] shadow-2xs">
+          {/* Designed and Developed by */}
+          <div className="font-sans text-[11px] tracking-wider text-[#5c4e3f]">
             <span>Designed and Developed by </span>
             <span className="font-bold text-[#45123E] tracking-normal hover:underline cursor-default">
               ACCustomLabs
             </span>
-          </div>
-
-          {/* Right: Legal & Policy Direct Links */}
-          <div className="flex flex-wrap justify-center items-center gap-3 text-[10px] tracking-widest uppercase text-[#7a6b5c]">
-            <button 
-              onClick={() => onNavigate('cookies')}
-              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
-            >
-              Cookie Policy
-            </button>
-            <span className="text-gray-300">•</span>
-            <button 
-              onClick={() => onNavigate('terms')}
-              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
-            >
-              Terms &amp; Conditions
-            </button>
-            <span className="text-gray-300">•</span>
-            <button 
-              onClick={() => onNavigate('map')}
-              className="hover:text-[#45123E] transition-colors cursor-pointer py-1"
-            >
-              Google Maps
-            </button>
           </div>
 
         </div>

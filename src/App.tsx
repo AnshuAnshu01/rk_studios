@@ -218,7 +218,7 @@ export default function App() {
       </main>
 
       {/* Floating Action Controls - Discreet, elegant, and positioned above smartphone bottom nav */}
-      <div className="fixed bottom-20 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
+      <div className="fixed bottom-[5.5rem] right-3 sm:bottom-5 sm:right-5 z-30 flex flex-col items-end gap-2.5 pointer-events-auto">
         {/* Scroll To Top Button with Circular Border Filling on Scroll */}
         {showScrollTop && (
           <button 
